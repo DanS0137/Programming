@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    internal enum WeekDay
+    internal enum Weekday
     {
         Monday,
         Tuesday,
