@@ -67,13 +67,13 @@ namespace Programming
             {
                 return;
             }
-            if (Enum.TryParse(typeof(Weekday), valueOfTextBox, out object result))
+            if (!Enum.TryParse(typeof(Weekday), valueOfTextBox, out object result) || Int32.TryParse(valueOfTextBox, out int value))
             {
-                ResultOfParsing.Text = $"Это день недели ({valueOfTextBox} = {(int)result + 1}).";
+                ResultOfParsing.Text = "Это не день недели.";
             }
             else
             {
-                ResultOfParsing.Text = "Это не день недели.";
+                ResultOfParsing.Text = $"Это день недели ({valueOfTextBox} = {(int)result + 1}).";
             }
             ResultOfParsing.Visible = true;
         }
