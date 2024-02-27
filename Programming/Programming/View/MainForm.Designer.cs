@@ -46,9 +46,15 @@
             ValuesListBox = new ListBox();
             EnumsListBox = new ListBox();
             tabPage2 = new TabPage();
+            Enumerations = new GroupBox();
+            WeekdayParsing = new GroupBox();
+            SeasonHandle = new GroupBox();
             tabControl1.SuspendLayout();
             Enums.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Picture).BeginInit();
+            Enumerations.SuspendLayout();
+            WeekdayParsing.SuspendLayout();
+            SeasonHandle.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -65,20 +71,9 @@
             // Enums
             // 
             Enums.BackColor = Color.White;
-            Enums.Controls.Add(Picture);
-            Enums.Controls.Add(GoButton);
-            Enums.Controls.Add(SeasonsComboBox);
-            Enums.Controls.Add(ChooseSeason);
-            Enums.Controls.Add(ParseButton);
-            Enums.Controls.Add(ResultOfParsing);
-            Enums.Controls.Add(ValueForParsingBox);
-            Enums.Controls.Add(TypeValueForParsing);
-            Enums.Controls.Add(ValueOfSelectedValue);
-            Enums.Controls.Add(IntValue);
-            Enums.Controls.Add(ChooseValue);
-            Enums.Controls.Add(ChooseEnumeration);
-            Enums.Controls.Add(ValuesListBox);
-            Enums.Controls.Add(EnumsListBox);
+            Enums.Controls.Add(SeasonHandle);
+            Enums.Controls.Add(WeekdayParsing);
+            Enums.Controls.Add(Enumerations);
             Enums.Location = new Point(4, 24);
             Enums.Name = "Enums";
             Enums.Padding = new Padding(3);
@@ -89,7 +84,7 @@
             // Picture
             // 
             Picture.Image = (Image)resources.GetObject("Picture.Image");
-            Picture.Location = new Point(563, 60);
+            Picture.Location = new Point(557, 43);
             Picture.Name = "Picture";
             Picture.Size = new Size(204, 201);
             Picture.TabIndex = 14;
@@ -98,7 +93,7 @@
             // 
             // GoButton
             // 
-            GoButton.Location = new Point(563, 291);
+            GoButton.Location = new Point(174, 46);
             GoButton.Name = "GoButton";
             GoButton.Size = new Size(75, 23);
             GoButton.TabIndex = 13;
@@ -110,7 +105,7 @@
             // 
             SeasonsComboBox.FormattingEnabled = true;
             SeasonsComboBox.Items.AddRange(new object[] { "Winter", "Spring", "Summer", "Autumn" });
-            SeasonsComboBox.Location = new Point(381, 291);
+            SeasonsComboBox.Location = new Point(9, 47);
             SeasonsComboBox.Name = "SeasonsComboBox";
             SeasonsComboBox.Size = new Size(140, 23);
             SeasonsComboBox.TabIndex = 12;
@@ -118,7 +113,7 @@
             // ChooseSeason
             // 
             ChooseSeason.AutoSize = true;
-            ChooseSeason.Location = new Point(381, 272);
+            ChooseSeason.Location = new Point(9, 29);
             ChooseSeason.Name = "ChooseSeason";
             ChooseSeason.Size = new Size(89, 15);
             ChooseSeason.TabIndex = 10;
@@ -126,7 +121,7 @@
             // 
             // ParseButton
             // 
-            ParseButton.Location = new Point(203, 291);
+            ParseButton.Location = new Point(197, 46);
             ParseButton.Name = "ParseButton";
             ParseButton.Size = new Size(75, 23);
             ParseButton.TabIndex = 9;
@@ -137,7 +132,7 @@
             // ResultOfParsing
             // 
             ResultOfParsing.AutoSize = true;
-            ResultOfParsing.Location = new Point(21, 316);
+            ResultOfParsing.Location = new Point(15, 73);
             ResultOfParsing.Name = "ResultOfParsing";
             ResultOfParsing.Size = new Size(38, 15);
             ResultOfParsing.TabIndex = 8;
@@ -146,7 +141,7 @@
             // 
             // ValueForParsingBox
             // 
-            ValueForParsingBox.Location = new Point(21, 291);
+            ValueForParsingBox.Location = new Point(15, 47);
             ValueForParsingBox.Name = "ValueForParsingBox";
             ValueForParsingBox.Size = new Size(140, 23);
             ValueForParsingBox.TabIndex = 7;
@@ -154,7 +149,7 @@
             // TypeValueForParsing
             // 
             TypeValueForParsing.AutoSize = true;
-            TypeValueForParsing.Location = new Point(21, 272);
+            TypeValueForParsing.Location = new Point(15, 29);
             TypeValueForParsing.Name = "TypeValueForParsing";
             TypeValueForParsing.Size = new Size(127, 15);
             TypeValueForParsing.TabIndex = 6;
@@ -162,7 +157,7 @@
             // 
             // ValueOfSelectedValue
             // 
-            ValueOfSelectedValue.Location = new Point(381, 35);
+            ValueOfSelectedValue.Location = new Point(375, 43);
             ValueOfSelectedValue.Name = "ValueOfSelectedValue";
             ValueOfSelectedValue.Size = new Size(140, 23);
             ValueOfSelectedValue.TabIndex = 5;
@@ -170,7 +165,7 @@
             // IntValue
             // 
             IntValue.AutoSize = true;
-            IntValue.Location = new Point(381, 17);
+            IntValue.Location = new Point(375, 25);
             IntValue.Name = "IntValue";
             IntValue.Size = new Size(55, 15);
             IntValue.TabIndex = 4;
@@ -179,7 +174,7 @@
             // ChooseValue
             // 
             ChooseValue.AutoSize = true;
-            ChooseValue.Location = new Point(203, 17);
+            ChooseValue.Location = new Point(197, 25);
             ChooseValue.Name = "ChooseValue";
             ChooseValue.Size = new Size(81, 15);
             ChooseValue.TabIndex = 3;
@@ -188,7 +183,7 @@
             // ChooseEnumeration
             // 
             ChooseEnumeration.AutoSize = true;
-            ChooseEnumeration.Location = new Point(21, 17);
+            ChooseEnumeration.Location = new Point(15, 25);
             ChooseEnumeration.Name = "ChooseEnumeration";
             ChooseEnumeration.Size = new Size(121, 15);
             ChooseEnumeration.TabIndex = 2;
@@ -199,7 +194,7 @@
             ValuesListBox.FormattingEnabled = true;
             ValuesListBox.ItemHeight = 15;
             ValuesListBox.Items.AddRange(new object[] { "White", "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Black" });
-            ValuesListBox.Location = new Point(201, 35);
+            ValuesListBox.Location = new Point(197, 43);
             ValuesListBox.Name = "ValuesListBox";
             ValuesListBox.ScrollAlwaysVisible = true;
             ValuesListBox.Size = new Size(140, 139);
@@ -211,7 +206,7 @@
             EnumsListBox.FormattingEnabled = true;
             EnumsListBox.ItemHeight = 15;
             EnumsListBox.Items.AddRange(new object[] { "Color", "EducationForm", "Genre", "Manufacture", "Season", "Weekday" });
-            EnumsListBox.Location = new Point(21, 35);
+            EnumsListBox.Location = new Point(15, 43);
             EnumsListBox.Name = "EnumsListBox";
             EnumsListBox.ScrollAlwaysVisible = true;
             EnumsListBox.Size = new Size(140, 139);
@@ -228,6 +223,47 @@
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // Enumerations
+            // 
+            Enumerations.Controls.Add(EnumsListBox);
+            Enumerations.Controls.Add(Picture);
+            Enumerations.Controls.Add(ValuesListBox);
+            Enumerations.Controls.Add(ValueOfSelectedValue);
+            Enumerations.Controls.Add(ChooseValue);
+            Enumerations.Controls.Add(IntValue);
+            Enumerations.Controls.Add(ChooseEnumeration);
+            Enumerations.Location = new Point(6, 6);
+            Enumerations.Name = "Enumerations";
+            Enumerations.Size = new Size(780, 263);
+            Enumerations.TabIndex = 15;
+            Enumerations.TabStop = false;
+            Enumerations.Text = "Enumerations";
+            // 
+            // WeekdayParsing
+            // 
+            WeekdayParsing.Controls.Add(TypeValueForParsing);
+            WeekdayParsing.Controls.Add(ValueForParsingBox);
+            WeekdayParsing.Controls.Add(ResultOfParsing);
+            WeekdayParsing.Controls.Add(ParseButton);
+            WeekdayParsing.Location = new Point(6, 275);
+            WeekdayParsing.Name = "WeekdayParsing";
+            WeekdayParsing.Size = new Size(360, 139);
+            WeekdayParsing.TabIndex = 16;
+            WeekdayParsing.TabStop = false;
+            WeekdayParsing.Text = "Weekday Parsing";
+            // 
+            // SeasonHandle
+            // 
+            SeasonHandle.Controls.Add(SeasonsComboBox);
+            SeasonHandle.Controls.Add(GoButton);
+            SeasonHandle.Controls.Add(ChooseSeason);
+            SeasonHandle.Location = new Point(372, 275);
+            SeasonHandle.Name = "SeasonHandle";
+            SeasonHandle.Size = new Size(412, 139);
+            SeasonHandle.TabIndex = 17;
+            SeasonHandle.TabStop = false;
+            SeasonHandle.Text = "Season Handle";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -239,8 +275,13 @@
             Text = "MainForm";
             tabControl1.ResumeLayout(false);
             Enums.ResumeLayout(false);
-            Enums.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Picture).EndInit();
+            Enumerations.ResumeLayout(false);
+            Enumerations.PerformLayout();
+            WeekdayParsing.ResumeLayout(false);
+            WeekdayParsing.PerformLayout();
+            SeasonHandle.ResumeLayout(false);
+            SeasonHandle.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -263,5 +304,8 @@
         private ComboBox SeasonsComboBox;
         private Button GoButton;
         private PictureBox Picture;
+        private GroupBox SeasonHandle;
+        private GroupBox WeekdayParsing;
+        private GroupBox Enumerations;
     }
 }

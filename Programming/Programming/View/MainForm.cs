@@ -83,25 +83,25 @@ namespace Programming
             switch (SeasonsComboBox.SelectedItem.ToString())
             {
                 case "Winter":
-                    Picture.Image = Image.FromFile(@"C:\Users\5731sda\source\repos\Programming\Programming\Programming\Properties\winter.jpg");
+                    Picture.Image = Image.FromFile(@"images\winter.jpg");
                     Picture.SizeMode = PictureBoxSizeMode.Zoom;
                     Picture.Visible = true;
                     Enums.BackColor = System.Drawing.Color.FromArgb(122, 255, 255);
                     break;
                 case "Spring":
-                    Picture.Image = Image.FromFile(@"C:\Users\5731sda\source\repos\Programming\Programming\Programming\Properties\spring.jpg");
+                    Picture.Image = Image.FromFile(@"images\spring.jpg");
                     Picture.SizeMode = PictureBoxSizeMode.Zoom;
                     Picture.Visible = true;
                     Enums.BackColor = System.Drawing.Color.FromArgb(128, 255, 128);
                     break;
                 case "Summer":
-                    Picture.Image = Image.FromFile(@"C:\Users\5731sda\source\repos\Programming\Programming\Programming\Properties\summer.jpg");
+                    Picture.Image = Image.FromFile(@"images\summer.jpg");
                     Picture.SizeMode = PictureBoxSizeMode.Zoom;
                     Picture.Visible = true;
                     Enums.BackColor = System.Drawing.Color.FromArgb(0, 192, 0);
                     break;
                 case "Autumn":
-                    Picture.Image = Image.FromFile(@"C:\Users\5731sda\source\repos\Programming\Programming\Programming\Properties\autumn.jpg");
+                    Picture.Image = Image.FromFile(@"images\autumn.jpg");
                     Picture.SizeMode = PictureBoxSizeMode.Zoom;
                     Picture.Visible = true;
                     Enums.BackColor = System.Drawing.Color.FromArgb(255, 128, 0);
