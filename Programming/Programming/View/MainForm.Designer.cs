@@ -28,8 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             tabControl1 = new TabControl();
             Enums = new TabPage();
+            Picture = new PictureBox();
+            GoButton = new Button();
+            SeasonsComboBox = new ComboBox();
+            ChooseSeason = new Label();
+            ParseButton = new Button();
+            ResultOfParsing = new Label();
+            ValueForParsingBox = new TextBox();
+            TypeValueForParsing = new Label();
             ValueOfSelectedValue = new TextBox();
             IntValue = new Label();
             ChooseValue = new Label();
@@ -37,12 +46,9 @@
             ValuesListBox = new ListBox();
             EnumsListBox = new ListBox();
             tabPage2 = new TabPage();
-            TypeValueForParsing = new Label();
-            ValueForParsingBox = new TextBox();
-            ResultOfParsing = new Label();
-            ParseButton = new Button();
             tabControl1.SuspendLayout();
             Enums.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Picture).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -58,6 +64,11 @@
             // 
             // Enums
             // 
+            Enums.BackColor = Color.White;
+            Enums.Controls.Add(Picture);
+            Enums.Controls.Add(GoButton);
+            Enums.Controls.Add(SeasonsComboBox);
+            Enums.Controls.Add(ChooseSeason);
             Enums.Controls.Add(ParseButton);
             Enums.Controls.Add(ResultOfParsing);
             Enums.Controls.Add(ValueForParsingBox);
@@ -74,7 +85,80 @@
             Enums.Size = new Size(792, 422);
             Enums.TabIndex = 0;
             Enums.Text = "Enums";
-            Enums.UseVisualStyleBackColor = true;
+            // 
+            // Picture
+            // 
+            Picture.Image = (Image)resources.GetObject("Picture.Image");
+            Picture.Location = new Point(563, 60);
+            Picture.Name = "Picture";
+            Picture.Size = new Size(204, 201);
+            Picture.TabIndex = 14;
+            Picture.TabStop = false;
+            Picture.Visible = false;
+            // 
+            // GoButton
+            // 
+            GoButton.Location = new Point(563, 291);
+            GoButton.Name = "GoButton";
+            GoButton.Size = new Size(75, 23);
+            GoButton.TabIndex = 13;
+            GoButton.Text = "GO!";
+            GoButton.UseVisualStyleBackColor = true;
+            GoButton.Click += GoButton_Click;
+            // 
+            // SeasonsComboBox
+            // 
+            SeasonsComboBox.FormattingEnabled = true;
+            SeasonsComboBox.Items.AddRange(new object[] { "Winter", "Spring", "Summer", "Autumn" });
+            SeasonsComboBox.Location = new Point(381, 291);
+            SeasonsComboBox.Name = "SeasonsComboBox";
+            SeasonsComboBox.Size = new Size(140, 23);
+            SeasonsComboBox.TabIndex = 12;
+            // 
+            // ChooseSeason
+            // 
+            ChooseSeason.AutoSize = true;
+            ChooseSeason.Location = new Point(381, 272);
+            ChooseSeason.Name = "ChooseSeason";
+            ChooseSeason.Size = new Size(89, 15);
+            ChooseSeason.TabIndex = 10;
+            ChooseSeason.Text = "Choose season:";
+            // 
+            // ParseButton
+            // 
+            ParseButton.Location = new Point(203, 291);
+            ParseButton.Name = "ParseButton";
+            ParseButton.Size = new Size(75, 23);
+            ParseButton.TabIndex = 9;
+            ParseButton.Text = "Parse";
+            ParseButton.UseVisualStyleBackColor = true;
+            ParseButton.Click += ParseButton_Click;
+            // 
+            // ResultOfParsing
+            // 
+            ResultOfParsing.AutoSize = true;
+            ResultOfParsing.Location = new Point(21, 316);
+            ResultOfParsing.Name = "ResultOfParsing";
+            ResultOfParsing.Size = new Size(38, 15);
+            ResultOfParsing.TabIndex = 8;
+            ResultOfParsing.Text = "label1";
+            ResultOfParsing.Visible = false;
+            // 
+            // ValueForParsingBox
+            // 
+            ValueForParsingBox.Location = new Point(21, 291);
+            ValueForParsingBox.Name = "ValueForParsingBox";
+            ValueForParsingBox.Size = new Size(140, 23);
+            ValueForParsingBox.TabIndex = 7;
+            // 
+            // TypeValueForParsing
+            // 
+            TypeValueForParsing.AutoSize = true;
+            TypeValueForParsing.Location = new Point(21, 272);
+            TypeValueForParsing.Name = "TypeValueForParsing";
+            TypeValueForParsing.Size = new Size(127, 15);
+            TypeValueForParsing.TabIndex = 6;
+            TypeValueForParsing.Text = "Type value for parsing:";
             // 
             // ValueOfSelectedValue
             // 
@@ -144,46 +228,11 @@
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // TypeValueForParsing
-            // 
-            TypeValueForParsing.AutoSize = true;
-            TypeValueForParsing.Location = new Point(21, 272);
-            TypeValueForParsing.Name = "TypeValueForParsing";
-            TypeValueForParsing.Size = new Size(127, 15);
-            TypeValueForParsing.TabIndex = 6;
-            TypeValueForParsing.Text = "Type value for parsing:";
-            // 
-            // ValueForParsingBox
-            // 
-            ValueForParsingBox.Location = new Point(21, 290);
-            ValueForParsingBox.Name = "ValueForParsingBox";
-            ValueForParsingBox.Size = new Size(140, 23);
-            ValueForParsingBox.TabIndex = 7;
-            // 
-            // ResultOfParsing
-            // 
-            ResultOfParsing.AutoSize = true;
-            ResultOfParsing.Location = new Point(21, 316);
-            ResultOfParsing.Name = "ResultOfParsing";
-            ResultOfParsing.Size = new Size(38, 15);
-            ResultOfParsing.TabIndex = 8;
-            ResultOfParsing.Text = "label1";
-            ResultOfParsing.Visible = false;
-            // 
-            // ParseButton
-            // 
-            ParseButton.Location = new Point(201, 290);
-            ParseButton.Name = "ParseButton";
-            ParseButton.Size = new Size(75, 23);
-            ParseButton.TabIndex = 9;
-            ParseButton.Text = "Parse";
-            ParseButton.UseVisualStyleBackColor = true;
-            ParseButton.Click += ParseButton_Click;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(800, 450);
             Controls.Add(tabControl1);
             Name = "MainForm";
@@ -191,6 +240,7 @@
             tabControl1.ResumeLayout(false);
             Enums.ResumeLayout(false);
             Enums.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)Picture).EndInit();
             ResumeLayout(false);
         }
 
@@ -209,5 +259,9 @@
         private Label ResultOfParsing;
         private TextBox ValueForParsingBox;
         private Label TypeValueForParsing;
+        private Label ChooseSeason;
+        private ComboBox SeasonsComboBox;
+        private Button GoButton;
+        private PictureBox Picture;
     }
 }

@@ -13,6 +13,7 @@ namespace Programming
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ValuesListBox.Items.Clear();
+            ValueOfSelectedValue.Clear();
             switch (EnumsListBox.SelectedItem.ToString())
             {
                 case "Color":
@@ -62,7 +63,7 @@ namespace Programming
         private void ParseButton_Click(object sender, EventArgs e)
         {
             string valueOfTextBox = ValueForParsingBox.Text;
-            if (valueOfTextBox == null)
+            if (valueOfTextBox == "")
             {
                 return;
             }
@@ -75,6 +76,37 @@ namespace Programming
                 ResultOfParsing.Text = "Это не день недели.";
             }
             ResultOfParsing.Visible = true;
+        }
+
+        private void GoButton_Click(object sender, EventArgs e)
+        {
+            switch (SeasonsComboBox.SelectedItem.ToString())
+            {
+                case "Winter":
+                    Picture.Image = Image.FromFile(@"C:\Users\5731sda\source\repos\Programming\Programming\Programming\Properties\winter.jpg");
+                    Picture.SizeMode = PictureBoxSizeMode.Zoom;
+                    Picture.Visible = true;
+                    Enums.BackColor = System.Drawing.Color.FromArgb(122, 255, 255);
+                    break;
+                case "Spring":
+                    Picture.Image = Image.FromFile(@"C:\Users\5731sda\source\repos\Programming\Programming\Programming\Properties\spring.jpg");
+                    Picture.SizeMode = PictureBoxSizeMode.Zoom;
+                    Picture.Visible = true;
+                    Enums.BackColor = System.Drawing.Color.FromArgb(128, 255, 128);
+                    break;
+                case "Summer":
+                    Picture.Image = Image.FromFile(@"C:\Users\5731sda\source\repos\Programming\Programming\Programming\Properties\summer.jpg");
+                    Picture.SizeMode = PictureBoxSizeMode.Zoom;
+                    Picture.Visible = true;
+                    Enums.BackColor = System.Drawing.Color.FromArgb(0, 192, 0);
+                    break;
+                case "Autumn":
+                    Picture.Image = Image.FromFile(@"C:\Users\5731sda\source\repos\Programming\Programming\Programming\Properties\autumn.jpg");
+                    Picture.SizeMode = PictureBoxSizeMode.Zoom;
+                    Picture.Visible = true;
+                    Enums.BackColor = System.Drawing.Color.FromArgb(255, 128, 0);
+                    break;
+            }
         }
     }
 }
