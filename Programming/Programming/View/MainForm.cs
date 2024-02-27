@@ -1,3 +1,5 @@
+using Programming.Model;
+
 namespace Programming
 {
     public partial class MainForm : Form
@@ -20,43 +22,59 @@ namespace Programming
                     }
                     break;
                 case "EducationForm":
-                    foreach (int i in Enum.GetValues(typeof(Model.EducationForm)))
+                    foreach (int i in Enum.GetValues(typeof(EducationForm)))
                     {
-                        ValuesListBox.Items.Add((Model.EducationForm)i);
+                        ValuesListBox.Items.Add((EducationForm)i);
                     }
                     break;
                 case "Genre":
-                    foreach (int i in Enum.GetValues(typeof(Model.Genre)))
+                    foreach (int i in Enum.GetValues(typeof(Genre)))
                     {
-                        ValuesListBox.Items.Add((Model.Genre)i);
+                        ValuesListBox.Items.Add((Genre)i);
                     }
                     break;
                 case "Manufacture":
-                    foreach (int i in Enum.GetValues(typeof(Model.Manufacture)))
+                    foreach (int i in Enum.GetValues(typeof(Manufacture)))
                     {
-                        ValuesListBox.Items.Add((Model.Manufacture)i);
+                        ValuesListBox.Items.Add((Manufacture)i);
                     }
                     break;
                 case "Season":
-                    foreach (int i in Enum.GetValues(typeof(Model.Season)))
+                    foreach (int i in Enum.GetValues(typeof(Season)))
                     {
-                        ValuesListBox.Items.Add((Model.Season)i);
+                        ValuesListBox.Items.Add((Season)i);
                     }
                     break;
                 case "Weekday":
-                    foreach (int i in Enum.GetValues(typeof(Model.Weekday)))
+                    foreach (int i in Enum.GetValues(typeof(Weekday)))
                     {
-                        ValuesListBox.Items.Add((Model.Weekday)i);
+                        ValuesListBox.Items.Add((Weekday)i);
                     }
                     break;
             }
-            ValuesListBox.Visible = true;
-
         }
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ValueOfSelectedValue.Text = ValuesListBox.SelectedIndex.ToString();
+        }
+
+        private void ParseButton_Click(object sender, EventArgs e)
+        {
+            string valueOfTextBox = ValueForParsingBox.Text;
+            if (valueOfTextBox == null)
+            {
+                return;
+            }
+            if (Enum.TryParse(typeof(Weekday), valueOfTextBox, out object result))
+            {
+                ResultOfParsing.Text = $"Это день недели ({valueOfTextBox} = {(int)result + 1}).";
+            }
+            else
+            {
+                ResultOfParsing.Text = "Это не день недели.";
+            }
+            ResultOfParsing.Visible = true;
         }
     }
 }
