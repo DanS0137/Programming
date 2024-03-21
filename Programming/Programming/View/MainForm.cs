@@ -6,6 +6,8 @@ namespace Programming
     {
         Model.Rectangle[] _rectangles;
         Model.Rectangle _currentRectangle;
+        Film[] _films;
+        Film _currentFilm;
 
         public MainForm()
         {
@@ -15,14 +17,26 @@ namespace Programming
             for (int i = 0; i < 5; i++)
             {
                 _rectangles[i] = new Model.Rectangle();
-                Random rnd = new Random();
-                int rndColor = rnd.Next(0, 7);
-                _rectangles[i].Width = rnd.Next(1, 100) + rnd.NextDouble();
-                _rectangles[i].Length = rnd.Next(1, 100) + rnd.NextDouble();
+                Random rnd = new();
+                int rndColor = rnd.Next(0, 8);
+                _rectangles[i].Width = rnd.Next(1, 100) + Math.Round(rnd.NextDouble(), 2);
+                _rectangles[i].Length = rnd.Next(1, 100) + Math.Round(rnd.NextDouble(), 2);
                 Model.Color rectanglesColor = (Model.Color)rndColor;
                 string randomColor = rectanglesColor.ToString();
                 _rectangles[i].Color = randomColor;
                 RectanglesListBox.Items.Add($"Rectangle {i + 1}");
+            }
+            _films = new Film[5];
+            for (int i = 0; i < 5; i++)
+            {
+                _films[i] = new Film();
+                Random rnd = new();
+                _films[i].YearOfRelease = rnd.Next(1900, 2025);
+                _films[i].Duration = rnd.Next(1, 300);
+                int rndRating = rnd.Next(11);
+                if (rndRating != 10) _films[i].Rating = rndRating + Math.Round(rnd.NextDouble(), 2);
+                else _films[i].Rating = 10;
+                FilmsListBox.Items.Add($"Film {i + 1}");
             }
         }
 
@@ -83,7 +97,7 @@ namespace Programming
             {
                 return;
             }
-            if (!Enum.TryParse(typeof(Weekday), valueOfTextBox, out object result) || Int32.TryParse(valueOfTextBox, out int value))
+            if (!Enum.TryParse(typeof(Weekday), valueOfTextBox, out object result) || int.TryParse(valueOfTextBox, out int value))
             {
                 ResultOfParsing.Text = "Это не день недели.";
             }
@@ -125,7 +139,7 @@ namespace Programming
             }
         }
 
-        private void rectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (RectanglesListBox.SelectedItem.ToString())
             {
@@ -166,7 +180,7 @@ namespace Programming
         {
             try
             {
-                _currentRectangle.Length = Convert.ToDouble(LengthTextBox.Text.Replace('.', ','));
+                _currentRectangle.Length = double.Parse(LengthTextBox.Text.Replace('.', ','));
             }
             catch
             {
@@ -181,7 +195,7 @@ namespace Programming
         {
             try
             {
-                _currentRectangle.Width = Convert.ToDouble(WidthTextBox.Text.Replace('.', ','));
+                _currentRectangle.Width = double.Parse(WidthTextBox.Text.Replace('.', ','));
             }
             catch
             {
@@ -213,9 +227,137 @@ namespace Programming
             return indexOfMaxWidth;
         }
 
-        private void FindButton_Click(object sender, EventArgs e)
+        private void FindRectangleWithMaxWidthButton_Click(object sender, EventArgs e)
         {
             RectanglesListBox.SelectedIndex = FindRectangleWithMaxWidth(_rectangles);
+        }
+
+        //
+        //Films
+        //
+
+        private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (FilmsListBox.SelectedItem.ToString())
+            {
+                case "Film 1":
+                    _currentFilm = _films[0];
+                    NameOfFilmTextBox.Text = _currentFilm.Name.ToString();
+                    DurationOfFilmTextBox.Text = _currentFilm.Duration.ToString();
+                    YearOfFilmReleaseTextBox.Text = _currentFilm.YearOfRelease.ToString();
+                    GenreOfFilmTextBox.Text = _currentFilm.Genre.ToString();
+                    RatingOfFilmTextBox.Text = _currentFilm.Rating.ToString();
+                    break;
+                case "Film 2":
+                    _currentFilm = _films[1];
+                    NameOfFilmTextBox.Text = _currentFilm.Name.ToString();
+                    DurationOfFilmTextBox.Text = _currentFilm.Duration.ToString();
+                    YearOfFilmReleaseTextBox.Text = _currentFilm.YearOfRelease.ToString();
+                    GenreOfFilmTextBox.Text = _currentFilm.Genre.ToString();
+                    RatingOfFilmTextBox.Text = _currentFilm.Rating.ToString();
+                    break;
+                case "Film 3":
+                    _currentFilm = _films[2];
+                    NameOfFilmTextBox.Text = _currentFilm.Name.ToString();
+                    DurationOfFilmTextBox.Text = _currentFilm.Duration.ToString();
+                    YearOfFilmReleaseTextBox.Text = _currentFilm.YearOfRelease.ToString();
+                    GenreOfFilmTextBox.Text = _currentFilm.Genre.ToString();
+                    RatingOfFilmTextBox.Text = _currentFilm.Rating.ToString();
+                    break;
+                case "Film 4":
+                    _currentFilm = _films[3];
+                    NameOfFilmTextBox.Text = _currentFilm.Name.ToString();
+                    DurationOfFilmTextBox.Text = _currentFilm.Duration.ToString();
+                    YearOfFilmReleaseTextBox.Text = _currentFilm.YearOfRelease.ToString();
+                    GenreOfFilmTextBox.Text = _currentFilm.Genre.ToString();
+                    RatingOfFilmTextBox.Text = _currentFilm.Rating.ToString();
+                    break;
+                case "Film 5":
+                    _currentFilm = _films[4];
+                    NameOfFilmTextBox.Text = _currentFilm.Name.ToString();
+                    DurationOfFilmTextBox.Text = _currentFilm.Duration.ToString();
+                    YearOfFilmReleaseTextBox.Text = _currentFilm.YearOfRelease.ToString();
+                    GenreOfFilmTextBox.Text = _currentFilm.Genre.ToString();
+                    RatingOfFilmTextBox.Text = _currentFilm.Rating.ToString();
+                    break;
+            }
+        }
+
+        private void NameOfFIlmTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentFilm.Name = NameOfFilmTextBox.Text;
+            _films[FilmsListBox.SelectedIndex].Name = _currentFilm.Name;
+        }
+
+        private void DurationOfFilmTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentFilm.Duration = int.Parse(DurationOfFilmTextBox.Text.Replace('.', ','));
+            }
+            catch
+            {
+                DurationOfFilmTextBox.BackColor = System.Drawing.Color.LightPink;
+                return;
+            }
+            _films[FilmsListBox.SelectedIndex].Duration = _currentFilm.Duration;
+            DurationOfFilmTextBox.BackColor = System.Drawing.Color.White;
+        }
+
+        private void YearOfFilmReleaseTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentFilm.YearOfRelease = int.Parse(YearOfFilmReleaseTextBox.Text.Replace('.', ','));
+            }
+            catch
+            {
+                YearOfFilmReleaseTextBox.BackColor = System.Drawing.Color.LightPink;
+                return;
+            }
+            _films[FilmsListBox.SelectedIndex].YearOfRelease = _currentFilm.YearOfRelease;
+            YearOfFilmReleaseTextBox.BackColor = System.Drawing.Color.White;
+        }
+
+        private void GenreOfFilmTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentFilm.Genre = GenreOfFilmTextBox.Text;
+            _films[FilmsListBox.SelectedIndex].Genre = _currentFilm.Genre;
+        }
+
+        private void RatingOfFilmTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentFilm.Rating = double.Parse(RatingOfFilmTextBox.Text.Replace('.', ','));
+            }
+            catch
+            {
+                RatingOfFilmTextBox.BackColor = System.Drawing.Color.LightPink;
+                return;
+            }
+            _films[FilmsListBox.SelectedIndex].Rating = _currentFilm.Rating;
+            RatingOfFilmTextBox.BackColor = System.Drawing.Color.White;
+        }
+
+        private int FindFilmWithMaxRating(Film[] _films)
+        {
+            double maxRating = _films[0].Rating;
+            int indexOfMaxRating = 0;
+            for (int i = 1; i < 5; i++)
+            {
+                if (_films[i].Rating > maxRating)
+                {
+                    maxRating = _films[i].Rating;
+                    indexOfMaxRating = i;
+                }
+            }
+            return indexOfMaxRating;
+        }
+
+        private void FindFilmWithMaxRatingButton_Click(object sender, EventArgs e)
+        {
+            FilmsListBox.SelectedIndex = FindFilmWithMaxRating(_films);
         }
     }
 }

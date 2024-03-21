@@ -8,28 +8,52 @@ namespace Programming.Model
 {
     internal class Film
     {
-        private string Name { get; set; }
+        private string _name = "";
         private int _duration;
-        private int _yearOfIssue;
-        private string Genre { get; set; }
+        private int _yearOfRelease;
+        private string _genre = "";
         private double _rating;
 
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+            }
+        }
+        public string Genre
+        {
+            get => _genre;
+            set
+            {
+                _genre = value;
+            }
+        }
         public int Duration
         {
             get => _duration;
             set
             {
-                if (value < 0) throw new ArgumentException();
+                if (value < 0)
+                {
+                    throw new ArgumentException();
+                }
+
                 _duration = value;
             }
         }
-        public int YearOfIssue
+        public int YearOfRelease
         {
-            get => _yearOfIssue;
+            get => _yearOfRelease;
             set
             {
-                if (value < 1900 || value > 2024) throw new ArgumentException();
-                _yearOfIssue = value;
+                if (value < 1900 || value > 2024)
+                {
+                    throw new ArgumentException();
+                }
+
+                _yearOfRelease = value;
             }
         }
         public double Rating
@@ -37,7 +61,11 @@ namespace Programming.Model
             get => _rating;
             set
             {
-                if (value < 0.0 || value > 10.0) throw new ArgumentException();
+                if (value < 0.0 || value > 10.0)
+                {
+                    throw new ArgumentException();
+                }
+
                 _rating = value;
             }
         }
@@ -46,9 +74,10 @@ namespace Programming.Model
         {
             Name = name;
             Duration = duration;
-            YearOfIssue = yearOfIssue;
+            YearOfRelease = yearOfIssue;
             Genre = genre;
             Rating = rating;
         }
+        public Film() { }
     }
 }
