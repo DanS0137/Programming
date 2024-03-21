@@ -10,14 +10,14 @@ namespace Programming.Model
     {
         private double _width;
         private double _length;
-        private string Color { get; set; }
+        public string Color { get; set; }
 
         public double Width
         {
             get => _width;
             set
             {
-                if (value < 0) throw new ArgumentException();
+                if (value < 0.0) throw new ArgumentException();
                 _width = value;
             }
         }
@@ -38,5 +38,10 @@ namespace Programming.Model
             Color = color;
         }
         public Rectangle() { }
+
+        public object Clone()
+        {
+            return new Rectangle(Width, Length, Color);
+        }
     }
 }
