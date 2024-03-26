@@ -35,7 +35,7 @@ namespace Programming.Model
             get => _duration;
             set
             {
-                if(Validator.AssertOnPositiveValue(value, "Film.Duration")) _duration = value;
+                if(Validator.AssertValueInRange(value, 0, 51421, "Film.Duration")) _duration = value;
             }
         }
         public int YearOfRelease
@@ -51,7 +51,7 @@ namespace Programming.Model
             get => _rating;
             set
             {
-                if (Validator.AssertValueInRange(value, 0.0, 59.0, "Film.Rating")) _rating = value;
+                if (Validator.AssertValueInRange(value, 0.0, 10.0, "Film.Rating")) _rating = value;
             }
         }
 

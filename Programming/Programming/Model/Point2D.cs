@@ -33,5 +33,6 @@ namespace Programming.Model
             CoordinateX = coordinateX;
             CoordinateY = coordinateY;
         }
+        public Point2D() { }
     }
 }

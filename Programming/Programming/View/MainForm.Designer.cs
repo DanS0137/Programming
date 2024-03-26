@@ -63,6 +63,10 @@
             YearOfFilmReleaseLabel = new Label();
             FilmsListBox = new ListBox();
             RectanglesGroupBox = new GroupBox();
+            YCentreOfRectangleTextBox = new TextBox();
+            XCentreOfRectangleTextBox = new TextBox();
+            YCentreOfRectangleLabel = new Label();
+            XCentreOfRectangleLabel = new Label();
             FindRectangleWithMaxWidthButton = new Button();
             ColorTextBox = new TextBox();
             LengthTextBox = new TextBox();
@@ -72,10 +76,8 @@
             ColorLabel = new Label();
             RectanglesListBox = new ListBox();
             tabPage1 = new TabPage();
-            XCentreOfRectangleLabel = new Label();
-            YCentreOfRectangleLabel = new Label();
-            XCentreOfRectangleTextBox = new TextBox();
-            YCentreOfRectangleTextBox = new TextBox();
+            IdOfRectangleTextBox = new TextBox();
+            IdOfRectangleLabel = new Label();
             tabControl1.SuspendLayout();
             Enums.SuspendLayout();
             SeasonHandle.SuspendLayout();
@@ -108,7 +110,7 @@
             Enums.Location = new Point(4, 24);
             Enums.Name = "Enums";
             Enums.Padding = new Padding(3);
-            Enums.Size = new Size(792, 440);
+            Enums.Size = new Size(792, 448);
             Enums.TabIndex = 0;
             Enums.Text = "Enums";
             // 
@@ -426,6 +428,8 @@
             // 
             // RectanglesGroupBox
             // 
+            RectanglesGroupBox.Controls.Add(IdOfRectangleLabel);
+            RectanglesGroupBox.Controls.Add(IdOfRectangleTextBox);
             RectanglesGroupBox.Controls.Add(YCentreOfRectangleTextBox);
             RectanglesGroupBox.Controls.Add(XCentreOfRectangleTextBox);
             RectanglesGroupBox.Controls.Add(YCentreOfRectangleLabel);
@@ -444,6 +448,40 @@
             RectanglesGroupBox.TabIndex = 0;
             RectanglesGroupBox.TabStop = false;
             RectanglesGroupBox.Text = "Rectangles";
+            // 
+            // YCentreOfRectangleTextBox
+            // 
+            YCentreOfRectangleTextBox.Location = new Point(260, 84);
+            YCentreOfRectangleTextBox.Name = "YCentreOfRectangleTextBox";
+            YCentreOfRectangleTextBox.ReadOnly = true;
+            YCentreOfRectangleTextBox.Size = new Size(100, 23);
+            YCentreOfRectangleTextBox.TabIndex = 8;
+            // 
+            // XCentreOfRectangleTextBox
+            // 
+            XCentreOfRectangleTextBox.Location = new Point(260, 40);
+            XCentreOfRectangleTextBox.Name = "XCentreOfRectangleTextBox";
+            XCentreOfRectangleTextBox.ReadOnly = true;
+            XCentreOfRectangleTextBox.Size = new Size(100, 23);
+            XCentreOfRectangleTextBox.TabIndex = 7;
+            // 
+            // YCentreOfRectangleLabel
+            // 
+            YCentreOfRectangleLabel.AutoSize = true;
+            YCentreOfRectangleLabel.Location = new Point(260, 66);
+            YCentreOfRectangleLabel.Name = "YCentreOfRectangleLabel";
+            YCentreOfRectangleLabel.Size = new Size(55, 15);
+            YCentreOfRectangleLabel.TabIndex = 6;
+            YCentreOfRectangleLabel.Text = "Centre Y:";
+            // 
+            // XCentreOfRectangleLabel
+            // 
+            XCentreOfRectangleLabel.AutoSize = true;
+            XCentreOfRectangleLabel.Location = new Point(260, 22);
+            XCentreOfRectangleLabel.Name = "XCentreOfRectangleLabel";
+            XCentreOfRectangleLabel.Size = new Size(55, 15);
+            XCentreOfRectangleLabel.TabIndex = 5;
+            XCentreOfRectangleLabel.Text = "Centre X:";
             // 
             // FindRectangleWithMaxWidthButton
             // 
@@ -523,43 +561,26 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(792, 422);
+            tabPage1.Size = new Size(792, 448);
             tabPage1.TabIndex = 2;
             tabPage1.Text = "tabPage";
             // 
-            // XCentreOfRectangleLabel
+            // IdOfRectangleTextBox
             // 
-            XCentreOfRectangleLabel.AutoSize = true;
-            XCentreOfRectangleLabel.Location = new Point(260, 22);
-            XCentreOfRectangleLabel.Name = "XCentreOfRectangleLabel";
-            XCentreOfRectangleLabel.Size = new Size(55, 15);
-            XCentreOfRectangleLabel.TabIndex = 5;
-            XCentreOfRectangleLabel.Text = "Centre X:";
+            IdOfRectangleTextBox.Location = new Point(260, 128);
+            IdOfRectangleTextBox.Name = "IdOfRectangleTextBox";
+            IdOfRectangleTextBox.ReadOnly = true;
+            IdOfRectangleTextBox.Size = new Size(100, 23);
+            IdOfRectangleTextBox.TabIndex = 9;
             // 
-            // YCentreOfRectangleLabel
+            // IdOfRectangleLabel
             // 
-            YCentreOfRectangleLabel.AutoSize = true;
-            YCentreOfRectangleLabel.Location = new Point(260, 66);
-            YCentreOfRectangleLabel.Name = "YCentreOfRectangleLabel";
-            YCentreOfRectangleLabel.Size = new Size(55, 15);
-            YCentreOfRectangleLabel.TabIndex = 6;
-            YCentreOfRectangleLabel.Text = "Centre Y:";
-            // 
-            // XCentreOfRectangleTextBox
-            // 
-            XCentreOfRectangleTextBox.Location = new Point(260, 40);
-            XCentreOfRectangleTextBox.Name = "XCentreOfRectangleTextBox";
-            XCentreOfRectangleTextBox.ReadOnly = true;
-            XCentreOfRectangleTextBox.Size = new Size(100, 23);
-            XCentreOfRectangleTextBox.TabIndex = 7;
-            // 
-            // YCentreOfRectangleTextBox
-            // 
-            YCentreOfRectangleTextBox.Location = new Point(260, 84);
-            YCentreOfRectangleTextBox.Name = "YCentreOfRectangleTextBox";
-            YCentreOfRectangleTextBox.ReadOnly = true;
-            YCentreOfRectangleTextBox.Size = new Size(100, 23);
-            YCentreOfRectangleTextBox.TabIndex = 8;
+            IdOfRectangleLabel.AutoSize = true;
+            IdOfRectangleLabel.Location = new Point(260, 110);
+            IdOfRectangleLabel.Name = "IdOfRectangleLabel";
+            IdOfRectangleLabel.Size = new Size(20, 15);
+            IdOfRectangleLabel.TabIndex = 10;
+            IdOfRectangleLabel.Text = "Id:";
             // 
             // MainForm
             // 
@@ -636,5 +657,7 @@
         private TextBox XCentreOfRectangleTextBox;
         private Label YCentreOfRectangleLabel;
         private Label XCentreOfRectangleLabel;
+        private Label IdOfRectangleLabel;
+        private TextBox IdOfRectangleTextBox;
     }
 }

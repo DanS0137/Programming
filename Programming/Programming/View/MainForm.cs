@@ -172,6 +172,7 @@ namespace Programming
             ColorTextBox.Text = _currentRectangle.Color.ToString();
             XCentreOfRectangleTextBox.Text = _currentRectangle.Centre.CoordinateX.ToString();
             YCentreOfRectangleTextBox.Text = _currentRectangle.Centre.CoordinateY.ToString();
+            IdOfRectangleTextBox.Text = _currentRectangle.Id.ToString();
         }
 
         private void LengthTextBox_TextChanged(object sender, EventArgs e)

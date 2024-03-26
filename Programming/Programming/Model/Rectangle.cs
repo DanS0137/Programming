@@ -10,6 +10,8 @@ namespace Programming.Model
     {
         private double _width;
         private double _length;
+        private static int _allRectanglesCount;
+        private readonly int _id;
         public string Color { get; set; }
         public Point2D Centre { get; set; }
 
@@ -29,6 +31,14 @@ namespace Programming.Model
                 if (Validator.AssertOnPositiveValue(value, "Rectangle.Length")) _length = value;
             }
         }
+        public int AllRectanglesCount
+        {
+            get => _allRectanglesCount;
+        }
+        public int Id
+        {
+            get => _id;
+        }
         
         public Rectangle(double width, double length, string color, Point2D centre)
         {
@@ -36,7 +46,13 @@ namespace Programming.Model
             Length = length;
             Color = color;
             Centre = centre;
+            _id = _allRectanglesCount;
+            _allRectanglesCount += 1;
         }
-        public Rectangle() { }
+        public Rectangle() 
+        {
+            _id = _allRectanglesCount;
+            _allRectanglesCount += 1;
+        }
     }
 }
