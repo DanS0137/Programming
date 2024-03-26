@@ -11,14 +11,14 @@ namespace Programming.Model
         private double _width;
         private double _length;
         public string Color { get; set; }
+        public Point2D Centre { get; set; }
 
         public double Width
         {
             get => _width;
             set
             {
-                if (value < 0.0) throw new ArgumentException();
-                _width = value;
+                if (Validator.AssertOnPositiveValue(value, "Rectangle.Width")) _width = value;
             }
         }
         public double Length
@@ -26,22 +26,17 @@ namespace Programming.Model
             get => _length;
             set
             {
-                if (value < 0.0) throw new ArgumentException();
-                _length = value;
+                if (Validator.AssertOnPositiveValue(value, "Rectangle.Length")) _length = value;
             }
         }
         
-        public Rectangle(double width, double length, string color)
+        public Rectangle(double width, double length, string color, Point2D centre)
         {
             Width = width;
             Length = length;
             Color = color;
+            Centre = centre;
         }
         public Rectangle() { }
-
-        public object Clone()
-        {
-            return new Rectangle(Width, Length, Color);
-        }
     }
 }

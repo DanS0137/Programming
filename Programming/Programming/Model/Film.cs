@@ -35,12 +35,7 @@ namespace Programming.Model
             get => _duration;
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException();
-                }
-
-                _duration = value;
+                if(Validator.AssertOnPositiveValue(value, "Film.Duration")) _duration = value;
             }
         }
         public int YearOfRelease
@@ -48,12 +43,7 @@ namespace Programming.Model
             get => _yearOfRelease;
             set
             {
-                if (value < 1900 || value > 2024)
-                {
-                    throw new ArgumentException();
-                }
-
-                _yearOfRelease = value;
+                if (Validator.AssertValueInRange(value, 1900, 2024, "Film.YearOfRelease")) _yearOfRelease = value;
             }
         }
         public double Rating
@@ -61,12 +51,7 @@ namespace Programming.Model
             get => _rating;
             set
             {
-                if (value < 0.0 || value > 10.0)
-                {
-                    throw new ArgumentException();
-                }
-
-                _rating = value;
+                if (Validator.AssertValueInRange(value, 0.0, 59.0, "Film.Rating")) _rating = value;
             }
         }
 

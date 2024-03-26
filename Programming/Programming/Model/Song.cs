@@ -17,8 +17,7 @@ namespace Programming.Model
             get => _duration;
             set
             {
-                if (value < 0) throw new ArgumentException();
-                _duration = value;
+                if (Validator.AssertOnPositiveValue(value, "Song.Duration")) _duration = value;
             }
         }
 

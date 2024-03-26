@@ -14,23 +14,27 @@ namespace Programming
             InitializeComponent();
             EnumsListBox.SetSelected(0, true);
             _rectangles = new Model.Rectangle[5];
+            Random rnd = new();
+            int rndColor;
+            double rectangleWidth, rectangleLength, coordinateX, coordinateY;
+            Point2D centre;
             for (int i = 0; i < 5; i++)
             {
-                _rectangles[i] = new Model.Rectangle();
-                Random rnd = new();
-                int rndColor = rnd.Next(0, 8);
-                _rectangles[i].Width = rnd.Next(1, 100) + Math.Round(rnd.NextDouble(), 2);
-                _rectangles[i].Length = rnd.Next(1, 100) + Math.Round(rnd.NextDouble(), 2);
-                Model.Color rectanglesColor = (Model.Color)rndColor;
-                string randomColor = rectanglesColor.ToString();
-                _rectangles[i].Color = randomColor;
+                rndColor = rnd.Next(0, 8);
+                rectangleWidth = rnd.Next(1, 100) + Math.Round(rnd.NextDouble(), 2);
+                rectangleLength = rnd.Next(1, 100) + Math.Round(rnd.NextDouble(), 2);
+                coordinateX = rnd.Next(-20, 20) + Math.Round(rnd.NextDouble(), 2);
+                coordinateY = rnd.Next(-20, 20) + Math.Round(rnd.NextDouble(), 2);
+                Model.Color rectangleColor = (Model.Color)rndColor;
+                string randomColor = rectangleColor.ToString();
+                centre = new Point2D(coordinateX, coordinateY);
+                _rectangles[i] = new Model.Rectangle(rectangleWidth, rectangleLength, randomColor, centre);
                 RectanglesListBox.Items.Add($"Rectangle {i + 1}");
             }
             _films = new Film[5];
             for (int i = 0; i < 5; i++)
             {
                 _films[i] = new Film();
-                Random rnd = new();
                 _films[i].YearOfRelease = rnd.Next(1900, 2025);
                 _films[i].Duration = rnd.Next(1, 300);
                 int rndRating = rnd.Next(11);
@@ -139,41 +143,35 @@ namespace Programming
             }
         }
 
+        //
+        //Rectangles
+        //
+
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (RectanglesListBox.SelectedItem.ToString())
             {
                 case "Rectangle 1":
-                    _currentRectangle = (Model.Rectangle)_rectangles[0].Clone();
-                    LengthTextBox.Text = _currentRectangle.Length.ToString();
-                    WidthTextBox.Text = _currentRectangle.Width.ToString();
-                    ColorTextBox.Text = _currentRectangle.Color.ToString();
+                    _currentRectangle = _rectangles[0];
                     break;
                 case "Rectangle 2":
                     _currentRectangle = _rectangles[1];
-                    LengthTextBox.Text = _currentRectangle.Length.ToString();
-                    WidthTextBox.Text = _currentRectangle.Width.ToString();
-                    ColorTextBox.Text = _currentRectangle.Color.ToString();
                     break;
                 case "Rectangle 3":
                     _currentRectangle = _rectangles[2];
-                    LengthTextBox.Text = _currentRectangle.Length.ToString();
-                    WidthTextBox.Text = _currentRectangle.Width.ToString();
-                    ColorTextBox.Text = _currentRectangle.Color.ToString();
                     break;
                 case "Rectangle 4":
                     _currentRectangle = _rectangles[3];
-                    LengthTextBox.Text = _currentRectangle.Length.ToString();
-                    WidthTextBox.Text = _currentRectangle.Width.ToString();
-                    ColorTextBox.Text = _currentRectangle.Color.ToString();
                     break;
                 case "Rectangle 5":
                     _currentRectangle = _rectangles[4];
-                    LengthTextBox.Text = _currentRectangle.Length.ToString();
-                    WidthTextBox.Text = _currentRectangle.Width.ToString();
-                    ColorTextBox.Text = _currentRectangle.Color.ToString();
                     break;
             }
+            LengthTextBox.Text = _currentRectangle.Length.ToString();
+            WidthTextBox.Text = _currentRectangle.Width.ToString();
+            ColorTextBox.Text = _currentRectangle.Color.ToString();
+            XCentreOfRectangleTextBox.Text = _currentRectangle.Centre.CoordinateX.ToString();
+            YCentreOfRectangleTextBox.Text = _currentRectangle.Centre.CoordinateY.ToString();
         }
 
         private void LengthTextBox_TextChanged(object sender, EventArgs e)
@@ -187,7 +185,6 @@ namespace Programming
                 LengthTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
-            _rectangles[RectanglesListBox.SelectedIndex].Length = _currentRectangle.Length;
             LengthTextBox.BackColor = System.Drawing.Color.White;
         }
 
@@ -202,14 +199,12 @@ namespace Programming
                 WidthTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
-            _rectangles[RectanglesListBox.SelectedIndex].Width = _currentRectangle.Width;
             WidthTextBox.BackColor = System.Drawing.Color.White;
         }
 
         private void ColorTextBox_TextChanged(object sender, EventArgs e)
         {
             _currentRectangle.Color = ColorTextBox.Text;
-            _rectangles[RectanglesListBox.SelectedIndex].Color = _currentRectangle.Color;
         }
 
         private int FindRectangleWithMaxWidth(Model.Rectangle[] _rectangles)
@@ -242,51 +237,30 @@ namespace Programming
             {
                 case "Film 1":
                     _currentFilm = _films[0];
-                    NameOfFilmTextBox.Text = _currentFilm.Name.ToString();
-                    DurationOfFilmTextBox.Text = _currentFilm.Duration.ToString();
-                    YearOfFilmReleaseTextBox.Text = _currentFilm.YearOfRelease.ToString();
-                    GenreOfFilmTextBox.Text = _currentFilm.Genre.ToString();
-                    RatingOfFilmTextBox.Text = _currentFilm.Rating.ToString();
                     break;
                 case "Film 2":
                     _currentFilm = _films[1];
-                    NameOfFilmTextBox.Text = _currentFilm.Name.ToString();
-                    DurationOfFilmTextBox.Text = _currentFilm.Duration.ToString();
-                    YearOfFilmReleaseTextBox.Text = _currentFilm.YearOfRelease.ToString();
-                    GenreOfFilmTextBox.Text = _currentFilm.Genre.ToString();
-                    RatingOfFilmTextBox.Text = _currentFilm.Rating.ToString();
                     break;
                 case "Film 3":
                     _currentFilm = _films[2];
-                    NameOfFilmTextBox.Text = _currentFilm.Name.ToString();
-                    DurationOfFilmTextBox.Text = _currentFilm.Duration.ToString();
-                    YearOfFilmReleaseTextBox.Text = _currentFilm.YearOfRelease.ToString();
-                    GenreOfFilmTextBox.Text = _currentFilm.Genre.ToString();
-                    RatingOfFilmTextBox.Text = _currentFilm.Rating.ToString();
                     break;
                 case "Film 4":
                     _currentFilm = _films[3];
-                    NameOfFilmTextBox.Text = _currentFilm.Name.ToString();
-                    DurationOfFilmTextBox.Text = _currentFilm.Duration.ToString();
-                    YearOfFilmReleaseTextBox.Text = _currentFilm.YearOfRelease.ToString();
-                    GenreOfFilmTextBox.Text = _currentFilm.Genre.ToString();
-                    RatingOfFilmTextBox.Text = _currentFilm.Rating.ToString();
                     break;
                 case "Film 5":
                     _currentFilm = _films[4];
-                    NameOfFilmTextBox.Text = _currentFilm.Name.ToString();
-                    DurationOfFilmTextBox.Text = _currentFilm.Duration.ToString();
-                    YearOfFilmReleaseTextBox.Text = _currentFilm.YearOfRelease.ToString();
-                    GenreOfFilmTextBox.Text = _currentFilm.Genre.ToString();
-                    RatingOfFilmTextBox.Text = _currentFilm.Rating.ToString();
                     break;
             }
+            NameOfFilmTextBox.Text = _currentFilm.Name.ToString();
+            DurationOfFilmTextBox.Text = _currentFilm.Duration.ToString();
+            YearOfFilmReleaseTextBox.Text = _currentFilm.YearOfRelease.ToString();
+            GenreOfFilmTextBox.Text = _currentFilm.Genre.ToString();
+            RatingOfFilmTextBox.Text = _currentFilm.Rating.ToString();
         }
 
         private void NameOfFIlmTextBox_TextChanged(object sender, EventArgs e)
         {
             _currentFilm.Name = NameOfFilmTextBox.Text;
-            _films[FilmsListBox.SelectedIndex].Name = _currentFilm.Name;
         }
 
         private void DurationOfFilmTextBox_TextChanged(object sender, EventArgs e)
@@ -300,7 +274,6 @@ namespace Programming
                 DurationOfFilmTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
-            _films[FilmsListBox.SelectedIndex].Duration = _currentFilm.Duration;
             DurationOfFilmTextBox.BackColor = System.Drawing.Color.White;
         }
 
@@ -315,14 +288,12 @@ namespace Programming
                 YearOfFilmReleaseTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
-            _films[FilmsListBox.SelectedIndex].YearOfRelease = _currentFilm.YearOfRelease;
             YearOfFilmReleaseTextBox.BackColor = System.Drawing.Color.White;
         }
 
         private void GenreOfFilmTextBox_TextChanged(object sender, EventArgs e)
         {
             _currentFilm.Genre = GenreOfFilmTextBox.Text;
-            _films[FilmsListBox.SelectedIndex].Genre = _currentFilm.Genre;
         }
 
         private void RatingOfFilmTextBox_TextChanged(object sender, EventArgs e)
@@ -336,7 +307,6 @@ namespace Programming
                 RatingOfFilmTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
-            _films[FilmsListBox.SelectedIndex].Rating = _currentFilm.Rating;
             RatingOfFilmTextBox.BackColor = System.Drawing.Color.White;
         }
 

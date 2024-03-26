@@ -71,6 +71,11 @@
             WidthLabel = new Label();
             ColorLabel = new Label();
             RectanglesListBox = new ListBox();
+            tabPage1 = new TabPage();
+            XCentreOfRectangleLabel = new Label();
+            YCentreOfRectangleLabel = new Label();
+            XCentreOfRectangleTextBox = new TextBox();
+            YCentreOfRectangleTextBox = new TextBox();
             tabControl1.SuspendLayout();
             Enums.SuspendLayout();
             SeasonHandle.SuspendLayout();
@@ -86,11 +91,12 @@
             // 
             tabControl1.Controls.Add(Enums);
             tabControl1.Controls.Add(Classes);
+            tabControl1.Controls.Add(tabPage1);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(800, 450);
+            tabControl1.Size = new Size(800, 476);
             tabControl1.TabIndex = 0;
             // 
             // Enums
@@ -102,7 +108,7 @@
             Enums.Location = new Point(4, 24);
             Enums.Name = "Enums";
             Enums.Padding = new Padding(3);
-            Enums.Size = new Size(792, 422);
+            Enums.Size = new Size(792, 440);
             Enums.TabIndex = 0;
             Enums.Text = "Enums";
             // 
@@ -286,7 +292,7 @@
             Classes.Location = new Point(4, 24);
             Classes.Name = "Classes";
             Classes.Padding = new Padding(3);
-            Classes.Size = new Size(792, 422);
+            Classes.Size = new Size(792, 448);
             Classes.TabIndex = 1;
             Classes.Text = "Classes";
             Classes.UseVisualStyleBackColor = true;
@@ -305,9 +311,9 @@
             FilmsGroupBox.Controls.Add(DurationOfFilmLabel);
             FilmsGroupBox.Controls.Add(YearOfFilmReleaseLabel);
             FilmsGroupBox.Controls.Add(FilmsListBox);
-            FilmsGroupBox.Location = new Point(287, 6);
+            FilmsGroupBox.Location = new Point(12, 233);
             FilmsGroupBox.Name = "FilmsGroupBox";
-            FilmsGroupBox.Size = new Size(380, 207);
+            FilmsGroupBox.Size = new Size(380, 202);
             FilmsGroupBox.TabIndex = 1;
             FilmsGroupBox.TabStop = false;
             FilmsGroupBox.Text = "Films";
@@ -420,6 +426,10 @@
             // 
             // RectanglesGroupBox
             // 
+            RectanglesGroupBox.Controls.Add(YCentreOfRectangleTextBox);
+            RectanglesGroupBox.Controls.Add(XCentreOfRectangleTextBox);
+            RectanglesGroupBox.Controls.Add(YCentreOfRectangleLabel);
+            RectanglesGroupBox.Controls.Add(XCentreOfRectangleLabel);
             RectanglesGroupBox.Controls.Add(FindRectangleWithMaxWidthButton);
             RectanglesGroupBox.Controls.Add(ColorTextBox);
             RectanglesGroupBox.Controls.Add(LengthTextBox);
@@ -430,7 +440,7 @@
             RectanglesGroupBox.Controls.Add(RectanglesListBox);
             RectanglesGroupBox.Location = new Point(6, 6);
             RectanglesGroupBox.Name = "RectanglesGroupBox";
-            RectanglesGroupBox.Size = new Size(254, 207);
+            RectanglesGroupBox.Size = new Size(386, 221);
             RectanglesGroupBox.TabIndex = 0;
             RectanglesGroupBox.TabStop = false;
             RectanglesGroupBox.Text = "Rectangles";
@@ -507,12 +517,56 @@
             RectanglesListBox.TabIndex = 1;
             RectanglesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
             // 
+            // tabPage1
+            // 
+            tabPage1.BackColor = Color.White;
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(792, 422);
+            tabPage1.TabIndex = 2;
+            tabPage1.Text = "tabPage";
+            // 
+            // XCentreOfRectangleLabel
+            // 
+            XCentreOfRectangleLabel.AutoSize = true;
+            XCentreOfRectangleLabel.Location = new Point(260, 22);
+            XCentreOfRectangleLabel.Name = "XCentreOfRectangleLabel";
+            XCentreOfRectangleLabel.Size = new Size(55, 15);
+            XCentreOfRectangleLabel.TabIndex = 5;
+            XCentreOfRectangleLabel.Text = "Centre X:";
+            // 
+            // YCentreOfRectangleLabel
+            // 
+            YCentreOfRectangleLabel.AutoSize = true;
+            YCentreOfRectangleLabel.Location = new Point(260, 66);
+            YCentreOfRectangleLabel.Name = "YCentreOfRectangleLabel";
+            YCentreOfRectangleLabel.Size = new Size(55, 15);
+            YCentreOfRectangleLabel.TabIndex = 6;
+            YCentreOfRectangleLabel.Text = "Centre Y:";
+            // 
+            // XCentreOfRectangleTextBox
+            // 
+            XCentreOfRectangleTextBox.Location = new Point(260, 40);
+            XCentreOfRectangleTextBox.Name = "XCentreOfRectangleTextBox";
+            XCentreOfRectangleTextBox.ReadOnly = true;
+            XCentreOfRectangleTextBox.Size = new Size(100, 23);
+            XCentreOfRectangleTextBox.TabIndex = 7;
+            // 
+            // YCentreOfRectangleTextBox
+            // 
+            YCentreOfRectangleTextBox.Location = new Point(260, 84);
+            YCentreOfRectangleTextBox.Name = "YCentreOfRectangleTextBox";
+            YCentreOfRectangleTextBox.ReadOnly = true;
+            YCentreOfRectangleTextBox.Size = new Size(100, 23);
+            YCentreOfRectangleTextBox.TabIndex = 8;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 476);
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "MainForm";
@@ -577,5 +631,10 @@
         private Label GenreOfFilmLabel;
         private TextBox RatingOfFilmTextBox;
         private TextBox GenreOfFilmTextBox;
+        private TabPage tabPage1;
+        private TextBox YCentreOfRectangleTextBox;
+        private TextBox XCentreOfRectangleTextBox;
+        private Label YCentreOfRectangleLabel;
+        private Label XCentreOfRectangleLabel;
     }
 }

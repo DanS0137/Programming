@@ -17,8 +17,7 @@ namespace Programming.Model
             get => _hours;
             set
             {
-                if (value < 0 || value > 24) throw new ArgumentException();
-                _hours = value;
+                if (Validator.AssertValueInRange(value, 0, 23, "Time.Hours")) _hours = value;
             }
         }
         public int Minutes
@@ -26,8 +25,7 @@ namespace Programming.Model
             get => _minutes;
             set
             {
-                if (value < 0 || value > 60) throw new ArgumentException();
-                _minutes = value;
+                if (Validator.AssertValueInRange(value, 0, 59, "Time.Minutes")) _minutes = value;
             }
         }
         public int Seconds
@@ -35,8 +33,7 @@ namespace Programming.Model
             get => _seconds;
             set
             {
-                if (value < 0 || value > 60) throw new ArgumentException();
-                _seconds = value;
+                if (Validator.AssertValueInRange(value, 0, 59, "Time.Seconds")) _seconds = value;
             }
         }
 

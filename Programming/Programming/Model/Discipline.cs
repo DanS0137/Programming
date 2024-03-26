@@ -19,8 +19,7 @@ namespace Programming.Model
             get => _numberOfHours;
             set
             {
-                if (value < 0) throw new ArgumentException();
-                _numberOfHours = value;
+                if (Validator.AssertOnPositiveValue(value, "Discipline.NumberOfHours")) _numberOfHours = value;
             }
         }
         public int ExamMark
@@ -28,8 +27,7 @@ namespace Programming.Model
             get => _examMark;
             set
             {
-                if (value < 2 || value > 5) throw new ArgumentException();
-                _examMark = value;
+                if (Validator.AssertValueInRange(value, 2, 5, "Discipline.ExamMark")) _examMark = value;
             }
         }
 
