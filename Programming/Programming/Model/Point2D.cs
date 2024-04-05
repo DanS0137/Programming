@@ -16,7 +16,7 @@ namespace Programming.Model
             get => _coordinateX;
             private set
             {
-                if (Validator.AssertValueInRange(value, -20.0, 20.0, "Point2D.CoordinateX")) _coordinateX = value;
+                if (Validator.AssertOnPositiveValue(value, "Point2D.CoordinateX")) _coordinateX = value;
             }
         }
         public double CoordinateY
@@ -24,7 +24,7 @@ namespace Programming.Model
             get => _coordinateY;
             private set
             {
-                if (Validator.AssertValueInRange(value, -20.0, 20.0, "Point2D.CoordinateY")) _coordinateY = value;
+                if (Validator.AssertOnPositiveValue(value, "Point2D.CoordinateY")) _coordinateY = value;
             }
         }
 

@@ -8,13 +8,17 @@ namespace Programming
         Model.Rectangle _currentRectangle;
         Film[] _films;
         Film _currentFilm;
+        int[] _sizeMainForm = new int[2];
+        Random rnd = new Random();
+        List<Model.Rectangle> _listOfRectangles = new List<Model.Rectangle>();
 
         public MainForm()
         {
             InitializeComponent();
+            _sizeMainForm[0] = 515;
+            _sizeMainForm[1] = 816;
             EnumsListBox.SetSelected(0, true);
             _rectangles = new Model.Rectangle[5];
-            Random rnd = new();
             int rndColor;
             double rectangleWidth, rectangleLength, coordinateX, coordinateY;
             Point2D centre;
@@ -23,8 +27,8 @@ namespace Programming
                 rndColor = rnd.Next(0, 8);
                 rectangleWidth = rnd.Next(1, 100) + Math.Round(rnd.NextDouble(), 2);
                 rectangleLength = rnd.Next(1, 100) + Math.Round(rnd.NextDouble(), 2);
-                coordinateX = rnd.Next(-20, 20) + Math.Round(rnd.NextDouble(), 2);
-                coordinateY = rnd.Next(-20, 20) + Math.Round(rnd.NextDouble(), 2);
+                coordinateX = rnd.Next(100) + Math.Round(rnd.NextDouble(), 2);
+                coordinateY = rnd.Next(100) + Math.Round(rnd.NextDouble(), 2);
                 Model.Color rectangleColor = (Model.Color)rndColor;
                 string randomColor = rectangleColor.ToString();
                 centre = new Point2D(coordinateX, coordinateY);
@@ -144,7 +148,7 @@ namespace Programming
         }
 
         //
-        //Rectangles
+        //RectanglesArray
         //
 
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -329,6 +333,47 @@ namespace Programming
         private void FindFilmWithMaxRatingButton_Click(object sender, EventArgs e)
         {
             FilmsListBox.SelectedIndex = FindFilmWithMaxRating(_films);
+        }
+
+        //
+        //RectanglesList
+        //
+
+        private void AddRectangleButton_Click(object sender, EventArgs e)
+        {
+            int rndColor;
+            double rectangleWidth, rectangleLength, coordinateX, coordinateY;
+            Point2D centre;
+            rndColor = rnd.Next(0, 8);
+            rectangleWidth = rnd.Next(1, 100) + Math.Round(rnd.NextDouble(), 2);
+            rectangleLength = rnd.Next(1, 100) + Math.Round(rnd.NextDouble(), 2);
+            coordinateX = rnd.Next(100) + Math.Round(rnd.NextDouble(), 2);
+            coordinateY = rnd.Next(100) + Math.Round(rnd.NextDouble(), 2);
+            Model.Color rectangleColor = (Model.Color)rndColor;
+            string randomColor = rectangleColor.ToString();
+            centre = new Point2D(coordinateX, coordinateY);
+            _currentRectangle = new Model.Rectangle(rectangleWidth, rectangleLength, randomColor, centre);
+            _listOfRectangles.Add(_currentRectangle);
+            RectanglesListBox2.Items.Add($"{_currentRectangle.Id - 4}: (X = {centre.CoordinateX}; Y = {centre.CoordinateY}; W = {rectangleWidth}; L = {rectangleLength})");
+            RectanglesListBox2.SelectedIndex = _currentRectangle.Id - 5;
+        }
+
+        private void RectanglesListBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (RectanglesListBox2.SelectedIndex == -1) return;
+            _currentRectangle = _listOfRectangles[RectanglesListBox2.SelectedIndex];
+            LengthOfRectangleTextBox2.Text = _currentRectangle.Length.ToString();
+            WidthOfRectangleTextBox2.Text = _currentRectangle.Width.ToString();
+            XOfRectangleTextBox2.Text = _currentRectangle.Centre.CoordinateX.ToString();
+            YOfRectangleTextBox2.Text = _currentRectangle.Centre.CoordinateY.ToString();
+            IdOfRectangleTextBox2.Text = _currentRectangle.Id.ToString();
+        }
+
+        private void DeleteRectangleButton_Click(object sender, EventArgs e)
+        {
+            if (RectanglesListBox2.SelectedIndex == -1) return;
+            _listOfRectangles.RemoveAt(RectanglesListBox2.SelectedIndex);
+            RectanglesListBox2.Items.RemoveAt(RectanglesListBox2.SelectedIndex);
         }
     }
 }
