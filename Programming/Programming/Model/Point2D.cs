@@ -14,17 +14,17 @@ namespace Programming.Model
         public double CoordinateX
         {
             get => _coordinateX;
-            private set
+            set
             {
-                if (Validator.AssertOnPositiveValue(value, "Point2D.CoordinateX")) _coordinateX = value;
+                if (Validator.AssertOnNoNegativeValue(value, "Point2D.CoordinateX")) _coordinateX = value;
             }
         }
         public double CoordinateY
         {
             get => _coordinateY;
-            private set
+            set
             {
-                if (Validator.AssertOnPositiveValue(value, "Point2D.CoordinateY")) _coordinateY = value;
+                if (Validator.AssertOnNoNegativeValue(value, "Point2D.CoordinateY")) _coordinateY = value;
             }
         }
 

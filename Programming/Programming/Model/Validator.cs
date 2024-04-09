@@ -18,6 +18,16 @@ namespace Programming.Model
             if (value <= 0.0) throw new ArgumentException($"Некорректное значение в поле {call}");
             else return true;
         }
+        static public bool AssertOnNoNegativeValue(int value, string call)
+        {
+            if (value < 0) throw new ArgumentException($"Некорректное значение в поле {call}");
+            else return true;
+        }
+        static public bool AssertOnNoNegativeValue(double value, string call)
+        {
+            if (value < 0.0) throw new ArgumentException($"Некорректное значение в поле {call}");
+            else return true;
+        }
         static public bool AssertValueInRange(int value, int min, int max, string call) 
         {
             if (value < min || value > max) throw new ArgumentException($"Некорректное значение в поле {call}");

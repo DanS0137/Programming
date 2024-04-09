@@ -700,11 +700,13 @@
             LengthOfRectangleTextBox2.Name = "LengthOfRectangleTextBox2";
             LengthOfRectangleTextBox2.Size = new Size(100, 23);
             LengthOfRectangleTextBox2.TabIndex = 7;
+            LengthOfRectangleTextBox2.TextChanged += LengthOfRectangleTextBox2_TextChanged;
             // 
             // IdOfRectangleTextBox2
             // 
             IdOfRectangleTextBox2.Location = new Point(123, 297);
             IdOfRectangleTextBox2.Name = "IdOfRectangleTextBox2";
+            IdOfRectangleTextBox2.ReadOnly = true;
             IdOfRectangleTextBox2.Size = new Size(100, 23);
             IdOfRectangleTextBox2.TabIndex = 6;
             // 
@@ -714,6 +716,7 @@
             XOfRectangleTextBox2.Name = "XOfRectangleTextBox2";
             XOfRectangleTextBox2.Size = new Size(100, 23);
             XOfRectangleTextBox2.TabIndex = 5;
+            XOfRectangleTextBox2.TextChanged += XOfRectangleTextBox2_TextChanged;
             // 
             // YOfRectangleTextBox2
             // 
@@ -721,6 +724,7 @@
             YOfRectangleTextBox2.Name = "YOfRectangleTextBox2";
             YOfRectangleTextBox2.Size = new Size(100, 23);
             YOfRectangleTextBox2.TabIndex = 4;
+            YOfRectangleTextBox2.TextChanged += YOfRectangleTextBox2_TextChanged;
             // 
             // WidthOfRectangleTextBox2
             // 
@@ -728,6 +732,7 @@
             WidthOfRectangleTextBox2.Name = "WidthOfRectangleTextBox2";
             WidthOfRectangleTextBox2.Size = new Size(100, 23);
             WidthOfRectangleTextBox2.TabIndex = 3;
+            WidthOfRectangleTextBox2.TextChanged += WidthOfRectangleTextBox2_TextChanged;
             // 
             // SelectedRectangleLabel
             // 

@@ -13,7 +13,7 @@ namespace Programming.Model
         private static int _allRectanglesCount;
         private readonly int _id;
         public string Color { get; set; }
-        public Point2D Centre { get; set; }
+        public Point2D Location { get; set; }
 
         public double Width
         {
@@ -40,12 +40,12 @@ namespace Programming.Model
             get => _id;
         }
         
-        public Rectangle(double width, double length, string color, Point2D centre)
+        public Rectangle(double width, double length, string color, Point2D location)
         {
             Width = width;
             Length = length;
             Color = color;
-            Centre = centre;
+            Location = location;
             _id = _allRectanglesCount;
             _allRectanglesCount += 1;
         }
