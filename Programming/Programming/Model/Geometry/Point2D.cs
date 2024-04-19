@@ -8,10 +8,10 @@ namespace Programming.Model
 {
     internal class Point2D
     {
-        private double _coordinateX;
-        private double _coordinateY;
+        private int _coordinateX;
+        private int _coordinateY;
 
-        public double CoordinateX
+        public int CoordinateX
         {
             get => _coordinateX;
             set
@@ -19,7 +19,7 @@ namespace Programming.Model
                 if (Validator.AssertOnNoNegativeValue(value, "Point2D.CoordinateX")) _coordinateX = value;
             }
         }
-        public double CoordinateY
+        public int CoordinateY
         {
             get => _coordinateY;
             set
@@ -28,7 +28,7 @@ namespace Programming.Model
             }
         }
 
-        public Point2D(double coordinateX, double coordinateY)
+        public Point2D(int coordinateX, int coordinateY)
         {
             CoordinateX = coordinateX;
             CoordinateY = coordinateY;

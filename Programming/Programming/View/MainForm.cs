@@ -1,4 +1,6 @@
 using Programming.Model;
+using Programming.Model.Geometry;
+using System.Globalization;
 
 namespace Programming
 {
@@ -21,20 +23,9 @@ namespace Programming
             _sizeMainForm[1] = 816;
             EnumsListBox.SetSelected(0, true);
             _rectangles = new Model.Rectangle[5];
-            int rndColor;
-            double rectangleWidth, rectangleLength, coordinateX, coordinateY;
-            Point2D centre;
             for (int i = 0; i < 5; i++)
             {
-                rndColor = rnd.Next(0, 8);
-                rectangleWidth = rnd.Next(1, 100) + Math.Round(rnd.NextDouble(), 2);
-                rectangleLength = rnd.Next(1, 100) + Math.Round(rnd.NextDouble(), 2);
-                coordinateX = rnd.Next(100) + Math.Round(rnd.NextDouble(), 2);
-                coordinateY = rnd.Next(100) + Math.Round(rnd.NextDouble(), 2);
-                Model.Color rectangleColor = (Model.Color)rndColor;
-                string randomColor = rectangleColor.ToString();
-                centre = new Point2D(coordinateX, coordinateY);
-                _rectangles[i] = new Model.Rectangle(rectangleWidth, rectangleLength, randomColor, centre);
+                _rectangles[i] = RectangleFactory.Randomize(RectanglesPanel.Size.Height, RectanglesPanel.Size.Width);
                 RectanglesListBox.Items.Add($"Rectangle {i + 1}");
             }
             _films = new Film[5];
@@ -206,7 +197,7 @@ namespace Programming
         {
             try
             {
-                _currentRectangle.Length = double.Parse(LengthTextBox.Text.Replace('.', ','));
+                _currentRectangle.Length = int.Parse(LengthTextBox.Text.Replace('.', ','));
             }
             catch
             {
@@ -220,7 +211,7 @@ namespace Programming
         {
             try
             {
-                _currentRectangle.Width = double.Parse(WidthTextBox.Text.Replace('.', ','));
+                _currentRectangle.Width = int.Parse(WidthTextBox.Text.Replace('.', ','));
             }
             catch
             {
@@ -347,26 +338,17 @@ namespace Programming
 
         private void AddRectangleButton_Click(object sender, EventArgs e)
         {
-            int rndColor, rectangleWidth, rectangleLength, coordinateX, coordinateY;
-            Point2D location;
-            rndColor = rnd.Next(0, 8);
-            rectangleWidth = rnd.Next(1, 100);
-            rectangleLength = rnd.Next(1, 100);
-            coordinateX = rnd.Next(350);
-            coordinateY = rnd.Next(350);
-            Model.Color rectangleColor = (Model.Color)rndColor;
-            string randomColor = rectangleColor.ToString();
-            location = new Point2D(coordinateX, coordinateY);
-            _currentRectangle = new Model.Rectangle(rectangleWidth, rectangleLength, randomColor, location);
+            _currentRectangle = RectangleFactory.Randomize(RectanglesPanel.Size.Height, RectanglesPanel.Size.Width);
             _listOfRectangles.Add(_currentRectangle);
-            RectanglesListBox2.Items.Add($"{_currentRectangle.Id - 4}: (X = {location.CoordinateX}; Y = {location.CoordinateY}; W = {rectangleWidth}; L = {rectangleLength})");
+            RectanglesListBox2.Items.Add($"{_currentRectangle.Id - 4}: (X = {_currentRectangle.Location.CoordinateX}; Y = {_currentRectangle.Location.CoordinateY}; W = {_currentRectangle.Width}; L = {_currentRectangle.Length})");
             _currentPanel = new Panel();
-            _currentPanel.Size = new Size(rectangleWidth, rectangleLength);
-            _currentPanel.Location = new Point(coordinateX, coordinateY);
+            _currentPanel.Size = new Size(_currentRectangle.Width, _currentRectangle.Length);
+            _currentPanel.Location = new Point(_currentRectangle.Location.CoordinateX, _currentRectangle.Location.CoordinateY);
             _currentPanel.BackColor = System.Drawing.Color.FromArgb(127, 255, 127);
             _listOfPanels.Add(_currentPanel);
-            FindCollisions(_listOfRectangles.Count-1);
             RectanglesPanel.Controls.Add(_currentPanel);
+            RectanglesListBox2.SelectedIndex = _listOfRectangles.Count - 1;
+            FindCollisions();
         }
 
         private void RectanglesListBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -374,6 +356,43 @@ namespace Programming
             if (RectanglesListBox2.SelectedIndex == -1) return;
             _currentRectangle = _listOfRectangles[RectanglesListBox2.SelectedIndex];
             _currentPanel = _listOfPanels[RectanglesListBox2.SelectedIndex];
+            UpdateRectangleInfo();
+        }
+
+        private void DeleteRectangleButton_Click(object sender, EventArgs e)
+        {
+            if (RectanglesListBox2.SelectedIndex == -1) return;
+            int selInd = RectanglesListBox2.SelectedIndex;
+            ClearRectangleInfo();
+            _listOfPanels.RemoveAt(selInd);
+            RectanglesPanel.Controls.RemoveAt(selInd);
+            _listOfRectangles.RemoveAt(selInd);
+            RectanglesListBox2.Items.RemoveAt(selInd);
+            FindCollisions();
+        }
+
+        private void FindCollisions()
+        {
+            foreach(Panel i in _listOfPanels)
+            {
+                i.BackColor = System.Drawing.Color.FromArgb(127, 255, 127);
+            }
+            for (int i = 0; i < _listOfRectangles.Count-1; i++)
+            {
+                for (int j = i + 1; j < _listOfRectangles.Count; j++)
+                {
+                    if (i == j) continue;
+                    if (CollisionManager.IsCollision(_listOfRectangles[i], _listOfRectangles[j]))
+                    {
+                        _listOfPanels[i].BackColor = System.Drawing.Color.FromArgb(255, 127, 127);
+                        _listOfPanels[j].BackColor = System.Drawing.Color.FromArgb(255, 127, 127);
+                    }
+                }
+            }
+        }
+
+        private void UpdateRectangleInfo()
+        {
             LengthOfRectangleTextBox2.Text = _currentRectangle.Length.ToString();
             WidthOfRectangleTextBox2.Text = _currentRectangle.Width.ToString();
             XOfRectangleTextBox2.Text = _currentRectangle.Location.CoordinateX.ToString();
@@ -381,49 +400,13 @@ namespace Programming
             IdOfRectangleTextBox2.Text = _currentRectangle.Id.ToString();
         }
 
-        private void DeleteRectangleButton_Click(object sender, EventArgs e)
+        private void ClearRectangleInfo()
         {
-            if (RectanglesListBox2.SelectedIndex == -1) return;
-            int selInd = RectanglesListBox2.SelectedIndex;
-            bool flag = false;
-            int indexOfCollisiedRectangle;
-            for (int i = 0; i < _listOfRectangles.Count; i++)
-            {
-                if (CollisionManager.IsCollision(_listOfRectangles[i], _listOfRectangles[selInd]))
-                {
-                    if (flag == true) break;
-                    indexOfCollisiedRectangle = i;
-                    flag = true;
-                }
-            }
-            
-            _listOfPanels.RemoveAt(selInd);
-            RectanglesPanel.Controls.RemoveAt(selInd);
-            _listOfRectangles.RemoveAt(selInd);
-            RectanglesListBox2.Items.RemoveAt(selInd);
             LengthOfRectangleTextBox2.Clear();
             WidthOfRectangleTextBox2.Clear();
             XOfRectangleTextBox2.Clear();
             YOfRectangleTextBox2.Clear();
             IdOfRectangleTextBox2.Clear();
-        }
-
-        private void FindCollisions(int indexOfCurrentRectangle)
-        {
-            for(int i = 0; i < _listOfRectangles.Count; i++)
-            {
-                if (CollisionManager.IsCollision(_listOfRectangles[indexOfCurrentRectangle], _listOfRectangles[i]))
-                {
-                    if (indexOfCurrentRectangle == i) continue;
-                    _listOfPanels[i].BackColor = System.Drawing.Color.FromArgb(255, 127, 127);
-                    _listOfPanels[indexOfCurrentRectangle].BackColor = System.Drawing.Color.FromArgb(255, 127, 127);
-                }
-                else
-                {
-                    _listOfPanels[i].BackColor = System.Drawing.Color.FromArgb(127, 255, 127);
-                    _listOfPanels[indexOfCurrentRectangle].BackColor = System.Drawing.Color.FromArgb(127, 255, 127);
-                }
-            }
         }
 
         #region Functions of text changes
@@ -445,7 +428,7 @@ namespace Programming
                 XOfRectangleTextBox2.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
-            FindCollisions(_listOfRectangles.IndexOf(_currentRectangle));
+            FindCollisions();
             XOfRectangleTextBox2.BackColor = System.Drawing.Color.White;
         }
 
@@ -466,7 +449,7 @@ namespace Programming
                 YOfRectangleTextBox2.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
-            FindCollisions(_listOfRectangles.IndexOf(_currentRectangle));
+            FindCollisions();
             YOfRectangleTextBox2.BackColor = System.Drawing.Color.White;
         }
 
@@ -487,7 +470,7 @@ namespace Programming
                 WidthOfRectangleTextBox2.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
-            FindCollisions(_listOfRectangles.IndexOf(_currentRectangle));
+            FindCollisions();
             WidthOfRectangleTextBox2.BackColor = System.Drawing.Color.White;
         }
 
@@ -508,7 +491,7 @@ namespace Programming
                 LengthOfRectangleTextBox2.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
-            FindCollisions(_listOfRectangles.IndexOf(_currentRectangle));
+            FindCollisions();
             LengthOfRectangleTextBox2.BackColor = System.Drawing.Color.White;
         }
 

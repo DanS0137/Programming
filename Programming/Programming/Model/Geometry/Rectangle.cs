@@ -8,14 +8,14 @@ namespace Programming.Model
 {
     internal class Rectangle
     {
-        private double _width;
-        private double _length;
+        private int _width;
+        private int _length;
         private static int _allRectanglesCount;
         private readonly int _id;
         public string Color { get; set; }
         public Point2D Location { get; set; }
 
-        public double Width
+        public int Width
         {
             get => _width;
             set
@@ -23,7 +23,7 @@ namespace Programming.Model
                 if (Validator.AssertOnPositiveValue(value, "Rectangle.Width")) _width = value;
             }
         }
-        public double Length
+        public int Length
         {
             get => _length;
             set
@@ -40,7 +40,7 @@ namespace Programming.Model
             get => _id;
         }
         
-        public Rectangle(double width, double length, string color, Point2D location)
+        public Rectangle(int width, int length, string color, Point2D location)
         {
             Width = width;
             Length = length;
