@@ -10,10 +10,10 @@ namespace Programming
         public MainForm()
         {
             InitializeComponent();
-            seasonHandleGroupBox1.buttonClickedWinter += ChangeColorToWinter;
-            seasonHandleGroupBox1.buttonClickedSpring += ChangeColorToSpring;
-            seasonHandleGroupBox1.buttonClickedSummer += ChangeColorToSummer;
-            seasonHandleGroupBox1.buttonClickedAutumn += ChangeColorToAutumn;
+            seasonHandleGroupBox.buttonClickedWinter += ChangeColorToWinter;
+            seasonHandleGroupBox.buttonClickedSpring += ChangeColorToSpring;
+            seasonHandleGroupBox.buttonClickedSummer += ChangeColorToSummer;
+            seasonHandleGroupBox.buttonClickedAutumn += ChangeColorToAutumn;
         }
 
         private void ChangeColorToWinter() => Enums.BackColor = System.Drawing.Color.FromArgb(122, 255, 255);

@@ -30,14 +30,14 @@
         {
             tabControl1 = new TabControl();
             Enums = new TabPage();
-            seasonHandleGroupBox1 = new View.SeasonHandleGroupBox();
-            weekdayParsingGroupBox1 = new View.WeekdayParsingGroupBox();
-            enumerationsGroupBox1 = new View.EnumerationsGroupBox();
+            seasonHandleGroupBox = new View.SeasonHandleGroupBox();
+            weekdayParsingGroupBox = new View.WeekdayParsingGroupBox();
+            enumerationsGroupBox = new View.EnumerationsGroupBox();
             Classes = new TabPage();
-            filmsGroupBox1 = new View.FilmsGroupBox();
+            rectanglesGroupBox = new View.RectanglesGroupBox();
+            filmsGroupBox = new View.FilmsGroupBox();
             Rectangles = new TabPage();
             rectanglesCollisionControl = new View.RectanglesCollisionControl();
-            newRectanglesGroupBox1 = new View.RectanglesGroupBox();
             tabControl1.SuspendLayout();
             Enums.SuspendLayout();
             Classes.SuspendLayout();
@@ -59,9 +59,9 @@
             // Enums
             // 
             Enums.BackColor = Color.White;
-            Enums.Controls.Add(seasonHandleGroupBox1);
-            Enums.Controls.Add(weekdayParsingGroupBox1);
-            Enums.Controls.Add(enumerationsGroupBox1);
+            Enums.Controls.Add(seasonHandleGroupBox);
+            Enums.Controls.Add(weekdayParsingGroupBox);
+            Enums.Controls.Add(enumerationsGroupBox);
             Enums.Location = new Point(4, 24);
             Enums.Name = "Enums";
             Enums.Padding = new Padding(3);
@@ -69,31 +69,31 @@
             Enums.TabIndex = 0;
             Enums.Text = "Enums";
             // 
-            // seasonHandleGroupBox1
+            // seasonHandleGroupBox
             // 
-            seasonHandleGroupBox1.Location = new Point(492, 6);
-            seasonHandleGroupBox1.Name = "seasonHandleGroupBox1";
-            seasonHandleGroupBox1.Size = new Size(292, 408);
-            seasonHandleGroupBox1.TabIndex = 20;
+            seasonHandleGroupBox.Location = new Point(492, 6);
+            seasonHandleGroupBox.Name = "seasonHandleGroupBox";
+            seasonHandleGroupBox.Size = new Size(292, 408);
+            seasonHandleGroupBox.TabIndex = 20;
             // 
-            // weekdayParsingGroupBox1
+            // weekdayParsingGroupBox
             // 
-            weekdayParsingGroupBox1.Location = new Point(6, 275);
-            weekdayParsingGroupBox1.Name = "weekdayParsingGroupBox1";
-            weekdayParsingGroupBox1.Size = new Size(480, 139);
-            weekdayParsingGroupBox1.TabIndex = 19;
+            weekdayParsingGroupBox.Location = new Point(6, 275);
+            weekdayParsingGroupBox.Name = "weekdayParsingGroupBox";
+            weekdayParsingGroupBox.Size = new Size(480, 139);
+            weekdayParsingGroupBox.TabIndex = 19;
             // 
-            // enumerationsGroupBox1
+            // enumerationsGroupBox
             // 
-            enumerationsGroupBox1.Location = new Point(6, 6);
-            enumerationsGroupBox1.Name = "enumerationsGroupBox1";
-            enumerationsGroupBox1.Size = new Size(480, 263);
-            enumerationsGroupBox1.TabIndex = 18;
+            enumerationsGroupBox.Location = new Point(6, 6);
+            enumerationsGroupBox.Name = "enumerationsGroupBox";
+            enumerationsGroupBox.Size = new Size(480, 263);
+            enumerationsGroupBox.TabIndex = 18;
             // 
             // Classes
             // 
-            Classes.Controls.Add(newRectanglesGroupBox1);
-            Classes.Controls.Add(filmsGroupBox1);
+            Classes.Controls.Add(rectanglesGroupBox);
+            Classes.Controls.Add(filmsGroupBox);
             Classes.Location = new Point(4, 24);
             Classes.Name = "Classes";
             Classes.Padding = new Padding(3);
@@ -102,12 +102,19 @@
             Classes.Text = "Classes";
             Classes.UseVisualStyleBackColor = true;
             // 
-            // filmsGroupBox1
+            // rectanglesGroupBox
             // 
-            filmsGroupBox1.Location = new Point(6, 227);
-            filmsGroupBox1.Name = "filmsGroupBox1";
-            filmsGroupBox1.Size = new Size(386, 221);
-            filmsGroupBox1.TabIndex = 2;
+            rectanglesGroupBox.Location = new Point(6, 6);
+            rectanglesGroupBox.Name = "rectanglesGroupBox";
+            rectanglesGroupBox.Size = new Size(386, 221);
+            rectanglesGroupBox.TabIndex = 3;
+            // 
+            // filmsGroupBox
+            // 
+            filmsGroupBox.Location = new Point(6, 227);
+            filmsGroupBox.Name = "filmsGroupBox";
+            filmsGroupBox.Size = new Size(386, 221);
+            filmsGroupBox.TabIndex = 2;
             // 
             // Rectangles
             // 
@@ -129,13 +136,6 @@
             rectanglesCollisionControl.Name = "rectanglesCollisionControl";
             rectanglesCollisionControl.Size = new Size(786, 442);
             rectanglesCollisionControl.TabIndex = 0;
-            // 
-            // newRectanglesGroupBox1
-            // 
-            newRectanglesGroupBox1.Location = new Point(6, 6);
-            newRectanglesGroupBox1.Name = "newRectanglesGroupBox1";
-            newRectanglesGroupBox1.Size = new Size(386, 221);
-            newRectanglesGroupBox1.TabIndex = 3;
             // 
             // MainForm
             // 
@@ -161,10 +161,10 @@
         private TabPage Classes;
         private TabPage Rectangles;
         private View.RectanglesCollisionControl rectanglesCollisionControl;
-        private View.EnumerationsGroupBox enumerationsGroupBox1;
-        private View.WeekdayParsingGroupBox weekdayParsingGroupBox1;
-        private View.SeasonHandleGroupBox seasonHandleGroupBox1;
-        private View.FilmsGroupBox filmsGroupBox1;
-        private View.RectanglesGroupBox newRectanglesGroupBox1;
+        private View.EnumerationsGroupBox enumerationsGroupBox;
+        private View.WeekdayParsingGroupBox weekdayParsingGroupBox;
+        private View.SeasonHandleGroupBox seasonHandleGroupBox;
+        private View.FilmsGroupBox filmsGroupBox;
+        private View.RectanglesGroupBox rectanglesGroupBox;
     }
 }

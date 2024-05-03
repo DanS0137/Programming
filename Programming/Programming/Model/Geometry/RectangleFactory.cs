@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Geometry
 {
+    /// <summary>
+    /// Создаёт объекты класса <see cref="Rectangle"/>.
+    /// </summary>
     internal static class RectangleFactory
     {
+        /// <summary>
+        /// Создаёт такой прямоугольник, чтобы он поместился в прямоугольник указанных размеров.
+        /// </summary>
+        /// <param name="height">Высота ограничивающего прямоугольника.</param>
+        /// <param name="width">Ширина ограничивающего прямоугольника.</param>
+        /// <returns>Возвращает объект класса <see cref="Rectangle"/>.</returns>
         public static Rectangle Randomize(int height, int width)
         {
             Random random = new Random();
