@@ -36,84 +36,77 @@
             TextLabel = new Label();
             NameLabel = new Label();
             SelectedNoteGroupBox = new GroupBox();
+            CreationTimeLabel = new Label();
             ThemeComboBox = new ComboBox();
             NameTextBox = new TextBox();
             TextTextBox = new TextBox();
-            CreationTimeLabel = new Label();
             SelectedNoteGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // NotesListBox
             // 
             NotesListBox.FormattingEnabled = true;
-            NotesListBox.ItemHeight = 25;
-            NotesListBox.Location = new Point(4, 5);
-            NotesListBox.Margin = new Padding(4, 5, 4, 5);
+            NotesListBox.ItemHeight = 15;
+            NotesListBox.Location = new Point(3, 3);
             NotesListBox.Name = "NotesListBox";
-            NotesListBox.Size = new Size(394, 779);
+            NotesListBox.Size = new Size(277, 469);
             NotesListBox.TabIndex = 0;
             NotesListBox.SelectedIndexChanged += NotesListBox_SelectedIndexChanged;
             // 
             // AddNewNoteButton
             // 
-            AddNewNoteButton.Location = new Point(4, 797);
-            AddNewNoteButton.Margin = new Padding(4, 5, 4, 5);
+            AddNewNoteButton.Location = new Point(3, 478);
             AddNewNoteButton.Name = "AddNewNoteButton";
-            AddNewNoteButton.Size = new Size(107, 38);
+            AddNewNoteButton.Size = new Size(75, 23);
             AddNewNoteButton.TabIndex = 1;
-            AddNewNoteButton.Text = "New";
+            AddNewNoteButton.Text = "Новая";
             AddNewNoteButton.UseVisualStyleBackColor = true;
             AddNewNoteButton.Click += AddNewNoteButton_Click;
             // 
             // SaveNoteButton
             // 
-            SaveNoteButton.Location = new Point(149, 797);
-            SaveNoteButton.Margin = new Padding(4, 5, 4, 5);
+            SaveNoteButton.Location = new Point(104, 478);
             SaveNoteButton.Name = "SaveNoteButton";
-            SaveNoteButton.Size = new Size(107, 38);
+            SaveNoteButton.Size = new Size(75, 23);
             SaveNoteButton.TabIndex = 2;
-            SaveNoteButton.Text = "Save";
+            SaveNoteButton.Text = "Сохранить";
             SaveNoteButton.UseVisualStyleBackColor = true;
             SaveNoteButton.Click += SaveNoteButton_Click;
             // 
             // DeleteNoteButton
             // 
-            DeleteNoteButton.Location = new Point(293, 797);
-            DeleteNoteButton.Margin = new Padding(4, 5, 4, 5);
+            DeleteNoteButton.Location = new Point(205, 478);
             DeleteNoteButton.Name = "DeleteNoteButton";
-            DeleteNoteButton.Size = new Size(107, 38);
+            DeleteNoteButton.Size = new Size(75, 23);
             DeleteNoteButton.TabIndex = 3;
-            DeleteNoteButton.Text = "Delete";
+            DeleteNoteButton.Text = "Удалить";
             DeleteNoteButton.UseVisualStyleBackColor = true;
             DeleteNoteButton.Click += DeleteNoteButton_Click;
             // 
             // ThemeLabel
             // 
             ThemeLabel.AutoSize = true;
-            ThemeLabel.Location = new Point(9, 48);
-            ThemeLabel.Margin = new Padding(4, 0, 4, 0);
+            ThemeLabel.Location = new Point(6, 29);
             ThemeLabel.Name = "ThemeLabel";
-            ThemeLabel.Size = new Size(56, 25);
+            ThemeLabel.Size = new Size(38, 15);
             ThemeLabel.TabIndex = 4;
             ThemeLabel.Text = "Тема:";
             // 
             // TextLabel
             // 
             TextLabel.AutoSize = true;
-            TextLabel.Location = new Point(9, 158);
-            TextLabel.Margin = new Padding(4, 0, 4, 0);
+            TextLabel.Location = new Point(6, 95);
             TextLabel.Name = "TextLabel";
-            TextLabel.Size = new Size(58, 25);
+            TextLabel.Size = new Size(40, 15);
             TextLabel.TabIndex = 5;
             TextLabel.Text = "Текст:";
             // 
             // NameLabel
             // 
             NameLabel.AutoSize = true;
-            NameLabel.Location = new Point(9, 103);
-            NameLabel.Margin = new Padding(4, 0, 4, 0);
+            NameLabel.Location = new Point(6, 62);
             NameLabel.Name = "NameLabel";
-            NameLabel.Size = new Size(94, 25);
+            NameLabel.Size = new Size(62, 15);
             NameLabel.TabIndex = 6;
             NameLabel.Text = "Название:";
             // 
@@ -126,64 +119,61 @@
             SelectedNoteGroupBox.Controls.Add(ThemeLabel);
             SelectedNoteGroupBox.Controls.Add(TextLabel);
             SelectedNoteGroupBox.Controls.Add(NameLabel);
-            SelectedNoteGroupBox.Location = new Point(409, 5);
-            SelectedNoteGroupBox.Margin = new Padding(4, 5, 4, 5);
+            SelectedNoteGroupBox.Location = new Point(286, 3);
             SelectedNoteGroupBox.Name = "SelectedNoteGroupBox";
-            SelectedNoteGroupBox.Padding = new Padding(4, 5, 4, 5);
-            SelectedNoteGroupBox.Size = new Size(909, 830);
+            SelectedNoteGroupBox.Size = new Size(636, 498);
             SelectedNoteGroupBox.TabIndex = 7;
             SelectedNoteGroupBox.TabStop = false;
             SelectedNoteGroupBox.Text = "Выбранная заметка:";
-            // 
-            // ThemeComboBox
-            // 
-            ThemeComboBox.FormattingEnabled = true;
-            ThemeComboBox.Items.AddRange(new object[] { "Дом", "Работа", "Спорт", "Финансы" });
-            ThemeComboBox.Location = new Point(71, 43);
-            ThemeComboBox.Margin = new Padding(4, 5, 4, 5);
-            ThemeComboBox.Name = "ThemeComboBox";
-            ThemeComboBox.Size = new Size(171, 33);
-            ThemeComboBox.TabIndex = 10;
-            // 
-            // NameTextBox
-            // 
-            NameTextBox.Location = new Point(106, 98);
-            NameTextBox.Margin = new Padding(4, 5, 4, 5);
-            NameTextBox.Name = "NameTextBox";
-            NameTextBox.Size = new Size(793, 31);
-            NameTextBox.TabIndex = 9;
-            // 
-            // TextTextBox
-            // 
-            TextTextBox.Location = new Point(9, 188);
-            TextTextBox.Margin = new Padding(4, 5, 4, 5);
-            TextTextBox.Multiline = true;
-            TextTextBox.Name = "TextTextBox";
-            TextTextBox.Size = new Size(890, 581);
-            TextTextBox.TabIndex = 8;
             // 
             // CreationTimeLabel
             // 
             CreationTimeLabel.AutoSize = true;
             CreationTimeLabel.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
-            CreationTimeLabel.Location = new Point(9, 799);
+            CreationTimeLabel.Location = new Point(6, 479);
+            CreationTimeLabel.Margin = new Padding(2, 0, 2, 0);
             CreationTimeLabel.Name = "CreationTimeLabel";
-            CreationTimeLabel.Size = new Size(146, 25);
+            CreationTimeLabel.Size = new Size(97, 15);
             CreationTimeLabel.TabIndex = 11;
             CreationTimeLabel.Text = "Время создания:";
+            CreationTimeLabel.Visible = false;
+            // 
+            // ThemeComboBox
+            // 
+            ThemeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ThemeComboBox.FormattingEnabled = true;
+            ThemeComboBox.Items.AddRange(new object[] { "Дом", "Работа", "Спорт", "Финансы" });
+            ThemeComboBox.Location = new Point(50, 26);
+            ThemeComboBox.Name = "ThemeComboBox";
+            ThemeComboBox.Size = new Size(121, 23);
+            ThemeComboBox.TabIndex = 10;
+            // 
+            // NameTextBox
+            // 
+            NameTextBox.Location = new Point(74, 59);
+            NameTextBox.Name = "NameTextBox";
+            NameTextBox.Size = new Size(556, 23);
+            NameTextBox.TabIndex = 9;
+            // 
+            // TextTextBox
+            // 
+            TextTextBox.Location = new Point(6, 113);
+            TextTextBox.Multiline = true;
+            TextTextBox.Name = "TextTextBox";
+            TextTextBox.Size = new Size(624, 350);
+            TextTextBox.TabIndex = 8;
             // 
             // MainScreen
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(SelectedNoteGroupBox);
             Controls.Add(DeleteNoteButton);
             Controls.Add(SaveNoteButton);
             Controls.Add(AddNewNoteButton);
             Controls.Add(NotesListBox);
-            Margin = new Padding(4, 5, 4, 5);
             Name = "MainScreen";
-            Size = new Size(1321, 840);
+            Size = new Size(925, 504);
             SelectedNoteGroupBox.ResumeLayout(false);
             SelectedNoteGroupBox.PerformLayout();
             ResumeLayout(false);

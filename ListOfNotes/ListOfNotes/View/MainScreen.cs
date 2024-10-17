@@ -20,16 +20,14 @@ namespace ListOfNotes.View
         public MainScreen()
         {
             InitializeComponent();
-            var directory = new DirectoryInfo(Environment.ExpandEnvironmentVariables("%appdata%") + @"\Notes");
+            string path = Environment.ExpandEnvironmentVariables("%appdata%") + @"\Notes";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            var directory = new DirectoryInfo(path);
             FileInfo[] files = directory.GetFiles();
-            //DateTime[] creationDates = new DateTime[files.Length];
-            //for (int i = 0; i < files.Length; i++)
-            //{
-            //    fileNames[i] = DateTime.Parse(files[i].Name);
-            //}
-            //fileNames = fileNames.OrderByDescending(x => x).ToArray();
             files = files.OrderByDescending(x => File.GetCreationTime(x.FullName)).ToArray();
-            //List<Note> notes = new List<Note>();
             foreach (FileInfo file in files)
             {
                 StreamReader sr = new StreamReader(file.FullName);
@@ -42,7 +40,6 @@ namespace ListOfNotes.View
                 NotesListBox.Items.Add(_currentNote.Name);
                 sr.Close();
             }
-            //NotesListBox.SelectedIndex = 0;
         }
 
         private void NotesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -53,6 +50,7 @@ namespace ListOfNotes.View
             NameTextBox.Text = _currentNote.Name;
             TextTextBox.Text = _currentNote.Text;
             CreationTimeLabel.Text = "Время создания: " + _currentNote.CreationTime.ToString();
+            CreationTimeLabel.Visible = true;
         }
 
         private void AddNewNoteButton_Click(object sender, EventArgs e)
@@ -64,32 +62,34 @@ namespace ListOfNotes.View
 
         private void SaveNoteButton_Click(object sender, EventArgs e)
         {
+            if (NotesListBox.SelectedIndex == -1) return;
+            foreach (Note note in _noteList)
+            {
+                if (note.Name == NameTextBox.Text)
+                {
+                    MessageForm messageForm = new MessageForm();
+                    messageForm.MessageLabel.Text = "Заметка с этим названием уже существует. При продолжении старая заметка будет удалена. Желаете продолжить?";
+                    if (!(messageForm.ShowDialog() == DialogResult.OK))
+                    {
+                        return;
+                    }
+                }
+            }
             try
             {
                 _currentNote.Name = NameTextBox.Text;
             }
             catch
             {
-                NameTextBox.BackColor = Color.LightPink;
+                MessageForm messageForm = new MessageForm();
+                messageForm.MessageLabel.Text = "Название заметки введено некорректно (хотя бы 1 символ и не больше 100).";
+                if (messageForm.ShowDialog() == DialogResult.OK) messageForm.Close();
                 return;
             }
-            try
-            {
-                if (ThemeComboBox.SelectedItem == null)
-                {
-                    ThemeComboBox.BackColor = Color.LightPink;
-                    return;
-                }
-                _currentNote.Theme = (NoteTheme)Enum.Parse(typeof(NoteTheme), ThemeComboBox.SelectedItem.ToString());
-            }
-            catch
-            {
-                ThemeComboBox.BackColor = Color.LightPink;
-                return;
-            }
+            _currentNote.Theme = (NoteTheme)Enum.Parse(typeof(NoteTheme), ThemeComboBox.SelectedItem.ToString());
             _currentNote.Text = TextTextBox.Text;
             int itemsLength = NotesListBox.Items.Count;
-            for (int i = 0; i < itemsLength; i ++)
+            for (int i = 0; i < itemsLength; i++)
             {
                 if (i == NotesListBox.SelectedIndex) continue;
                 if (NotesListBox.Items[i].ToString() == _currentNote.Name)
@@ -98,7 +98,7 @@ namespace ListOfNotes.View
                     break;
                 }
             }
-            foreach(Note note in _noteList)
+            foreach (Note note in _noteList)
             {
                 if (note == _currentNote) continue;
                 if (note.Name == NameTextBox.Text)
@@ -108,8 +108,8 @@ namespace ListOfNotes.View
                 }
             }
             _noteList.Remove(_currentNote);
-            _noteList.Insert(0, new Note(NameTextBox.Text, (NoteTheme)Enum.Parse(typeof(NoteTheme), ThemeComboBox.SelectedItem.ToString()),
-                TextTextBox.Text, DateTime.Now));
+            _noteList.Insert(0, new Note(NameTextBox.Text, (NoteTheme)Enum.Parse(typeof(NoteTheme),
+                ThemeComboBox.SelectedItem.ToString()), TextTextBox.Text, DateTime.Now));
             _currentNote = _noteList[0];
             CreationTimeLabel.Text = "Время создания: " + _currentNote.CreationTime.ToString();
             NotesListBox.Items.RemoveAt(NotesListBox.SelectedIndex);
@@ -132,12 +132,17 @@ namespace ListOfNotes.View
                 info = new UTF8Encoding(true).GetBytes(_currentNote.Text);
                 fs.Write(info, 0, info.Length);
             }
-
         }
 
         private void DeleteNoteButton_Click(object sender, EventArgs e)
         {
             if (NotesListBox.SelectedIndex == -1) return;
+            MessageForm messageForm = new MessageForm();
+            messageForm.MessageLabel.Text = "Вы уверены, что желаете удалить эту заметку?";
+            if (!(messageForm.ShowDialog() == DialogResult.OK))
+            {
+                return;
+            }
             _noteList.RemoveAt(NotesListBox.SelectedIndex);
             NotesListBox.Items.RemoveAt(NotesListBox.SelectedIndex);
             string path = Environment.ExpandEnvironmentVariables("%appdata%")

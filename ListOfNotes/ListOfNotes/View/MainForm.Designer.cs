@@ -44,7 +44,7 @@ namespace ListOfNotes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(936, 547);
+            ClientSize = new Size(925, 505);
             Controls.Add(mainScreen);
             Name = "MainForm";
             Text = "Заметки";
