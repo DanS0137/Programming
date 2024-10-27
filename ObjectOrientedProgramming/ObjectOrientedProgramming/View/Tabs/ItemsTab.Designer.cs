@@ -1,0 +1,228 @@
+﻿namespace ObjectOrientedProgramming.View.Tabs
+{
+    partial class ItemsTab
+    {
+        /// <summary> 
+        /// Обязательная переменная конструктора.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Освободить все используемые ресурсы.
+        /// </summary>
+        /// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Код, автоматически созданный конструктором компонентов
+
+        /// <summary> 
+        /// Требуемый метод для поддержки конструктора — не изменяйте 
+        /// содержимое этого метода с помощью редактора кода.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.ItemsLabel = new System.Windows.Forms.Label();
+            this.ItemsListBox = new System.Windows.Forms.ListBox();
+            this.AddItemButton = new System.Windows.Forms.Button();
+            this.RemoveItemButton = new System.Windows.Forms.Button();
+            this.SelectedItemLabel = new System.Windows.Forms.Label();
+            this.SelectedItemIdLabel = new System.Windows.Forms.Label();
+            this.SelectedItemCostLabel = new System.Windows.Forms.Label();
+            this.SelectedItemNameLabel = new System.Windows.Forms.Label();
+            this.SelectedItemInfoLabel = new System.Windows.Forms.Label();
+            this.SelectedItemIdTextBox = new System.Windows.Forms.TextBox();
+            this.SelectedItemCostTextBox = new System.Windows.Forms.TextBox();
+            this.SelectedItemNameTextBox = new System.Windows.Forms.TextBox();
+            this.SelectedItemInfoTextBox = new System.Windows.Forms.TextBox();
+            this.SaveChangesButton = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // ItemsLabel
+            // 
+            this.ItemsLabel.AutoSize = true;
+            this.ItemsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ItemsLabel.Location = new System.Drawing.Point(7, 11);
+            this.ItemsLabel.Name = "ItemsLabel";
+            this.ItemsLabel.Size = new System.Drawing.Size(37, 13);
+            this.ItemsLabel.TabIndex = 0;
+            this.ItemsLabel.Text = "Items";
+            // 
+            // ItemsListBox
+            // 
+            this.ItemsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.ItemsListBox.FormattingEnabled = true;
+            this.ItemsListBox.Location = new System.Drawing.Point(10, 27);
+            this.ItemsListBox.Name = "ItemsListBox";
+            this.ItemsListBox.Size = new System.Drawing.Size(266, 394);
+            this.ItemsListBox.TabIndex = 1;
+            this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
+            // 
+            // AddItemButton
+            // 
+            this.AddItemButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.AddItemButton.Location = new System.Drawing.Point(10, 427);
+            this.AddItemButton.Name = "AddItemButton";
+            this.AddItemButton.Size = new System.Drawing.Size(80, 28);
+            this.AddItemButton.TabIndex = 2;
+            this.AddItemButton.Text = "Add";
+            this.AddItemButton.UseVisualStyleBackColor = true;
+            this.AddItemButton.Click += new System.EventHandler(this.AddItemButton_Click);
+            // 
+            // RemoveItemButton
+            // 
+            this.RemoveItemButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.RemoveItemButton.Location = new System.Drawing.Point(96, 427);
+            this.RemoveItemButton.Name = "RemoveItemButton";
+            this.RemoveItemButton.Size = new System.Drawing.Size(80, 28);
+            this.RemoveItemButton.TabIndex = 3;
+            this.RemoveItemButton.Text = "Remove";
+            this.RemoveItemButton.UseVisualStyleBackColor = true;
+            this.RemoveItemButton.Click += new System.EventHandler(this.RemoveItemButton_Click);
+            // 
+            // SelectedItemLabel
+            // 
+            this.SelectedItemLabel.AutoSize = true;
+            this.SelectedItemLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SelectedItemLabel.Location = new System.Drawing.Point(298, 11);
+            this.SelectedItemLabel.Name = "SelectedItemLabel";
+            this.SelectedItemLabel.Size = new System.Drawing.Size(85, 13);
+            this.SelectedItemLabel.TabIndex = 4;
+            this.SelectedItemLabel.Text = "Selected Item";
+            // 
+            // SelectedItemIdLabel
+            // 
+            this.SelectedItemIdLabel.AutoSize = true;
+            this.SelectedItemIdLabel.Location = new System.Drawing.Point(298, 43);
+            this.SelectedItemIdLabel.Name = "SelectedItemIdLabel";
+            this.SelectedItemIdLabel.Size = new System.Drawing.Size(21, 13);
+            this.SelectedItemIdLabel.TabIndex = 5;
+            this.SelectedItemIdLabel.Text = "ID:";
+            // 
+            // SelectedItemCostLabel
+            // 
+            this.SelectedItemCostLabel.AutoSize = true;
+            this.SelectedItemCostLabel.Location = new System.Drawing.Point(298, 69);
+            this.SelectedItemCostLabel.Name = "SelectedItemCostLabel";
+            this.SelectedItemCostLabel.Size = new System.Drawing.Size(31, 13);
+            this.SelectedItemCostLabel.TabIndex = 6;
+            this.SelectedItemCostLabel.Text = "Cost:";
+            // 
+            // SelectedItemNameLabel
+            // 
+            this.SelectedItemNameLabel.AutoSize = true;
+            this.SelectedItemNameLabel.Location = new System.Drawing.Point(298, 91);
+            this.SelectedItemNameLabel.Name = "SelectedItemNameLabel";
+            this.SelectedItemNameLabel.Size = new System.Drawing.Size(38, 13);
+            this.SelectedItemNameLabel.TabIndex = 7;
+            this.SelectedItemNameLabel.Text = "Name:";
+            // 
+            // SelectedItemInfoLabel
+            // 
+            this.SelectedItemInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedItemInfoLabel.AutoSize = true;
+            this.SelectedItemInfoLabel.Location = new System.Drawing.Point(298, 205);
+            this.SelectedItemInfoLabel.Name = "SelectedItemInfoLabel";
+            this.SelectedItemInfoLabel.Size = new System.Drawing.Size(63, 13);
+            this.SelectedItemInfoLabel.TabIndex = 8;
+            this.SelectedItemInfoLabel.Text = "Description:";
+            // 
+            // SelectedItemIdTextBox
+            // 
+            this.SelectedItemIdTextBox.Location = new System.Drawing.Point(335, 40);
+            this.SelectedItemIdTextBox.Name = "SelectedItemIdTextBox";
+            this.SelectedItemIdTextBox.ReadOnly = true;
+            this.SelectedItemIdTextBox.Size = new System.Drawing.Size(117, 20);
+            this.SelectedItemIdTextBox.TabIndex = 9;
+            // 
+            // SelectedItemCostTextBox
+            // 
+            this.SelectedItemCostTextBox.Location = new System.Drawing.Point(335, 66);
+            this.SelectedItemCostTextBox.Name = "SelectedItemCostTextBox";
+            this.SelectedItemCostTextBox.Size = new System.Drawing.Size(117, 20);
+            this.SelectedItemCostTextBox.TabIndex = 10;
+            // 
+            // SelectedItemNameTextBox
+            // 
+            this.SelectedItemNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedItemNameTextBox.Location = new System.Drawing.Point(301, 107);
+            this.SelectedItemNameTextBox.Multiline = true;
+            this.SelectedItemNameTextBox.Name = "SelectedItemNameTextBox";
+            this.SelectedItemNameTextBox.Size = new System.Drawing.Size(419, 95);
+            this.SelectedItemNameTextBox.TabIndex = 11;
+            // 
+            // SelectedItemInfoTextBox
+            // 
+            this.SelectedItemInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedItemInfoTextBox.Location = new System.Drawing.Point(301, 221);
+            this.SelectedItemInfoTextBox.Multiline = true;
+            this.SelectedItemInfoTextBox.Name = "SelectedItemInfoTextBox";
+            this.SelectedItemInfoTextBox.Size = new System.Drawing.Size(419, 200);
+            this.SelectedItemInfoTextBox.TabIndex = 12;
+            // 
+            // SaveChangesButton
+            // 
+            this.SaveChangesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SaveChangesButton.Location = new System.Drawing.Point(616, 427);
+            this.SaveChangesButton.Name = "SaveChangesButton";
+            this.SaveChangesButton.Size = new System.Drawing.Size(104, 28);
+            this.SaveChangesButton.TabIndex = 13;
+            this.SaveChangesButton.Text = "Save changes";
+            this.SaveChangesButton.UseVisualStyleBackColor = true;
+            this.SaveChangesButton.Click += new System.EventHandler(this.SaveChangesButton_Click);
+            // 
+            // ItemsTab
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Controls.Add(this.SaveChangesButton);
+            this.Controls.Add(this.SelectedItemInfoTextBox);
+            this.Controls.Add(this.SelectedItemNameTextBox);
+            this.Controls.Add(this.SelectedItemCostTextBox);
+            this.Controls.Add(this.SelectedItemIdTextBox);
+            this.Controls.Add(this.SelectedItemInfoLabel);
+            this.Controls.Add(this.SelectedItemNameLabel);
+            this.Controls.Add(this.SelectedItemCostLabel);
+            this.Controls.Add(this.SelectedItemIdLabel);
+            this.Controls.Add(this.SelectedItemLabel);
+            this.Controls.Add(this.RemoveItemButton);
+            this.Controls.Add(this.AddItemButton);
+            this.Controls.Add(this.ItemsListBox);
+            this.Controls.Add(this.ItemsLabel);
+            this.Name = "ItemsTab";
+            this.Size = new System.Drawing.Size(734, 461);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label ItemsLabel;
+        private System.Windows.Forms.ListBox ItemsListBox;
+        private System.Windows.Forms.Button AddItemButton;
+        private System.Windows.Forms.Button RemoveItemButton;
+        private System.Windows.Forms.Label SelectedItemLabel;
+        private System.Windows.Forms.Label SelectedItemIdLabel;
+        private System.Windows.Forms.Label SelectedItemCostLabel;
+        private System.Windows.Forms.Label SelectedItemNameLabel;
+        private System.Windows.Forms.Label SelectedItemInfoLabel;
+        private System.Windows.Forms.TextBox SelectedItemIdTextBox;
+        private System.Windows.Forms.TextBox SelectedItemCostTextBox;
+        private System.Windows.Forms.TextBox SelectedItemNameTextBox;
+        private System.Windows.Forms.TextBox SelectedItemInfoTextBox;
+        private System.Windows.Forms.Button SaveChangesButton;
+    }
+}

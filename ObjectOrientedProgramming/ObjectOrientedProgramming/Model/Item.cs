@@ -15,6 +15,10 @@ namespace ObjectOrientedProgramming.Model
         /// Количество объектов класса.
         /// </summary>
         private static int _allItems = 0;
+        /// <summary>
+        /// Все использованные уникальные идентификаторы.
+        /// </summary>
+        private static List<int> _allIds = new List<int>();
 
         /// <summary>
         /// Уникальный идентификатор объекта класса.
@@ -85,17 +89,43 @@ namespace ObjectOrientedProgramming.Model
         /// <summary>
         /// Создаёт объект класса <see cref="Item"/>.
         /// </summary>
+        /// <param name="id">Уникальный идентификатор. Уникальность не проверяется.</param>
+        /// <param name="name">Название. Должно состоять менее чем из 200 символов.</param>
+        /// <param name="info">Информация. Должно состоять менее чем из 1000 символов.</param>
+        /// <param name="cost">Цена. Должно быть вещественным числом
+        /// в диапозоне от 0 до 100000 включительно.</param>
+        public Item(int id, string name, string info, double cost)
+        {
+            _id = id;
+            Name = name;
+            Info = info;
+            Cost = cost;
+            _allIds.Add(id);
+        }
+        /// <summary>
+        /// Создаёт объект класса <see cref="Item"/>.
+        /// </summary>
         /// <param name="name">Название. Должно состоять менее чем из 200 символов.</param>
         /// <param name="info">Информация. Должно состоять менее чем из 1000 символов.</param>
         /// <param name="cost">Цена. Должно быть вещественным числом
         /// в диапозоне от 0 до 100000 включительно.</param>
         public Item(string name, string info, double cost)
         {
+            while (_allIds.Contains(_allItems)) _allItems += 1;
             _id = _allItems;
             _allItems += 1;
             Name = name;
             Info = info;
             Cost = cost;
+        }
+        /// <summary>
+        ///  Создаёт объект класса <see cref="Item"/>.
+        /// </summary>
+        public Item()
+        {
+            while (_allIds.Contains(_allItems) == true) _allItems += 1;
+            _id = _allItems;
+            _allItems += 1;
         }
     }
 }
