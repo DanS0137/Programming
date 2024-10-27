@@ -48,10 +48,7 @@ namespace ObjectOrientedProgramming.Model
             get => _name;
             set
             {
-                if (value.Length > 199)
-                {
-                    throw new ArgumentException();
-                }
+                Services.ValueValidator.AssertStringOnLength(value, 200, "Item.Name");
                 _name = value;
             }
         }
@@ -64,10 +61,7 @@ namespace ObjectOrientedProgramming.Model
             get => _info;
             set
             {
-                if (value.Length > 999)
-                {
-                    throw new ArgumentException();
-                }
+                Services.ValueValidator.AssertStringOnLength(value, 1000, "Item.Info");
                 _info = value;
             }
         }
