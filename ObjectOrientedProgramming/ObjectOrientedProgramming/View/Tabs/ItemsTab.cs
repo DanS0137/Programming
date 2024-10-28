@@ -89,13 +89,13 @@ namespace ObjectOrientedProgramming.View.Tabs
                 SelectedItemCostTextBox.BackColor = Color.LightPink;
                 return;
             }
-            if (SelectedItemNameTextBox.Text.Length > 199)
+            if (SelectedItemNameTextBox.Text.Length > 199 || string.IsNullOrEmpty(SelectedItemNameTextBox.Text))
             {
                 SelectedItemNameTextBox.BackColor = Color.LightPink;
                 return;
             }
             else newName = SelectedItemNameTextBox.Text;
-            if (SelectedItemInfoTextBox.Text.Length > 999)
+            if (SelectedItemInfoTextBox.Text.Length > 999 || string.IsNullOrEmpty(SelectedItemInfoTextBox.Text))
             {
                 SelectedItemInfoTextBox.BackColor = Color.LightPink;
                 return;
@@ -107,6 +107,7 @@ namespace ObjectOrientedProgramming.View.Tabs
             _selectedItem.Cost = newCost;
             _selectedItem.Name = newName;
             _selectedItem.Info = newInfo;
+            ItemsListBox.Items[ItemsListBox.SelectedIndex] = $"{_selectedItem.Name} ID: {_selectedItem.Id}";
             string path = Environment.ExpandEnvironmentVariables("%appdata%")
                 + @"\OOP\Items\" + $"{_selectedItem.Id}";
             if (File.Exists(path))

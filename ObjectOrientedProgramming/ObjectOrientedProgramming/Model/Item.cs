@@ -87,7 +87,8 @@ namespace ObjectOrientedProgramming.Model
         }
 
         /// <summary>
-        /// Создаёт объект класса <see cref="Item"/>.
+        /// Создаёт объект класса <see cref="Item"/>. Использовать только для создания
+        /// экземпляра на основе данных из файла.
         /// </summary>
         /// <param name="id">Уникальный идентификатор. Уникальность не проверяется.</param>
         /// <param name="name">Название. Должно состоять менее чем из 200 символов.</param>
@@ -123,7 +124,7 @@ namespace ObjectOrientedProgramming.Model
         /// </summary>
         public Item()
         {
-            while (_allIds.Contains(_allItems) == true) _allItems += 1;
+            while (_allIds.Contains(_allItems)) _allItems += 1;
             _id = _allItems;
             _allItems += 1;
         }

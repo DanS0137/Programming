@@ -12,6 +12,10 @@ namespace ObjectOrientedProgramming.Model
     class Customer
     {
         /// <summary>
+        /// Все использованные уникальные идентификаторы.
+        /// </summary>
+        private static List<int> _allIds = new List<int>();
+        /// <summary>
         /// Количество покупателей.
         /// </summary>
         private static int _allCustomers;
@@ -30,6 +34,10 @@ namespace ObjectOrientedProgramming.Model
         /// </summary>
         private string _address;
 
+        public int Id
+        {
+            get => _id;
+        }
         /// <summary>
         /// Возвращает и задаёт полное имя покупателя.
         /// Должно состоять менее чем из 200 символов.
@@ -58,16 +66,40 @@ namespace ObjectOrientedProgramming.Model
         }
 
         /// <summary>
-        /// Создаёт экземпляр класса <see cref="Customer"/>
+        /// Создаёт экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="fullName">ФИО. Должно быть меньше 200 символов.</param>
-        /// <param name="address">Адрес доставки. Должен бфть меньше 500 символов.</param>
+        /// <param name="address">Адрес доставки. Должен быть меньше 500 символов.</param>
         public Customer(string fullName, string address)
         {
+            while (_allIds.Contains(_allCustomers)) _allCustomers += 1;
             _id = _allCustomers;
             _allCustomers += 1;
             FullName = fullName;
             Address = address;
+        }
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Customer"/>. Использовать только для создания
+        /// экземпляра на основе данных из файла.
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор. Уникальность не проверяется.</param>
+        /// <param name="fullName">ФИО. Должно быть меньше 200 символов.</param>
+        /// <param name="address">Адрес доставки. Должен быть меньше 500 символов.</param>
+        public Customer(int id, string fullName, string address)
+        {
+            _id = id;
+            FullName = fullName;
+            Address = address;
+            _allIds.Add(id);
+        }
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Customer"/>.
+        /// </summary>
+        public Customer()
+        {
+            while (_allIds.Contains(_allCustomers)) _allCustomers += 1;
+            _id = _allCustomers;
+            _allCustomers += 1;
         }
     }
 }
