@@ -14,35 +14,25 @@ namespace ObjectOrientedProgramming.View.Tabs
 {
     public partial class CustomersTab : UserControl
     {
-        List<Customer> _customersList = new List<Customer>();
+        List<Customer> _customersList;
         Customer _selectedCustomer;
+
+        public List<Customer> Customers
+        {
+            get => _customersList;
+            set
+            {
+                _customersList = value;
+                foreach (Customer customer in value)
+                {
+                    CustomersListBox.Items.Add(customer.FullName + $" ID: {customer.Id}");
+                }
+            }
+        }
 
         public CustomersTab()
         {
             InitializeComponent();
-            //string path = Environment.ExpandEnvironmentVariables("%appdata%") + @"\OOP";
-            //if (!Directory.Exists(path))
-            //{
-            //    Directory.CreateDirectory(path);
-            //    Directory.CreateDirectory(path + @"\Customers");
-            //}
-            //else if (!Directory.Exists(path + @"\Customers"))
-            //{
-            //    Directory.CreateDirectory(path + @"\Customers");
-            //}
-            //var directory = new DirectoryInfo(path + @"\Customers");
-            //FileInfo[] files = directory.GetFiles();
-            //foreach (FileInfo file in files)
-            //{
-            //    StreamReader sr = new StreamReader(file.FullName);
-            //    int id = Convert.ToInt16(file.Name);
-            //    string fullName = sr.ReadLine();
-            //    string address = sr.ReadToEnd();
-            //    _selectedCustomer = new Customer(id, fullName, address);
-            //    _customersList.Add(_selectedCustomer);
-            //    CustomersListBox.Items.Add(_selectedCustomer.FullName + $" ID: {_selectedCustomer.Id}");
-            //    sr.Close();
-            //}
         }
 
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -57,6 +47,7 @@ namespace ObjectOrientedProgramming.View.Tabs
         private void AddCustomerButton_Click(object sender, EventArgs e)
         {
             _customersList.Insert(0, new Customer());
+            _customersList[0].FullName = "New customer";
             CustomersListBox.Items.Insert(0, $"New customer ID: { _customersList[0].Id}");
             CustomersListBox.SelectedIndex = 0;
         }
@@ -68,10 +59,7 @@ namespace ObjectOrientedProgramming.View.Tabs
             SelectedCustomerIdTextBox.Text = "";
             SelectedCustomerFullNameTextBox.Text = "";
             SelectedCustomerAddressControl.Clear();
-            //SelectedCustomerAddressTextBox.Text = "";
-            //string path = Environment.ExpandEnvironmentVariables("%appdata%")
-            //    + @"\OOP\Customers\" + $"{_selectedCustomer.Id}";
-            //File.Delete(path);
+            Services.StoreSerializer.DeleteElement(_selectedCustomer);
         }
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
@@ -89,19 +77,6 @@ namespace ObjectOrientedProgramming.View.Tabs
             SelectedCustomerAddressControl.SaveChanges();
             _selectedCustomer.Address = SelectedCustomerAddressControl.Address;
             CustomersListBox.Items[CustomersListBox.SelectedIndex] = $"{_selectedCustomer.FullName} ID: {_selectedCustomer.Id}";
-            //string path = Environment.ExpandEnvironmentVariables("%appdata%")
-            //    + @"\OOP\Customers\" + $"{_selectedCustomer.Id}";
-            //if (File.Exists(path))
-            //{
-            //    File.Delete(path);
-            //}
-            //using (FileStream fs = File.Create(path))
-            //{
-            //    byte[] info = new UTF8Encoding(true).GetBytes(_selectedCustomer.FullName + "\n");
-            //    fs.Write(info, 0, info.Length);
-            //    info = new UTF8Encoding(true).GetBytes(_selectedCustomer.Address);
-            //    fs.Write(info, 0, info.Length);
-            //}
         }
     }
 }

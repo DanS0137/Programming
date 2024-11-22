@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedProgramming.Model
 {
-    enum Category
+    public enum Category
     {
         Телевизор,
         Холодильник,

@@ -19,23 +19,23 @@ namespace ObjectOrientedProgramming.Model
         /// <summary>
         /// Страна/регион.
         /// </summary>
-        private string _country;
+        private string _country= "";
         /// <summary>
         /// Населённый пункт.
         /// </summary>
-        private string _city;
+        private string _city = "";
         /// <summary>
         /// Улица.
         /// </summary>
-        private string _street;
+        private string _street = "";
         /// <summary>
         /// Номер здания.
         /// </summary>
-        private string _building;
+        private string _building = "";
         /// <summary>
         /// Номер квартиры/помещения.
         /// </summary>
-        private string _apartment;
+        private string _apartment = "";
 
         /// <summary>
         /// Возвращает и задаёт почтовый индекс адреса.
