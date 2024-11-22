@@ -32,7 +32,7 @@ namespace ObjectOrientedProgramming.Model
         /// <summary>
         /// Адрес доставки для покупателя.
         /// </summary>
-        private string _address;
+        private Address _address;
 
         public int Id
         {
@@ -55,12 +55,11 @@ namespace ObjectOrientedProgramming.Model
         /// Возвращает и задаёт адрес доставки для покупателя.
         /// Должно состоять менее чем из 500 символов.
         /// </summary>
-        public string Address
+        public Address Address
         {
             get => _address;
             set
             {
-                Services.ValueValidator.AssertStringOnLength(value, 500, "Customer.Address");
                 _address = value;
             }
         }
@@ -69,27 +68,38 @@ namespace ObjectOrientedProgramming.Model
         /// Создаёт экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="fullName">ФИО. Должно быть меньше 200 символов.</param>
-        /// <param name="address">Адрес доставки. Должен быть меньше 500 символов.</param>
-        public Customer(string fullName, string address)
+        /// <param name="index">Почтовый индекс для доставки. Должен быть 6-значным целым числом.</param>
+        /// <param name="country">Страна для доставки. Должно быть равно или меньше 50 символов.</param>
+        /// <param name="city">Город для доставки. Должно быть равно или меньше 50 символов.</param>
+        /// <param name="street">Улица для доставки. Должно быть равно или меньше 100 символов.</param>
+        /// <param name="building">Номер здания для доставки. Должно быть равно или меньше 10 символов.</param>
+        /// <param name="apartment">Номер квартиры/помещения для доставки. Должно быть равно или меньше 10 символов.</param>
+        public Customer(string fullName, int index, string country, string city,
+            string street, string building, string apartment)
         {
             while (_allIds.Contains(_allCustomers)) _allCustomers += 1;
             _id = _allCustomers;
             _allCustomers += 1;
             FullName = fullName;
-            Address = address;
+            Address = new Address(index, country, city, street, building, apartment);
         }
         /// <summary>
-        /// Создаёт экземпляр класса <see cref="Customer"/>. Использовать только для создания
-        /// экземпляра на основе данных из файла.
+        /// Создаёт экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="id">Уникальный идентификатор. Уникальность не проверяется.</param>
         /// <param name="fullName">ФИО. Должно быть меньше 200 символов.</param>
-        /// <param name="address">Адрес доставки. Должен быть меньше 500 символов.</param>
-        public Customer(int id, string fullName, string address)
+        /// <param name="index">Почтовый индекс для доставки. Должен быть 6-значным целым числом.</param>
+        /// <param name="country">Страна для доставки. Должно быть равно или меньше 50 символов.</param>
+        /// <param name="city">Город для доставки. Должно быть равно или меньше 50 символов.</param>
+        /// <param name="street">Улица для доставки. Должно быть равно или меньше 100 символов.</param>
+        /// <param name="building">Номер здания для доставки. Должно быть равно или меньше 10 символов.</param>
+        /// <param name="apartment">Номер квартиры/помещения для доставки. Должно быть равно или меньше 10 символов.</param>
+        public Customer(int id, string fullName, int index, string country, string city,
+            string street, string building, string apartment)
         {
             _id = id;
             FullName = fullName;
-            Address = address;
+            Address = new Address(index, country, city, street, building, apartment);
             _allIds.Add(id);
         }
         /// <summary>
@@ -100,6 +110,7 @@ namespace ObjectOrientedProgramming.Model
             while (_allIds.Contains(_allCustomers)) _allCustomers += 1;
             _id = _allCustomers;
             _allCustomers += 1;
+            Address = new Address();
         }
     }
 }

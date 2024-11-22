@@ -38,6 +38,11 @@ namespace ObjectOrientedProgramming.Model
         private double _cost;
 
         /// <summary>
+        /// Возвращает и задаёт категорию предмета.
+        /// </summary>
+        public Category Category { get; set; } = Category.Другое;
+
+        /// <summary>
         /// Возвращает уникальный идентификатор объекта класса.
         /// </summary>
         public int Id
@@ -95,12 +100,14 @@ namespace ObjectOrientedProgramming.Model
         /// <param name="info">Информация. Должно состоять менее чем из 1000 символов.</param>
         /// <param name="cost">Цена. Должно быть вещественным числом
         /// в диапозоне от 0 до 100000 включительно.</param>
-        public Item(int id, string name, string info, double cost)
+        /// <param name="category">Категория товара.</param>
+        public Item(int id, string name, string info, double cost, Category category)
         {
             _id = id;
             Name = name;
             Info = info;
             Cost = cost;
+            Category = category;
             _allIds.Add(id);
         }
         /// <summary>
@@ -110,7 +117,8 @@ namespace ObjectOrientedProgramming.Model
         /// <param name="info">Информация. Должно состоять менее чем из 1000 символов.</param>
         /// <param name="cost">Цена. Должно быть вещественным числом
         /// в диапозоне от 0 до 100000 включительно.</param>
-        public Item(string name, string info, double cost)
+        /// <param name="category">Категория товара.</param>
+        public Item(string name, string info, double cost, Category category)
         {
             while (_allIds.Contains(_allItems)) _allItems += 1;
             _id = _allItems;
@@ -118,6 +126,7 @@ namespace ObjectOrientedProgramming.Model
             Name = name;
             Info = info;
             Cost = cost;
+            Category = category;
         }
         /// <summary>
         ///  Создаёт объект класса <see cref="Item"/>.

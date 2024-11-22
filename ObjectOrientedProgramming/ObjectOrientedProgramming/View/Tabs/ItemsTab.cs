@@ -20,30 +20,31 @@ namespace ObjectOrientedProgramming.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
-            string path = Environment.ExpandEnvironmentVariables("%appdata%") + @"\OOP";
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-                Directory.CreateDirectory(path + @"\Items");
-            }
-            else if (!Directory.Exists(path + @"\Items"))
-            {
-                Directory.CreateDirectory(path + @"\Items");
-            }
-            var directory = new DirectoryInfo(path + @"\Items");
-            FileInfo[] files = directory.GetFiles();
-            foreach (FileInfo file in files)
-            {
-                StreamReader sr = new StreamReader(file.FullName);
-                int id = Convert.ToInt16(file.Name);
-                double cost = Convert.ToDouble(sr.ReadLine());
-                string name = sr.ReadLine();
-                string info = sr.ReadToEnd();
-                _selectedItem = new Item(id, name, info, cost);
-                _itemsList.Add(_selectedItem);
-                ItemsListBox.Items.Add(_selectedItem.Name + $" ID: {_selectedItem.Id}");
-                sr.Close();
-            }
+            SelectedItemCategoryComboBox.Items.AddRange(Enum.GetNames(typeof(Category)));
+            //string path = Environment.ExpandEnvironmentVariables("%appdata%") + @"\OOP";
+            //if (!Directory.Exists(path))
+            //{
+            //    Directory.CreateDirectory(path);
+            //    Directory.CreateDirectory(path + @"\Items");
+            //}
+            //else if (!Directory.Exists(path + @"\Items"))
+            //{
+            //    Directory.CreateDirectory(path + @"\Items");
+            //}
+            //var directory = new DirectoryInfo(path + @"\Items");
+            //FileInfo[] files = directory.GetFiles();
+            //foreach (FileInfo file in files)
+            //{
+            //    StreamReader sr = new StreamReader(file.FullName);
+            //    int id = Convert.ToInt16(file.Name);
+            //    double cost = Convert.ToDouble(sr.ReadLine());
+            //    string name = sr.ReadLine();
+            //    string info = sr.ReadToEnd();
+            //    _selectedItem = new Item(id, name, info, cost);
+            //    _itemsList.Add(_selectedItem);
+            //    ItemsListBox.Items.Add(_selectedItem.Name + $" ID: {_selectedItem.Id}");
+            //    sr.Close();
+            //}
         }
 
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,6 +55,7 @@ namespace ObjectOrientedProgramming.View.Tabs
             SelectedItemCostTextBox.Text = Convert.ToString(_selectedItem.Cost);
             SelectedItemNameTextBox.Text = _selectedItem.Name;
             SelectedItemInfoTextBox.Text = _selectedItem.Info;
+            SelectedItemCategoryComboBox.SelectedItem = _selectedItem.Category.ToString();
         }
 
         private void AddItemButton_Click(object sender, EventArgs e)
@@ -71,9 +73,9 @@ namespace ObjectOrientedProgramming.View.Tabs
             SelectedItemCostTextBox.Text = "";
             SelectedItemNameTextBox.Text = "";
             SelectedItemInfoTextBox.Text = "";
-            string path = Environment.ExpandEnvironmentVariables("%appdata%")
-                + @"\OOP\Items\" + $"{_selectedItem.Id}";
-            File.Delete(path);
+            //string path = Environment.ExpandEnvironmentVariables("%appdata%")
+            //    + @"\OOP\Items\" + $"{_selectedItem.Id}";
+            //File.Delete(path);
         }
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
@@ -83,6 +85,11 @@ namespace ObjectOrientedProgramming.View.Tabs
             try
             {
                 newCost = Convert.ToDouble(SelectedItemCostTextBox.Text.Replace('.', ','));
+                if (newCost < 0)
+                {
+                    SelectedItemCostTextBox.BackColor = Color.LightPink;
+                    return;
+                }
             }
             catch
             {
@@ -108,21 +115,26 @@ namespace ObjectOrientedProgramming.View.Tabs
             _selectedItem.Name = newName;
             _selectedItem.Info = newInfo;
             ItemsListBox.Items[ItemsListBox.SelectedIndex] = $"{_selectedItem.Name} ID: {_selectedItem.Id}";
-            string path = Environment.ExpandEnvironmentVariables("%appdata%")
-                + @"\OOP\Items\" + $"{_selectedItem.Id}";
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-            using (FileStream fs = File.Create(path))
-            {
-                byte[] info = new UTF8Encoding(true).GetBytes(_selectedItem.Cost.ToString() + "\n");
-                fs.Write(info, 0, info.Length);
-                info = new UTF8Encoding(true).GetBytes(_selectedItem.Name + "\n");
-                fs.Write(info, 0, info.Length);
-                info = new UTF8Encoding(true).GetBytes(_selectedItem.Info);
-                fs.Write(info, 0, info.Length);
-            }
+            //string path = Environment.ExpandEnvironmentVariables("%appdata%")
+            //    + @"\OOP\Items\" + $"{_selectedItem.Id}";
+            //if (File.Exists(path))
+            //{
+            //    File.Delete(path);
+            //}
+            //using (FileStream fs = File.Create(path))
+            //{
+            //    byte[] info = new UTF8Encoding(true).GetBytes(_selectedItem.Cost.ToString() + "\n");
+            //    fs.Write(info, 0, info.Length);
+            //    info = new UTF8Encoding(true).GetBytes(_selectedItem.Name + "\n");
+            //    fs.Write(info, 0, info.Length);
+            //    info = new UTF8Encoding(true).GetBytes(_selectedItem.Info);
+            //    fs.Write(info, 0, info.Length);
+            //}
+        }
+
+        private void SelectedItemCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _selectedItem.Category = (Category)Enum.Parse(typeof(Category), SelectedItemCategoryComboBox.SelectedItem.ToString());
         }
     }
 }

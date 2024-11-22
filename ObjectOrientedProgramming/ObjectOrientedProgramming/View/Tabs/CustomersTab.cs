@@ -20,29 +20,29 @@ namespace ObjectOrientedProgramming.View.Tabs
         public CustomersTab()
         {
             InitializeComponent();
-            string path = Environment.ExpandEnvironmentVariables("%appdata%") + @"\OOP";
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-                Directory.CreateDirectory(path + @"\Customers");
-            }
-            else if (!Directory.Exists(path + @"\Customers"))
-            {
-                Directory.CreateDirectory(path + @"\Customers");
-            }
-            var directory = new DirectoryInfo(path + @"\Customers");
-            FileInfo[] files = directory.GetFiles();
-            foreach (FileInfo file in files)
-            {
-                StreamReader sr = new StreamReader(file.FullName);
-                int id = Convert.ToInt16(file.Name);
-                string fullName = sr.ReadLine();
-                string address = sr.ReadToEnd();
-                _selectedCustomer = new Customer(id, fullName, address);
-                _customersList.Add(_selectedCustomer);
-                CustomersListBox.Items.Add(_selectedCustomer.FullName + $" ID: {_selectedCustomer.Id}");
-                sr.Close();
-            }
+            //string path = Environment.ExpandEnvironmentVariables("%appdata%") + @"\OOP";
+            //if (!Directory.Exists(path))
+            //{
+            //    Directory.CreateDirectory(path);
+            //    Directory.CreateDirectory(path + @"\Customers");
+            //}
+            //else if (!Directory.Exists(path + @"\Customers"))
+            //{
+            //    Directory.CreateDirectory(path + @"\Customers");
+            //}
+            //var directory = new DirectoryInfo(path + @"\Customers");
+            //FileInfo[] files = directory.GetFiles();
+            //foreach (FileInfo file in files)
+            //{
+            //    StreamReader sr = new StreamReader(file.FullName);
+            //    int id = Convert.ToInt16(file.Name);
+            //    string fullName = sr.ReadLine();
+            //    string address = sr.ReadToEnd();
+            //    _selectedCustomer = new Customer(id, fullName, address);
+            //    _customersList.Add(_selectedCustomer);
+            //    CustomersListBox.Items.Add(_selectedCustomer.FullName + $" ID: {_selectedCustomer.Id}");
+            //    sr.Close();
+            //}
         }
 
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,7 +51,7 @@ namespace ObjectOrientedProgramming.View.Tabs
             _selectedCustomer = _customersList[CustomersListBox.SelectedIndex];
             SelectedCustomerIdTextBox.Text = Convert.ToString(_selectedCustomer.Id);
             SelectedCustomerFullNameTextBox.Text = _selectedCustomer.FullName;
-            SelectedCustomerAddressTextBox.Text = _selectedCustomer.Address;
+            SelectedCustomerAddressControl.Address = _selectedCustomer.Address;
         }
 
         private void AddCustomerButton_Click(object sender, EventArgs e)
@@ -67,45 +67,41 @@ namespace ObjectOrientedProgramming.View.Tabs
             CustomersListBox.Items.RemoveAt(CustomersListBox.SelectedIndex);
             SelectedCustomerIdTextBox.Text = "";
             SelectedCustomerFullNameTextBox.Text = "";
-            SelectedCustomerAddressTextBox.Text = "";
-            string path = Environment.ExpandEnvironmentVariables("%appdata%")
-                + @"\OOP\Customers\" + $"{_selectedCustomer.Id}";
-            File.Delete(path);
+            SelectedCustomerAddressControl.Clear();
+            //SelectedCustomerAddressTextBox.Text = "";
+            //string path = Environment.ExpandEnvironmentVariables("%appdata%")
+            //    + @"\OOP\Customers\" + $"{_selectedCustomer.Id}";
+            //File.Delete(path);
         }
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
-            string newFullName, newAddress;
+            string newFullName;
             if (SelectedCustomerFullNameTextBox.Text.Length > 199 || string.IsNullOrEmpty(SelectedCustomerFullNameTextBox.Text))
             {
                 SelectedCustomerFullNameTextBox.BackColor = Color.LightPink;
+                MessageBox.Show("Поле Full Name должно быть не пустым и состоять менее чем из 200 символов.");
                 return;
             }
             else newFullName = SelectedCustomerFullNameTextBox.Text;
-            if (SelectedCustomerAddressTextBox.Text.Length > 999 || string.IsNullOrEmpty(SelectedCustomerAddressTextBox.Text))
-            {
-                SelectedCustomerAddressTextBox.BackColor = Color.LightPink;
-                return;
-            }
-            else newAddress = SelectedCustomerAddressTextBox.Text;
             SelectedCustomerFullNameTextBox.BackColor = Color.White;
-            SelectedCustomerAddressTextBox.BackColor = Color.White;
             _selectedCustomer.FullName = newFullName;
-            _selectedCustomer.Address = newAddress;
+            SelectedCustomerAddressControl.SaveChanges();
+            _selectedCustomer.Address = SelectedCustomerAddressControl.Address;
             CustomersListBox.Items[CustomersListBox.SelectedIndex] = $"{_selectedCustomer.FullName} ID: {_selectedCustomer.Id}";
-            string path = Environment.ExpandEnvironmentVariables("%appdata%")
-                + @"\OOP\Customers\" + $"{_selectedCustomer.Id}";
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-            using (FileStream fs = File.Create(path))
-            {
-                byte[] info = new UTF8Encoding(true).GetBytes(_selectedCustomer.FullName + "\n");
-                fs.Write(info, 0, info.Length);
-                info = new UTF8Encoding(true).GetBytes(_selectedCustomer.Address);
-                fs.Write(info, 0, info.Length);
-            }
+            //string path = Environment.ExpandEnvironmentVariables("%appdata%")
+            //    + @"\OOP\Customers\" + $"{_selectedCustomer.Id}";
+            //if (File.Exists(path))
+            //{
+            //    File.Delete(path);
+            //}
+            //using (FileStream fs = File.Create(path))
+            //{
+            //    byte[] info = new UTF8Encoding(true).GetBytes(_selectedCustomer.FullName + "\n");
+            //    fs.Write(info, 0, info.Length);
+            //    info = new UTF8Encoding(true).GetBytes(_selectedCustomer.Address);
+            //    fs.Write(info, 0, info.Length);
+            //}
         }
     }
 }
