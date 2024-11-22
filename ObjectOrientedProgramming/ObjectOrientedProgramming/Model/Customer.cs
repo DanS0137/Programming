@@ -15,6 +15,7 @@ namespace ObjectOrientedProgramming.Model
         /// Все использованные уникальные идентификаторы.
         /// </summary>
         private static List<int> _allIds = new List<int>();
+
         /// <summary>
         /// Количество покупателей.
         /// </summary>
@@ -29,10 +30,16 @@ namespace ObjectOrientedProgramming.Model
         /// ФИО покупателя.
         /// </summary>
         private string _fullName = "";
+
         /// <summary>
         /// Адрес доставки для покупателя.
         /// </summary>
         private Address _address;
+
+        /// <summary>
+        /// Корзина покупателя.
+        /// </summary>
+        private Cart _cart;
 
         public int Id
         {
@@ -63,6 +70,17 @@ namespace ObjectOrientedProgramming.Model
                 _address = value;
             }
         }
+        /// <summary>
+        /// Возвращает и задаёт товары в корзине покупателя.
+        /// </summary>
+        public Cart Cart
+        {
+            get => _cart;
+            set
+            {
+                _cart = value;
+            }
+        }
 
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Customer"/>.
@@ -82,6 +100,7 @@ namespace ObjectOrientedProgramming.Model
             _allCustomers += 1;
             FullName = fullName;
             Address = new Address(index, country, city, street, building, apartment);
+            Cart = new Cart();
         }
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Customer"/>.
@@ -100,6 +119,7 @@ namespace ObjectOrientedProgramming.Model
             _id = id;
             FullName = fullName;
             Address = new Address(index, country, city, street, building, apartment);
+            Cart = new Cart();
             _allIds.Add(id);
         }
         /// <summary>
@@ -111,6 +131,7 @@ namespace ObjectOrientedProgramming.Model
             _id = _allCustomers;
             _allCustomers += 1;
             Address = new Address();
+            Cart = new Cart();
         }
     }
 }
