@@ -9,7 +9,7 @@ namespace ObjectOrientedProgramming.Model
     /// <summary>
     /// Хранит данные о неком предмете.
     /// </summary>
-    class Item
+    public class Item
     {
         /// <summary>
         /// Количество объектов класса.
@@ -27,15 +27,15 @@ namespace ObjectOrientedProgramming.Model
         /// <summary>
         /// Название предмета.
         /// </summary>
-        private string _name;
+        private string _name = "";
         /// <summary>
         /// Информация о предмете.
         /// </summary>
-        private string _info;
+        private string _info = "";
         /// <summary>
         /// Цена предмета.
         /// </summary>
-        private double _cost;
+        private double _cost = 0;
 
         /// <summary>
         /// Возвращает и задаёт категорию предмета.
@@ -101,7 +101,7 @@ namespace ObjectOrientedProgramming.Model
         /// <param name="cost">Цена. Должно быть вещественным числом
         /// в диапозоне от 0 до 100000 включительно.</param>
         /// <param name="category">Категория товара.</param>
-        public Item(int id, string name, string info, double cost, Category category)
+        public Item(int id, string name, Category category, string info, double cost)
         {
             _id = id;
             Name = name;
@@ -118,7 +118,7 @@ namespace ObjectOrientedProgramming.Model
         /// <param name="cost">Цена. Должно быть вещественным числом
         /// в диапозоне от 0 до 100000 включительно.</param>
         /// <param name="category">Категория товара.</param>
-        public Item(string name, string info, double cost, Category category)
+        public Item(string name, Category category, string info, double cost)
         {
             while (_allIds.Contains(_allItems)) _allItems += 1;
             _id = _allItems;

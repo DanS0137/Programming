@@ -9,7 +9,7 @@ namespace ObjectOrientedProgramming.Model
     /// <summary>
     /// Хранит данные о покупателе.
     /// </summary>
-    class Customer
+    public class Customer
     {
         /// <summary>
         /// Все использованные уникальные идентификаторы.
@@ -28,7 +28,7 @@ namespace ObjectOrientedProgramming.Model
         /// <summary>
         /// ФИО покупателя.
         /// </summary>
-        private string _fullName;
+        private string _fullName = "";
         /// <summary>
         /// Адрес доставки для покупателя.
         /// </summary>
