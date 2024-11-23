@@ -68,7 +68,7 @@ namespace ObjectOrientedProgramming.Services
                 store.Items.Add(item);
                 sr.Close();
             }
-
+            
             return store;
         }
 

@@ -28,13 +28,13 @@ namespace ObjectOrientedProgramming
         {
             InitializeComponent();
             Store = Services.StoreSerializer.LoadStore();
-            ItemsTab.Items = _store.Items;
-            CustomersTab.Customers = _store.Customers;
+            ItemsTab.Items = Store.Items;
+            CustomersTab.Customers = Store.Customers;
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Services.StoreSerializer.SaveStore(_store);
+            Services.StoreSerializer.SaveStore(Store);
         }
     }
 }

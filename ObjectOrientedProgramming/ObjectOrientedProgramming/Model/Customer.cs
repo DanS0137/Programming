@@ -41,6 +41,11 @@ namespace ObjectOrientedProgramming.Model
         /// </summary>
         private Cart _cart;
 
+        /// <summary>
+        /// Список заказов пользователя.
+        /// </summary>
+        private List<Order> _orders;
+
         public int Id
         {
             get => _id;
@@ -79,6 +84,17 @@ namespace ObjectOrientedProgramming.Model
             set
             {
                 _cart = value;
+            }
+        }
+        /// <summary>
+        /// Возвращает и задаёт список заказов покупателя.
+        /// </summary>
+        public List<Order> Orders
+        {
+            get => _orders;
+            set
+            {
+                _orders = value;
             }
         }
 

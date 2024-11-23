@@ -23,9 +23,12 @@ namespace ObjectOrientedProgramming.View.Tabs
             set
             {
                 _itemsList = value;
-                foreach (Item item in value)
+                if (value != null)
                 {
-                    ItemsListBox.Items.Add(item.Name + $" ID: {item.Id}");
+                    foreach (Item item in value)
+                    {
+                        ItemsListBox.Items.Add(item.Name + $" ID: {item.Id}");
+                    }
                 }
             }
         }

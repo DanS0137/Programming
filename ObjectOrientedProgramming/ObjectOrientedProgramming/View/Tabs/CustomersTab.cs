@@ -23,9 +23,12 @@ namespace ObjectOrientedProgramming.View.Tabs
             set
             {
                 _customersList = value;
-                foreach (Customer customer in value)
+                if (value != null)
                 {
-                    CustomersListBox.Items.Add(customer.FullName + $" ID: {customer.Id}");
+                    foreach (Customer customer in value)
+                    {
+                        CustomersListBox.Items.Add(customer.FullName + $" ID: {customer.Id}");
+                    }
                 }
             }
         }
