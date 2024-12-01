@@ -117,6 +117,7 @@ namespace ObjectOrientedProgramming.Model
             FullName = fullName;
             Address = new Address(index, country, city, street, building, apartment);
             Cart = new Cart();
+            Orders = new List<Order>();
         }
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Customer"/>.
@@ -136,6 +137,7 @@ namespace ObjectOrientedProgramming.Model
             FullName = fullName;
             Address = new Address(index, country, city, street, building, apartment);
             Cart = new Cart();
+            Orders = new List<Order>();
             _allIds.Add(id);
         }
         /// <summary>
@@ -148,6 +150,7 @@ namespace ObjectOrientedProgramming.Model
             _allCustomers += 1;
             Address = new Address();
             Cart = new Cart();
+            Orders = new List<Order>();
         }
     }
 }

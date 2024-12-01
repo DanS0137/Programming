@@ -35,7 +35,7 @@ namespace ObjectOrientedProgramming.Model
         {
             get
             {
-                double amount = 0;
+                double amount = 0.0;
                 if (_items.Count > 0)
                 {
                     for (int i = 0; i < _items.Count; i++)

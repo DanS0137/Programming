@@ -27,14 +27,24 @@ namespace ObjectOrientedProgramming
         public MainForm()
         {
             InitializeComponent();
+
             Store = Services.StoreSerializer.LoadStore();
+
             ItemsTab.Items = Store.Items;
             CustomersTab.Customers = Store.Customers;
+
+            CartsTab.Items = Store.Items;
+            CartsTab.Customers = Store.Customers;
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Services.StoreSerializer.SaveStore(Store);
+        }
+
+        private void tabControl_SelectedIndexChanged(Object sender, EventArgs e)
+        {
+            CartsTab.RefreshData(Store);
         }
     }
 }

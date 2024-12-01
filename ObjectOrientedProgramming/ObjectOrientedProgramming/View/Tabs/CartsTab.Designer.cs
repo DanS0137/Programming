@@ -36,7 +36,7 @@
             this.CustomersComboBox = new System.Windows.Forms.ComboBox();
             this.AddToCartButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.AmountLabel = new System.Windows.Forms.Label();
             this.RemoveItemButton = new System.Windows.Forms.Button();
             this.ClearCartButton = new System.Windows.Forms.Button();
             this.CreateOrderButton = new System.Windows.Forms.Button();
@@ -102,6 +102,7 @@
             this.CustomersComboBox.Name = "CustomersComboBox";
             this.CustomersComboBox.Size = new System.Drawing.Size(425, 21);
             this.CustomersComboBox.TabIndex = 5;
+            this.CustomersComboBox.SelectedIndexChanged += new System.EventHandler(this.CustomersComboBox_SelectedIndexChanged);
             // 
             // AddToCartButton
             // 
@@ -112,6 +113,7 @@
             this.AddToCartButton.TabIndex = 6;
             this.AddToCartButton.Text = "Add To Cart";
             this.AddToCartButton.UseVisualStyleBackColor = true;
+            this.AddToCartButton.Click += new System.EventHandler(this.AddToCartButton_Click);
             // 
             // label4
             // 
@@ -124,16 +126,16 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Amount:";
             // 
-            // label5
+            // AmountLabel
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(293, 256);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 37);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "0.0";
+            this.AmountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.AmountLabel.AutoSize = true;
+            this.AmountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AmountLabel.Location = new System.Drawing.Point(293, 256);
+            this.AmountLabel.Name = "AmountLabel";
+            this.AmountLabel.Size = new System.Drawing.Size(65, 37);
+            this.AmountLabel.TabIndex = 8;
+            this.AmountLabel.Text = "0.0";
             // 
             // RemoveItemButton
             // 
@@ -144,6 +146,7 @@
             this.RemoveItemButton.TabIndex = 9;
             this.RemoveItemButton.Text = "Remove Item";
             this.RemoveItemButton.UseVisualStyleBackColor = true;
+            this.RemoveItemButton.Click += new System.EventHandler(this.RemoveItemButton_Click);
             // 
             // ClearCartButton
             // 
@@ -154,6 +157,7 @@
             this.ClearCartButton.TabIndex = 10;
             this.ClearCartButton.Text = "Clear Cart";
             this.ClearCartButton.UseVisualStyleBackColor = true;
+            this.ClearCartButton.Click += new System.EventHandler(this.ClearCartButton_Click);
             // 
             // CreateOrderButton
             // 
@@ -164,6 +168,7 @@
             this.CreateOrderButton.TabIndex = 11;
             this.CreateOrderButton.Text = "Create Order";
             this.CreateOrderButton.UseVisualStyleBackColor = true;
+            this.CreateOrderButton.Click += new System.EventHandler(this.CreateOrderButton_Click);
             // 
             // CartsTab
             // 
@@ -172,7 +177,7 @@
             this.Controls.Add(this.CreateOrderButton);
             this.Controls.Add(this.ClearCartButton);
             this.Controls.Add(this.RemoveItemButton);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.AmountLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.AddToCartButton);
             this.Controls.Add(this.CustomersComboBox);
@@ -198,7 +203,7 @@
         private System.Windows.Forms.ComboBox CustomersComboBox;
         private System.Windows.Forms.Button AddToCartButton;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label AmountLabel;
         private System.Windows.Forms.Button RemoveItemButton;
         private System.Windows.Forms.Button ClearCartButton;
         private System.Windows.Forms.Button CreateOrderButton;

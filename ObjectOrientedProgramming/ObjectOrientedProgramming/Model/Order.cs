@@ -71,9 +71,13 @@ namespace ObjectOrientedProgramming.Model
         public List<Item> Items
         {
             get => _items;
-            private set
+            set
             {
                 _items = value;
+                foreach (Item item in _items)
+                {
+                    Amount += item.Cost;
+                }
             }
         }
         /// <summary>
@@ -94,6 +98,9 @@ namespace ObjectOrientedProgramming.Model
         {
             get => _dateOfCreation;
         }
+        /// <summary>
+        /// Возвращает и задаёт статус заказа.
+        /// </summary>
         public Enumerations.OrderStatus OrderStatus
         {
             get => _orderStatus;
@@ -113,10 +120,6 @@ namespace ObjectOrientedProgramming.Model
             Address = address;
             Items = items;
             _dateOfCreation = DateTime.Now;
-            foreach (Item item in items)
-            {
-                _amount += item.Cost;
-            }
             _id = _allOrders + 1;
             _allOrders += 1;
         }
@@ -130,6 +133,10 @@ namespace ObjectOrientedProgramming.Model
             _allOrders += 1;
         }
 
+        /// <summary>
+        /// Добавляет товар в список товаров.
+        /// </summary>
+        /// <param name="item">Добавляемый товар.</param>
         public void AddItem(Item item)
         {
             _items.Add(item);
