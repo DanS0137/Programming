@@ -72,6 +72,7 @@ namespace ObjectOrientedProgramming.View.Tabs
 
         private void ChangeBoxes(int index)
         {
+            if (Orders.Count == 0) return;
             Order selOrder = Orders[index];
 
             OrderIdTextBox.Text = selOrder.Id.ToString();
