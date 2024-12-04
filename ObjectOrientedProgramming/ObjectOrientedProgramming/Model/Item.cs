@@ -137,5 +137,13 @@ namespace ObjectOrientedProgramming.Model
             _id = _allItems;
             _allItems += 1;
         }
+        public Item(Item item)
+        {
+            Name = item.Name;
+            Cost = item.Cost;
+            _id = item.Id;
+            Info = item.Info;
+            Category = item.Category;
+        }
     }
 }

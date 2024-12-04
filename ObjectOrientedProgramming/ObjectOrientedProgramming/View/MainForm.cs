@@ -33,8 +33,10 @@ namespace ObjectOrientedProgramming
             ItemsTab.Items = Store.Items;
             CustomersTab.Customers = Store.Customers;
 
-            CartsTab.Items = Store.Items;
             CartsTab.Customers = Store.Customers;
+            CartsTab.Items = Store.Items;
+
+            OrdersTab.Customers = Store.Customers;
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -42,9 +44,16 @@ namespace ObjectOrientedProgramming
             Services.StoreSerializer.SaveStore(Store);
         }
 
-        private void tabControl_SelectedIndexChanged(Object sender, EventArgs e)
+        private void TabControl_SelectedIndexChanged(Object sender, EventArgs e)
         {
-            CartsTab.RefreshData(Store);
+            if (tabControl.SelectedIndex == 2)
+            {
+                CartsTab.RefreshData();
+            }
+            else if (tabControl.SelectedIndex == 3)
+            {
+                OrdersTab.RefreshData();
+            }
         }
     }
 }

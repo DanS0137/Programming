@@ -36,7 +36,7 @@ namespace ObjectOrientedProgramming.Model
         /// <summary>
         /// Состав заказа.
         /// </summary>
-        private List<Item> _items;
+        private List<Item> _items = new List<Item>();
         /// <summary>
         /// Сумма заказа.
         /// </summary>
@@ -118,10 +118,13 @@ namespace ObjectOrientedProgramming.Model
         public Order(Address address, List<Item> items)
         {
             Address = address;
-            Items = items;
+            foreach (Item item in items)
+            {
+                Items.Add(new Item(item));
+                Amount += item.Cost;
+            }
             _dateOfCreation = DateTime.Now;
-            _id = _allOrders + 1;
-            _allOrders += 1;
+            _id = _allOrders++;
         }
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Order"/>.
@@ -131,16 +134,6 @@ namespace ObjectOrientedProgramming.Model
             _dateOfCreation = DateTime.Now;
             _id += _allOrders + 1;
             _allOrders += 1;
-        }
-
-        /// <summary>
-        /// Добавляет товар в список товаров.
-        /// </summary>
-        /// <param name="item">Добавляемый товар.</param>
-        public void AddItem(Item item)
-        {
-            _items.Add(item);
-            Amount += item.Cost;
         }
     }
 }

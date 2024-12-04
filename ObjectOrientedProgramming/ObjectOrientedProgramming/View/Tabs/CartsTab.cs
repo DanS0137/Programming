@@ -117,13 +117,13 @@ namespace ObjectOrientedProgramming.View.Tabs
             AmountLabel.Text = "0";
         }
 
-        public void RefreshData(Store store)
+        public void RefreshData()
         {
             ItemsListBox.Items.Clear();
             CustomersComboBox.Items.Clear();
 
-            Items = store.Items;
-            Customers = store.Customers;
+            Items = Items;
+            Customers = Customers;
 
             SelectedCustomer = null;
         }

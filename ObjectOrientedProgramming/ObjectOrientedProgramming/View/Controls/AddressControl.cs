@@ -115,5 +115,25 @@ namespace ObjectOrientedProgramming.View.Controls
                 MessageBox.Show("В поле Apartment введено неправильное значение.\nЗначение должно быть равно или меньше 10 символов.");
             }
         }
+
+        public void CloseAccess()
+        {
+            PostIndexTextBox.ReadOnly = true;
+            CountryTextBox.ReadOnly = true;
+            CityTextBox.ReadOnly = true;
+            StreetTextBox.ReadOnly = true;
+            BuildingTextBox.ReadOnly = true;
+            ApartmentTextBox.ReadOnly = true;
+        }
+
+        public void OpenAccess()
+        {
+            PostIndexTextBox.ReadOnly = false;
+            CountryTextBox.ReadOnly = false;
+            CityTextBox.ReadOnly = false;
+            StreetTextBox.ReadOnly = false;
+            BuildingTextBox.ReadOnly = false;
+            ApartmentTextBox.ReadOnly = false;
+        }
     }
 }

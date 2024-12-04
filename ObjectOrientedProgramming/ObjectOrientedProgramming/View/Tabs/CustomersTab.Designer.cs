@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ObjectOrientedProgramming.Model.Address address1 = new ObjectOrientedProgramming.Model.Address();
             this.SaveChangesButton = new System.Windows.Forms.Button();
             this.SelectedCustomerFullNameTextBox = new System.Windows.Forms.TextBox();
             this.SelectedCustomerIdTextBox = new System.Windows.Forms.TextBox();
@@ -144,13 +143,6 @@
             // 
             // SelectedCustomerAddressControl
             // 
-            //address1.Apartment = "";
-            //address1.Building = "";
-            //address1.City = "";
-            //address1.Country = "";
-            //address1.Index = 1;
-            //address1.Street = "";
-            //this.SelectedCustomerAddressControl.Address = address1;
             this.SelectedCustomerAddressControl.Location = new System.Drawing.Point(295, 202);
             this.SelectedCustomerAddressControl.Name = "SelectedCustomerAddressControl";
             this.SelectedCustomerAddressControl.Size = new System.Drawing.Size(495, 117);
