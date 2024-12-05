@@ -37,6 +37,8 @@ namespace ObjectOrientedProgramming
             CartsTab.Items = Store.Items;
 
             OrdersTab.Customers = Store.Customers;
+
+            PriorityOrdersTab.Items = Store.Items;
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

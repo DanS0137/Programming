@@ -53,6 +53,7 @@ namespace ObjectOrientedProgramming.View.Tabs
         public void UpdateOrders()
         {
             if (Orders != null) Orders.Clear();
+            Orders = new List<Order>();
             foreach (Customer customer in Customers)
             {
                 if (customer.Orders == null) continue;
@@ -74,7 +75,7 @@ namespace ObjectOrientedProgramming.View.Tabs
 
         private void ChangeBoxes(int index)
         {
-            if (Orders.Count == 0) return;
+            if (Orders.Count == 0 || Orders == null) return;
             Order selOrder = Orders[index];
 
             OrderIdTextBox.Text = selOrder.Id.ToString();

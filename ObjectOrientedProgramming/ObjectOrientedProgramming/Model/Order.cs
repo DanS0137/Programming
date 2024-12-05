@@ -9,21 +9,22 @@ namespace ObjectOrientedProgramming.Model
     /// <summary>
     /// Хранит информацию о заказе.
     /// </summary>
+    [Serializable]
     public class Order
     {
         /// <summary>
         /// Сумма всех заказов.
         /// </summary>
-        private static int _allOrders = 0;
+        protected static int _allOrders = 0;
 
         /// <summary>
         /// Время создания заказа.
         /// </summary>
-        private readonly DateTime _dateOfCreation;
+        protected readonly DateTime _dateOfCreation;
         /// <summary>
         /// Уникальный идентификатор заказа.
         /// </summary>
-        private readonly int _id;
+        protected readonly int _id;
 
         /// <summary>
         /// Адрес доставки.
@@ -33,10 +34,6 @@ namespace ObjectOrientedProgramming.Model
         /// Состав заказа.
         /// </summary>
         private List<Item> _items = new List<Item>();
-        /// <summary>
-        /// Сумма заказа.
-        /// </summary>
-        private double _amount = 0;
         /// <summary>
         /// Статус заказа.
         /// </summary>
@@ -70,10 +67,6 @@ namespace ObjectOrientedProgramming.Model
             set
             {
                 _items = value;
-                foreach (Item item in _items)
-                {
-                    Amount += item.Cost;
-                }
             }
         }
         /// <summary>
@@ -81,10 +74,15 @@ namespace ObjectOrientedProgramming.Model
         /// </summary>
         public double Amount
         {
-            get => _amount;
-            private set
+            get
             {
-                _amount = value;
+                if (Items == null) return -1;
+                double amount = 0;
+                foreach(Item item in Items)
+                {
+                    amount += item.Cost;
+                }
+                return amount;
             }
         }
         /// <summary>
@@ -117,7 +115,6 @@ namespace ObjectOrientedProgramming.Model
             foreach (Item item in items)
             {
                 Items.Add(new Item(item));
-                Amount += item.Cost;
             }
             _dateOfCreation = DateTime.Now;
             _id = _allOrders++;
@@ -128,7 +125,8 @@ namespace ObjectOrientedProgramming.Model
         public Order()
         {
             _dateOfCreation = DateTime.Now;
-            _id += _allOrders++;
+            _id = _allOrders;
+            _allOrders += 1;
         }
     }
 }

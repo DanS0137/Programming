@@ -39,7 +39,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.DeliveryAddressControl = new ObjectOrientedProgramming.View.Controls.AddressControl();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.OrdersDataGridView = new System.Windows.Forms.DataGridView();
@@ -49,14 +48,16 @@
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrderStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeliveryTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SaveOrderButton = new System.Windows.Forms.Button();
             this.DeleteOrderButton = new System.Windows.Forms.Button();
             this.RemoveItemButton = new System.Windows.Forms.Button();
             this.AddItemButton = new System.Windows.Forms.Button();
-            this.DeliveryTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label8 = new System.Windows.Forms.Label();
             this.DeliveryTimeComboBox = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.NewOrderButton = new System.Windows.Forms.Button();
+            this.DeliveryAddressControl = new ObjectOrientedProgramming.View.Controls.AddressControl();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,7 +104,7 @@
             this.CreationTimeTextBox.Location = new System.Drawing.Point(507, 58);
             this.CreationTimeTextBox.Name = "CreationTimeTextBox";
             this.CreationTimeTextBox.ReadOnly = true;
-            this.CreationTimeTextBox.Size = new System.Drawing.Size(100, 20);
+            this.CreationTimeTextBox.Size = new System.Drawing.Size(120, 20);
             this.CreationTimeTextBox.TabIndex = 23;
             // 
             // OrderIdTextBox
@@ -111,7 +112,7 @@
             this.OrderIdTextBox.Location = new System.Drawing.Point(507, 32);
             this.OrderIdTextBox.Name = "OrderIdTextBox";
             this.OrderIdTextBox.ReadOnly = true;
-            this.OrderIdTextBox.Size = new System.Drawing.Size(100, 20);
+            this.OrderIdTextBox.Size = new System.Drawing.Size(120, 20);
             this.OrderIdTextBox.TabIndex = 22;
             // 
             // OrderStatusComboBox
@@ -119,8 +120,9 @@
             this.OrderStatusComboBox.FormattingEnabled = true;
             this.OrderStatusComboBox.Location = new System.Drawing.Point(507, 84);
             this.OrderStatusComboBox.Name = "OrderStatusComboBox";
-            this.OrderStatusComboBox.Size = new System.Drawing.Size(100, 21);
+            this.OrderStatusComboBox.Size = new System.Drawing.Size(120, 21);
             this.OrderStatusComboBox.TabIndex = 21;
+            this.OrderStatusComboBox.SelectedIndexChanged += new System.EventHandler(this.OrderStatusComboBox_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -148,20 +150,6 @@
             this.label3.Size = new System.Drawing.Size(19, 13);
             this.label3.TabIndex = 18;
             this.label3.Text = "Id:";
-            // 
-            // DeliveryAddressControl
-            // 
-            address1.Apartment = "";
-            address1.Building = "";
-            address1.City = "";
-            address1.Country = "";
-            address1.Index = 100000;
-            address1.Street = "";
-            this.DeliveryAddressControl.Address = address1;
-            this.DeliveryAddressControl.Location = new System.Drawing.Point(457, 114);
-            this.DeliveryAddressControl.Name = "DeliveryAddressControl";
-            this.DeliveryAddressControl.Size = new System.Drawing.Size(495, 117);
-            this.DeliveryAddressControl.TabIndex = 17;
             // 
             // label2
             // 
@@ -199,8 +187,9 @@
             this.OrdersDataGridView.Location = new System.Drawing.Point(8, 27);
             this.OrdersDataGridView.Name = "OrdersDataGridView";
             this.OrdersDataGridView.ReadOnly = true;
-            this.OrdersDataGridView.Size = new System.Drawing.Size(443, 410);
+            this.OrdersDataGridView.Size = new System.Drawing.Size(443, 384);
             this.OrdersDataGridView.TabIndex = 14;
+            this.OrdersDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrdersDataGridView_CellClick);
             // 
             // OrderIdColumn
             // 
@@ -238,6 +227,12 @@
             this.OrderStatusColumn.Name = "OrderStatusColumn";
             this.OrderStatusColumn.ReadOnly = true;
             // 
+            // DeliveryTimeColumn
+            // 
+            this.DeliveryTimeColumn.HeaderText = "TimeOfDelivery";
+            this.DeliveryTimeColumn.Name = "DeliveryTimeColumn";
+            this.DeliveryTimeColumn.ReadOnly = true;
+            // 
             // SaveOrderButton
             // 
             this.SaveOrderButton.Location = new System.Drawing.Point(457, 414);
@@ -246,6 +241,7 @@
             this.SaveOrderButton.TabIndex = 28;
             this.SaveOrderButton.Text = "Save Order";
             this.SaveOrderButton.UseVisualStyleBackColor = true;
+            this.SaveOrderButton.Click += new System.EventHandler(this.SaveOrderButton_Click);
             // 
             // DeleteOrderButton
             // 
@@ -255,6 +251,7 @@
             this.DeleteOrderButton.TabIndex = 29;
             this.DeleteOrderButton.Text = "Delete Order";
             this.DeleteOrderButton.UseVisualStyleBackColor = true;
+            this.DeleteOrderButton.Click += new System.EventHandler(this.DeleteOrderButton_Click);
             // 
             // RemoveItemButton
             // 
@@ -264,6 +261,7 @@
             this.RemoveItemButton.TabIndex = 31;
             this.RemoveItemButton.Text = "Remove Item";
             this.RemoveItemButton.UseVisualStyleBackColor = true;
+            this.RemoveItemButton.Click += new System.EventHandler(this.RemoveItemButton_Click);
             // 
             // AddItemButton
             // 
@@ -273,12 +271,7 @@
             this.AddItemButton.TabIndex = 30;
             this.AddItemButton.Text = "Add Item";
             this.AddItemButton.UseVisualStyleBackColor = true;
-            // 
-            // DeliveryTimeColumn
-            // 
-            this.DeliveryTimeColumn.HeaderText = "TimeOfDelivery";
-            this.DeliveryTimeColumn.Name = "DeliveryTimeColumn";
-            this.DeliveryTimeColumn.ReadOnly = true;
+            this.AddItemButton.Click += new System.EventHandler(this.AddItemButton_Click);
             // 
             // label8
             // 
@@ -297,6 +290,7 @@
             this.DeliveryTimeComboBox.Name = "DeliveryTimeComboBox";
             this.DeliveryTimeComboBox.Size = new System.Drawing.Size(100, 21);
             this.DeliveryTimeComboBox.TabIndex = 34;
+            this.DeliveryTimeComboBox.SelectedIndexChanged += new System.EventHandler(this.DeliveryTimeComboBox_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -307,10 +301,35 @@
             this.label9.TabIndex = 33;
             this.label9.Text = "Time of delivery:";
             // 
+            // NewOrderButton
+            // 
+            this.NewOrderButton.Location = new System.Drawing.Point(8, 417);
+            this.NewOrderButton.Name = "NewOrderButton";
+            this.NewOrderButton.Size = new System.Drawing.Size(75, 23);
+            this.NewOrderButton.TabIndex = 35;
+            this.NewOrderButton.Text = "New Order";
+            this.NewOrderButton.UseVisualStyleBackColor = true;
+            this.NewOrderButton.Click += new System.EventHandler(this.NewOrderButton_Click);
+            // 
+            // DeliveryAddressControl
+            // 
+            address1.Apartment = "";
+            address1.Building = "";
+            address1.City = "";
+            address1.Country = "";
+            address1.Index = 100000;
+            address1.Street = "";
+            this.DeliveryAddressControl.Address = address1;
+            this.DeliveryAddressControl.Location = new System.Drawing.Point(457, 114);
+            this.DeliveryAddressControl.Name = "DeliveryAddressControl";
+            this.DeliveryAddressControl.Size = new System.Drawing.Size(495, 117);
+            this.DeliveryAddressControl.TabIndex = 17;
+            // 
             // PriorityOrdersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.NewOrderButton);
             this.Controls.Add(this.DeliveryTimeComboBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -370,5 +389,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox DeliveryTimeComboBox;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button NewOrderButton;
     }
 }

@@ -8,6 +8,7 @@ using ObjectOrientedProgramming.Model.Enumerations;
 
 namespace ObjectOrientedProgramming.Model
 {
+    [Serializable]
     public class PriorityOrder : Order
     {
         /// <summary>
@@ -20,16 +21,21 @@ namespace ObjectOrientedProgramming.Model
         public DateTime Date { get; set; }
 
         /// <summary>
-        /// Создаёт экземпляр класса <see cref="PriorityOrder"/>.
+        /// Создаёт экземпляр класса<see cref="PriorityOrder"/>.
         /// </summary>
-        /// <param name="timeOfDelivery">Желаемое время доставки.</param>
-        /// <param name="dateOfDelivery">Желаемая дата доставки.</param>
-        /// <param name="address">Адрес доставки.</param>
-        /// <param name="items">Список товаров заказа.</param>
+        /// <param name = "timeOfDelivery" > Желаемое время доставки.</param>
+        /// <param name = "dateOfDelivery" > Желаемая дата доставки.</param>
+        /// <param name = "address" > Адрес доставки.</param>
+        /// <param name = "items" > Список товаров заказа.</param>
         public PriorityOrder(TimeOfDelivery timeOfDelivery, DateTime dateOfDelivery, Address address, List<Item> items) : base(address, items)
         {
             TimeOfDelivery = timeOfDelivery;
             Date = dateOfDelivery;
+        }
+
+        public PriorityOrder() : base()
+        {
+
         }
     }
 }

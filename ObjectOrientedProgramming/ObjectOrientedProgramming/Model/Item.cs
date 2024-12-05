@@ -9,6 +9,7 @@ namespace ObjectOrientedProgramming.Model
     /// <summary>
     /// Хранит данные о неком предмете.
     /// </summary>
+    [Serializable]
     public class Item
     {
         /// <summary>
