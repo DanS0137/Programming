@@ -128,19 +128,18 @@
             this.label2.Text = "Selected Order";
             // 
             // DeliveryAddressControl
-            //// 
-            //address1.Apartment = "";
-            //address1.Building = "";
-            //address1.City = "";
-            //address1.Country = "";
-            //address1.Index = 0;
-            //address1.Street = "";
-            //this.DeliveryAddressControl.Address = address1;
+            // 
+            address1.Apartment = "";
+            address1.Building = "";
+            address1.City = "";
+            address1.Country = "";
+            address1.Index = 100000;
+            address1.Street = "";
+            this.DeliveryAddressControl.Address = address1;
             this.DeliveryAddressControl.Location = new System.Drawing.Point(459, 114);
             this.DeliveryAddressControl.Name = "DeliveryAddressControl";
             this.DeliveryAddressControl.Size = new System.Drawing.Size(495, 117);
             this.DeliveryAddressControl.TabIndex = 3;
-            this.DeliveryAddressControl.CloseAccess();
             // 
             // label3
             // 
@@ -176,6 +175,7 @@
             this.OrderStatusComboBox.Name = "OrderStatusComboBox";
             this.OrderStatusComboBox.Size = new System.Drawing.Size(100, 21);
             this.OrderStatusComboBox.TabIndex = 7;
+            this.OrderStatusComboBox.SelectedIndexChanged += new System.EventHandler(this.OrderStatusComboBox_SelectedIndexChanged);
             // 
             // OrderIdTextBox
             // 

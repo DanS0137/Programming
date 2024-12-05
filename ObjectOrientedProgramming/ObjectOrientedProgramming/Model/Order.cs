@@ -15,10 +15,6 @@ namespace ObjectOrientedProgramming.Model
         /// Сумма всех заказов.
         /// </summary>
         private static int _allOrders = 0;
-        /// <summary>
-        /// Все id-шники, использованные при сохранении файлов.
-        /// </summary>
-        private static List<int> _allIds;
 
         /// <summary>
         /// Время создания заказа.
@@ -132,8 +128,7 @@ namespace ObjectOrientedProgramming.Model
         public Order()
         {
             _dateOfCreation = DateTime.Now;
-            _id += _allOrders + 1;
-            _allOrders += 1;
+            _id += _allOrders++;
         }
     }
 }

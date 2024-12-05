@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedProgramming.Model;
+using ObjectOrientedProgramming.Model.Enumerations;
 
 namespace ObjectOrientedProgramming.View.Tabs
 {
@@ -31,6 +32,7 @@ namespace ObjectOrientedProgramming.View.Tabs
         public OrdersTab()
         {
             InitializeComponent();
+            OrderStatusComboBox.Items.AddRange(Enum.GetNames(typeof(OrderStatus)));
         }
 
         public void RefreshData()
@@ -87,6 +89,14 @@ namespace ObjectOrientedProgramming.View.Tabs
             }
 
             AmountLabel.Text = selOrder.Amount.ToString();
+        }
+
+        private void OrderStatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (OrderStatusComboBox.SelectedIndex == -1 || Orders.Count == 0) return;
+            int selIndex = OrdersDataGridView.CurrentCell.RowIndex;
+            OrdersDataGridView.Rows[selIndex].Cells[5].Value = OrderStatusComboBox.SelectedItem.ToString();
+            Orders[selIndex].OrderStatus = (OrderStatus)OrderStatusComboBox.SelectedIndex;
         }
     }
 }
