@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedProgramming.Model;
+using ObjectOrientedProgramming.Model.Discounts;
 
 namespace ObjectOrientedProgramming.View.Tabs
 {

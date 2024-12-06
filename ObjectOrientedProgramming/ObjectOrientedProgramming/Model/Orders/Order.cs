@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedProgramming.Model
+namespace ObjectOrientedProgramming.Model.Orders
 {
     /// <summary>
     /// Хранит информацию о заказе.
@@ -102,6 +102,17 @@ namespace ObjectOrientedProgramming.Model
             {
                 _orderStatus = value;
             }
+        }
+        /// <summary>
+        /// Возвращает и задаёт общую сумму скидок.
+        /// </summary>
+        public double DiscontAmount { get; set; }
+        /// <summary>
+        /// Возвращает сумму товаров в заказе с учётом скидок.
+        /// </summary>
+        public double Total
+        {
+            get => Amount - DiscontAmount;
         }
 
         /// <summary>

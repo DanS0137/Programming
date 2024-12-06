@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using ObjectOrientedProgramming.Model;
 using ObjectOrientedProgramming.Model.Enumerations;
 
-namespace ObjectOrientedProgramming.Model
+namespace ObjectOrientedProgramming.Model.Discounts
 {
     /// <summary>
     /// Хранит информацию о процентной скидке на категорию товаров.
     /// </summary>
-    public class PercentsDiscount
+    public class PercentsDiscount : IDiscount
     {
         /// <summary>
         /// Скидка в процентах.
