@@ -10,6 +10,7 @@ namespace ObjectOrientedProgramming.Model
     /// <summary>
     /// Хранит данные об адресе.
     /// </summary>
+    [Serializable]
     public class Address
     {
         /// <summary>

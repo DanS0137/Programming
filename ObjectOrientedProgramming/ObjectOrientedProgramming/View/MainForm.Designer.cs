@@ -30,19 +30,16 @@ namespace ObjectOrientedProgramming
         /// </summary>
         private void InitializeComponent()
         {
-            this.FormClosed += MainForm_FormClosed;
-            ObjectOrientedProgramming.Model.PriorityOrder priorityOrder1 = new ObjectOrientedProgramming.Model.PriorityOrder();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.ItemsTabPage = new System.Windows.Forms.TabPage();
-            this.CustomersTabPage = new System.Windows.Forms.TabPage();
-            this.CartsTabPage = new System.Windows.Forms.TabPage();
-            this.OrdersTabPage = new System.Windows.Forms.TabPage();
-            this.PriorityOrdersTabPage = new System.Windows.Forms.TabPage();
             this.ItemsTab = new ObjectOrientedProgramming.View.Tabs.ItemsTab();
+            this.CustomersTabPage = new System.Windows.Forms.TabPage();
             this.CustomersTab = new ObjectOrientedProgramming.View.Tabs.CustomersTab();
+            this.CartsTabPage = new System.Windows.Forms.TabPage();
             this.CartsTab = new ObjectOrientedProgramming.View.Tabs.CartsTab();
+            this.OrdersTabPage = new System.Windows.Forms.TabPage();
             this.OrdersTab = new ObjectOrientedProgramming.View.Tabs.OrdersTab();
+            this.PriorityOrdersTabPage = new System.Windows.Forms.TabPage();
             this.PriorityOrdersTab = new ObjectOrientedProgramming.View.Tabs.PriorityOrdersTab();
             this.tabControl.SuspendLayout();
             this.ItemsTabPage.SuspendLayout();
@@ -65,7 +62,6 @@ namespace ObjectOrientedProgramming
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(971, 471);
             this.tabControl.TabIndex = 0;
-            this.tabControl.SelectedIndexChanged += TabControl_SelectedIndexChanged;
             // 
             // ItemsTabPage
             // 
@@ -78,6 +74,16 @@ namespace ObjectOrientedProgramming
             this.ItemsTabPage.Text = "Items";
             this.ItemsTabPage.UseVisualStyleBackColor = true;
             // 
+            // ItemsTab
+            // 
+            this.ItemsTab.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ItemsTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ItemsTab.Items = null;
+            this.ItemsTab.Location = new System.Drawing.Point(3, 3);
+            this.ItemsTab.Name = "ItemsTab";
+            this.ItemsTab.Size = new System.Drawing.Size(957, 439);
+            this.ItemsTab.TabIndex = 0;
+            // 
             // CustomersTabPage
             // 
             this.CustomersTabPage.Controls.Add(this.CustomersTab);
@@ -89,6 +95,15 @@ namespace ObjectOrientedProgramming
             this.CustomersTabPage.Text = "Customers";
             this.CustomersTabPage.UseVisualStyleBackColor = true;
             // 
+            // CustomersTab
+            // 
+            this.CustomersTab.Customers = null;
+            this.CustomersTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CustomersTab.Location = new System.Drawing.Point(3, 3);
+            this.CustomersTab.Name = "CustomersTab";
+            this.CustomersTab.Size = new System.Drawing.Size(957, 439);
+            this.CustomersTab.TabIndex = 0;
+            // 
             // CartsTabPage
             // 
             this.CartsTabPage.Controls.Add(this.CartsTab);
@@ -98,45 +113,6 @@ namespace ObjectOrientedProgramming
             this.CartsTabPage.TabIndex = 2;
             this.CartsTabPage.Text = "Carts";
             this.CartsTabPage.UseVisualStyleBackColor = true;
-            // 
-            // OrdersTabPage
-            // 
-            this.OrdersTabPage.Controls.Add(this.OrdersTab);
-            this.OrdersTabPage.Location = new System.Drawing.Point(4, 22);
-            this.OrdersTabPage.Name = "OrdersTabPage";
-            this.OrdersTabPage.Size = new System.Drawing.Size(963, 445);
-            this.OrdersTabPage.TabIndex = 3;
-            this.OrdersTabPage.Text = "Orders";
-            this.OrdersTabPage.UseVisualStyleBackColor = true;
-            // 
-            // PriorityOrdersTabPage
-            // 
-            this.PriorityOrdersTabPage.Controls.Add(this.PriorityOrdersTab);
-            this.PriorityOrdersTabPage.Location = new System.Drawing.Point(4, 22);
-            this.PriorityOrdersTabPage.Name = "PriorityOrdersTabPage";
-            this.PriorityOrdersTabPage.Size = new System.Drawing.Size(963, 445);
-            this.PriorityOrdersTabPage.TabIndex = 4;
-            this.PriorityOrdersTabPage.Text = "Priority Orders";
-            this.PriorityOrdersTabPage.UseVisualStyleBackColor = true;
-            // 
-            // ItemsTab
-            // 
-            this.ItemsTab.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ItemsTab.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ItemsTab.Items = null;
-            this.ItemsTab.Location = new System.Drawing.Point(3, 3);
-            this.ItemsTab.Name = "ItemsTab";
-            this.ItemsTab.Size = new System.Drawing.Size(957, 439);
-            this.ItemsTab.TabIndex = 0;
-            // 
-            // CustomersTab
-            // 
-            this.CustomersTab.Customers = null;
-            this.CustomersTab.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CustomersTab.Location = new System.Drawing.Point(3, 3);
-            this.CustomersTab.Name = "CustomersTab";
-            this.CustomersTab.Size = new System.Drawing.Size(957, 439);
-            this.CustomersTab.TabIndex = 0;
             // 
             // CartsTab
             // 
@@ -148,6 +124,16 @@ namespace ObjectOrientedProgramming
             this.CartsTab.Size = new System.Drawing.Size(963, 445);
             this.CartsTab.TabIndex = 0;
             // 
+            // OrdersTabPage
+            // 
+            this.OrdersTabPage.Controls.Add(this.OrdersTab);
+            this.OrdersTabPage.Location = new System.Drawing.Point(4, 22);
+            this.OrdersTabPage.Name = "OrdersTabPage";
+            this.OrdersTabPage.Size = new System.Drawing.Size(963, 445);
+            this.OrdersTabPage.TabIndex = 3;
+            this.OrdersTabPage.Text = "Orders";
+            this.OrdersTabPage.UseVisualStyleBackColor = true;
+            // 
             // OrdersTab
             // 
             this.OrdersTab.Customers = null;
@@ -158,18 +144,24 @@ namespace ObjectOrientedProgramming
             this.OrdersTab.Size = new System.Drawing.Size(963, 445);
             this.OrdersTab.TabIndex = 0;
             // 
+            // PriorityOrdersTabPage
+            // 
+            this.PriorityOrdersTabPage.Controls.Add(this.PriorityOrdersTab);
+            this.PriorityOrdersTabPage.Location = new System.Drawing.Point(4, 22);
+            this.PriorityOrdersTabPage.Name = "PriorityOrdersTabPage";
+            this.PriorityOrdersTabPage.Size = new System.Drawing.Size(963, 445);
+            this.PriorityOrdersTabPage.TabIndex = 4;
+            this.PriorityOrdersTabPage.Text = "Priority Orders";
+            this.PriorityOrdersTabPage.UseVisualStyleBackColor = true;
+            // 
             // PriorityOrdersTab
             // 
-            priorityOrder1.Address = null;
-            priorityOrder1.Date = new System.DateTime(((long)(0)));
-            priorityOrder1.Items = ((System.Collections.Generic.List<ObjectOrientedProgramming.Model.Item>)(resources.GetObject("priorityOrder1.Items")));
-            priorityOrder1.OrderStatus = ObjectOrientedProgramming.Model.Enumerations.OrderStatus.New;
-            priorityOrder1.TimeOfDelivery = ObjectOrientedProgramming.Model.Enumerations.TimeOfDelivery.NineToEleven;
-            this.PriorityOrdersTab.CurrentOrder = priorityOrder1;
+            this.PriorityOrdersTab.CurrentOrder = null;
             this.PriorityOrdersTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PriorityOrdersTab.Items = null;
             this.PriorityOrdersTab.Location = new System.Drawing.Point(0, 0);
             this.PriorityOrdersTab.Name = "PriorityOrdersTab";
+            this.PriorityOrdersTab.PriorityOrders = null;
             this.PriorityOrdersTab.Size = new System.Drawing.Size(963, 445);
             this.PriorityOrdersTab.TabIndex = 0;
             // 
