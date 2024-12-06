@@ -20,7 +20,7 @@ namespace ObjectOrientedProgramming.Model.Discounts
         /// <summary>
         /// Название категории.
         /// </summary>
-        private Category _category = Category.Другое;
+        private Category _category = Category.Attack;
         /// <summary>
         /// Сумма приобретённых товаров этой категории.
         /// </summary>
@@ -102,7 +102,7 @@ namespace ObjectOrientedProgramming.Model.Discounts
         /// <param name="items">Список товаров.</param>
         public void Update(List<Item> items)
         {
-            Discont = (int)Math.Truncate(Summary / 1000);
+            Discont = (int)Math.Truncate(Summary / 20000);
         }
         /// <summary>
         /// Считает стоимость товаров скидочной категории.

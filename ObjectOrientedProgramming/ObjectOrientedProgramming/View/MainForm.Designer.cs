@@ -30,6 +30,7 @@ namespace ObjectOrientedProgramming
         /// </summary>
         private void InitializeComponent()
         {
+            this.FormClosed += MainForm_FormClosed;
             this.tabControl = new System.Windows.Forms.TabControl();
             this.ItemsTabPage = new System.Windows.Forms.TabPage();
             this.ItemsTab = new ObjectOrientedProgramming.View.Tabs.ItemsTab();
