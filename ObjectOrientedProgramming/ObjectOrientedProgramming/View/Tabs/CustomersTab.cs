@@ -45,6 +45,7 @@ namespace ObjectOrientedProgramming.View.Tabs
             SelectedCustomerIdTextBox.Text = Convert.ToString(_selectedCustomer.Id);
             SelectedCustomerFullNameTextBox.Text = _selectedCustomer.FullName;
             SelectedCustomerAddressControl.Address = _selectedCustomer.Address;
+            IsPriorityCheckBox.Checked = _selectedCustomer.IsPriority;
         }
 
         private void AddCustomerButton_Click(object sender, EventArgs e)
@@ -80,6 +81,19 @@ namespace ObjectOrientedProgramming.View.Tabs
             SelectedCustomerAddressControl.SaveChanges();
             _selectedCustomer.Address = SelectedCustomerAddressControl.Address;
             CustomersListBox.Items[CustomersListBox.SelectedIndex] = $"{_selectedCustomer.FullName} ID: {_selectedCustomer.Id}";
+        }
+
+        private void IsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_selectedCustomer == null) return;
+            if (IsPriorityCheckBox.Checked == true)
+            {
+                _selectedCustomer.IsPriority = true;
+            }
+            else
+            {
+                _selectedCustomer.IsPriority = false;
+            }
         }
     }
 }

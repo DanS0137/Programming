@@ -30,6 +30,7 @@ namespace ObjectOrientedProgramming
         /// </summary>
         private void InitializeComponent()
         {
+            this.FormClosed += MainForm_FormClosed;
             ObjectOrientedProgramming.Model.PriorityOrder priorityOrder1 = new ObjectOrientedProgramming.Model.PriorityOrder();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabControl = new System.Windows.Forms.TabControl();

@@ -46,6 +46,11 @@ namespace ObjectOrientedProgramming.Model
         /// </summary>
         private List<Order> _orders;
 
+        /// <summary>
+        /// Приоритетный ли покупатель.
+        /// </summary>
+        private bool _isPriority = false;
+
         public int Id
         {
             get => _id;
@@ -96,6 +101,11 @@ namespace ObjectOrientedProgramming.Model
             {
                 _orders = value;
             }
+        }
+        public bool IsPriority
+        {
+            get => _isPriority;
+            set => _isPriority = value;
         }
 
         /// <summary>

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            ObjectOrientedProgramming.Model.Address address2 = new ObjectOrientedProgramming.Model.Address();
             this.SaveChangesButton = new System.Windows.Forms.Button();
             this.SelectedCustomerFullNameTextBox = new System.Windows.Forms.TextBox();
             this.SelectedCustomerIdTextBox = new System.Windows.Forms.TextBox();
@@ -39,6 +40,7 @@
             this.CustomersListBox = new System.Windows.Forms.ListBox();
             this.CustomersLabel = new System.Windows.Forms.Label();
             this.SelectedCustomerAddressControl = new ObjectOrientedProgramming.View.Controls.AddressControl();
+            this.IsPriorityCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // SaveChangesButton
@@ -56,15 +58,15 @@
             // 
             this.SelectedCustomerFullNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SelectedCustomerFullNameTextBox.Location = new System.Drawing.Point(301, 92);
+            this.SelectedCustomerFullNameTextBox.Location = new System.Drawing.Point(359, 68);
             this.SelectedCustomerFullNameTextBox.Multiline = true;
             this.SelectedCustomerFullNameTextBox.Name = "SelectedCustomerFullNameTextBox";
-            this.SelectedCustomerFullNameTextBox.Size = new System.Drawing.Size(486, 95);
+            this.SelectedCustomerFullNameTextBox.Size = new System.Drawing.Size(428, 20);
             this.SelectedCustomerFullNameTextBox.TabIndex = 25;
             // 
             // SelectedCustomerIdTextBox
             // 
-            this.SelectedCustomerIdTextBox.Location = new System.Drawing.Point(335, 40);
+            this.SelectedCustomerIdTextBox.Location = new System.Drawing.Point(359, 40);
             this.SelectedCustomerIdTextBox.Name = "SelectedCustomerIdTextBox";
             this.SelectedCustomerIdTextBox.ReadOnly = true;
             this.SelectedCustomerIdTextBox.Size = new System.Drawing.Size(117, 20);
@@ -143,15 +145,34 @@
             // 
             // SelectedCustomerAddressControl
             // 
-            this.SelectedCustomerAddressControl.Location = new System.Drawing.Point(295, 202);
+            address2.Apartment = "";
+            address2.Building = "";
+            address2.City = "";
+            address2.Country = "";
+            address2.Index = 100000;
+            address2.Street = "";
+            this.SelectedCustomerAddressControl.Address = address2;
+            this.SelectedCustomerAddressControl.Location = new System.Drawing.Point(297, 121);
             this.SelectedCustomerAddressControl.Name = "SelectedCustomerAddressControl";
             this.SelectedCustomerAddressControl.Size = new System.Drawing.Size(495, 117);
             this.SelectedCustomerAddressControl.TabIndex = 28;
+            // 
+            // IsPriorityCheckBox
+            // 
+            this.IsPriorityCheckBox.AutoSize = true;
+            this.IsPriorityCheckBox.Location = new System.Drawing.Point(359, 96);
+            this.IsPriorityCheckBox.Name = "IsPriorityCheckBox";
+            this.IsPriorityCheckBox.Size = new System.Drawing.Size(74, 17);
+            this.IsPriorityCheckBox.TabIndex = 29;
+            this.IsPriorityCheckBox.Text = "Is Priority?";
+            this.IsPriorityCheckBox.UseVisualStyleBackColor = true;
+            this.IsPriorityCheckBox.CheckedChanged += new System.EventHandler(this.IsPriorityCheckBox_CheckedChanged);
             // 
             // CustomersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.IsPriorityCheckBox);
             this.Controls.Add(this.SelectedCustomerAddressControl);
             this.Controls.Add(this.SaveChangesButton);
             this.Controls.Add(this.SelectedCustomerFullNameTextBox);
@@ -183,5 +204,6 @@
         private System.Windows.Forms.ListBox CustomersListBox;
         private System.Windows.Forms.Label CustomersLabel;
         private Controls.AddressControl SelectedCustomerAddressControl;
+        private System.Windows.Forms.CheckBox IsPriorityCheckBox;
     }
 }

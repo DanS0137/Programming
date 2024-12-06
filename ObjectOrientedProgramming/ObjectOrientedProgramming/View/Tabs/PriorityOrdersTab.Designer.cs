@@ -42,13 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.OrdersDataGridView = new System.Windows.Forms.DataGridView();
-            this.OrderIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreationTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FullNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DeliveryTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SaveOrderButton = new System.Windows.Forms.Button();
             this.DeleteOrderButton = new System.Windows.Forms.Button();
             this.RemoveItemButton = new System.Windows.Forms.Button();
@@ -58,6 +51,13 @@
             this.label9 = new System.Windows.Forms.Label();
             this.NewOrderButton = new System.Windows.Forms.Button();
             this.DeliveryAddressControl = new ObjectOrientedProgramming.View.Controls.AddressControl();
+            this.OrderIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreationTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FullNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeliveryTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -191,48 +191,6 @@
             this.OrdersDataGridView.TabIndex = 14;
             this.OrdersDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrdersDataGridView_CellClick);
             // 
-            // OrderIdColumn
-            // 
-            this.OrderIdColumn.HeaderText = "Id";
-            this.OrderIdColumn.Name = "OrderIdColumn";
-            this.OrderIdColumn.ReadOnly = true;
-            // 
-            // CreationTimeColumn
-            // 
-            this.CreationTimeColumn.HeaderText = "Created";
-            this.CreationTimeColumn.Name = "CreationTimeColumn";
-            this.CreationTimeColumn.ReadOnly = true;
-            // 
-            // FullNameColumn
-            // 
-            this.FullNameColumn.HeaderText = "Customer Full Name";
-            this.FullNameColumn.Name = "FullNameColumn";
-            this.FullNameColumn.ReadOnly = true;
-            // 
-            // Address
-            // 
-            this.Address.HeaderText = "AddressColumn";
-            this.Address.Name = "Address";
-            this.Address.ReadOnly = true;
-            // 
-            // AmountColumn
-            // 
-            this.AmountColumn.HeaderText = "Amount";
-            this.AmountColumn.Name = "AmountColumn";
-            this.AmountColumn.ReadOnly = true;
-            // 
-            // OrderStatusColumn
-            // 
-            this.OrderStatusColumn.HeaderText = "Order Status";
-            this.OrderStatusColumn.Name = "OrderStatusColumn";
-            this.OrderStatusColumn.ReadOnly = true;
-            // 
-            // DeliveryTimeColumn
-            // 
-            this.DeliveryTimeColumn.HeaderText = "TimeOfDelivery";
-            this.DeliveryTimeColumn.Name = "DeliveryTimeColumn";
-            this.DeliveryTimeColumn.ReadOnly = true;
-            // 
             // SaveOrderButton
             // 
             this.SaveOrderButton.Location = new System.Drawing.Point(457, 414);
@@ -325,6 +283,55 @@
             this.DeliveryAddressControl.Size = new System.Drawing.Size(495, 117);
             this.DeliveryAddressControl.TabIndex = 17;
             // 
+            // OrderIdColumn
+            // 
+            this.OrderIdColumn.HeaderText = "Id";
+            this.OrderIdColumn.Name = "OrderIdColumn";
+            this.OrderIdColumn.ReadOnly = true;
+            this.OrderIdColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // CreationTimeColumn
+            // 
+            this.CreationTimeColumn.HeaderText = "Created";
+            this.CreationTimeColumn.Name = "CreationTimeColumn";
+            this.CreationTimeColumn.ReadOnly = true;
+            this.CreationTimeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // FullNameColumn
+            // 
+            this.FullNameColumn.HeaderText = "Customer Full Name";
+            this.FullNameColumn.Name = "FullNameColumn";
+            this.FullNameColumn.ReadOnly = true;
+            this.FullNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Address
+            // 
+            this.Address.HeaderText = "AddressColumn";
+            this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
+            this.Address.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // AmountColumn
+            // 
+            this.AmountColumn.HeaderText = "Amount";
+            this.AmountColumn.Name = "AmountColumn";
+            this.AmountColumn.ReadOnly = true;
+            this.AmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // OrderStatusColumn
+            // 
+            this.OrderStatusColumn.HeaderText = "Order Status";
+            this.OrderStatusColumn.Name = "OrderStatusColumn";
+            this.OrderStatusColumn.ReadOnly = true;
+            this.OrderStatusColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // DeliveryTimeColumn
+            // 
+            this.DeliveryTimeColumn.HeaderText = "TimeOfDelivery";
+            this.DeliveryTimeColumn.Name = "DeliveryTimeColumn";
+            this.DeliveryTimeColumn.ReadOnly = true;
+            this.DeliveryTimeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // PriorityOrdersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -375,20 +382,20 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView OrdersDataGridView;
+        private System.Windows.Forms.Button SaveOrderButton;
+        private System.Windows.Forms.Button DeleteOrderButton;
+        private System.Windows.Forms.Button RemoveItemButton;
+        private System.Windows.Forms.Button AddItemButton;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox DeliveryTimeComboBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button NewOrderButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderIdColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreationTimeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn FullNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn AmountColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderStatusColumn;
-        private System.Windows.Forms.Button SaveOrderButton;
-        private System.Windows.Forms.Button DeleteOrderButton;
-        private System.Windows.Forms.Button RemoveItemButton;
-        private System.Windows.Forms.Button AddItemButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeliveryTimeColumn;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox DeliveryTimeComboBox;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button NewOrderButton;
     }
 }

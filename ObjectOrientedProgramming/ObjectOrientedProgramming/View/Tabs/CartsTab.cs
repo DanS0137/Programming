@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedProgramming.Model;
+using ObjectOrientedProgramming.Model.Enumerations;
 
 namespace ObjectOrientedProgramming.View.Tabs
 {
@@ -99,7 +100,15 @@ namespace ObjectOrientedProgramming.View.Tabs
 
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
-            Order order = new Order(SelectedCustomer.Address, SelectedCustomer.Cart.Items);
+            Order order;
+            if (SelectedCustomer.IsPriority)
+            {
+                order = new PriorityOrder(TimeOfDelivery.NineToEleven, DateTime.Today, SelectedCustomer.Address, SelectedCustomer.Cart.Items);
+            }
+            else
+            {
+                order = new Order(SelectedCustomer.Address, SelectedCustomer.Cart.Items);
+            }
             SelectedCustomer.Orders.Add(order);
             ClearCart();
         }
