@@ -56,7 +56,8 @@ namespace ObjectOrientedProgramming.View.Tabs
             CreationTimeTextBox.Text = "";
             OrderStatusComboBox.SelectedIndex = -1;
             AmountLabel.Text = "0";
-            
+            TotalLabel.Text = "0";
+
             UpdateOrders();
             ChangeBoxes(0);
         }
@@ -73,7 +74,7 @@ namespace ObjectOrientedProgramming.View.Tabs
                     string address = $"{order.Address.Index.ToString()} {order.Address.Country} {order.Address.City}" +
                         $" {order.Address.Street} {order.Address.Building}-{order.Address.Apartment}";
                     string[] row = { order.Id.ToString(), order.DateOfCreation.ToString(), customer.FullName,
-                        address, order.Amount.ToString(), order.OrderStatus.ToString() };
+                        address, order.Amount.ToString(), order.OrderStatus.ToString(), order.Total.ToString() };
                     OrdersDataGridView.Rows.Add(row);
                     Orders.Add(order);
                 }
@@ -107,6 +108,7 @@ namespace ObjectOrientedProgramming.View.Tabs
                 }
 
                 AmountLabel.Text = _selectedOrder.Amount.ToString();
+                TotalLabel.Text = _selectedOrder.Total.ToString();
             }
             else
             {
@@ -128,6 +130,7 @@ namespace ObjectOrientedProgramming.View.Tabs
                 }
 
                 AmountLabel.Text = _selectedPriorityOrder.Amount.ToString();
+                TotalLabel.Text = _selectedOrder.Total.ToString();
             }
         }
 

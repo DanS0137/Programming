@@ -108,7 +108,8 @@ namespace ObjectOrientedProgramming.View.Tabs
 
         private void AddDiscoundButton_Click(object sender, EventArgs e)
         {
-            addDiscountForm = new AddDiscountForm();
+            if (_selectedCustomer == null) return;
+            addDiscountForm = new AddDiscountForm(); 
             if (addDiscountForm.ShowDialog() == DialogResult.OK)
             {
                 PercentsDiscount newDiscount = new PercentsDiscount();
@@ -130,6 +131,12 @@ namespace ObjectOrientedProgramming.View.Tabs
         {
             if (DiscountsListBox.SelectedIndex == -1) return;
             _selectedDiscount = _selectedCustomer.Discounts[DiscountsListBox.SelectedIndex];
+        }
+
+        public void RefreshData()
+        {
+            DiscountsListBox.Items.Clear();
+            CustomersListBox.SelectedIndex = -1;
         }
     }
 }

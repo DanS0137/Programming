@@ -63,6 +63,7 @@ namespace ObjectOrientedProgramming
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(971, 471);
             this.tabControl.TabIndex = 0;
+            this.tabControl.SelectedIndexChanged += TabControl_SelectedIndexChanged;
             // 
             // ItemsTabPage
             // 
@@ -170,7 +171,7 @@ namespace ObjectOrientedProgramming
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(971, 471);
+            this.ClientSize = new System.Drawing.Size(820, 425);
             this.Controls.Add(this.tabControl);
             this.Name = "MainForm";
             this.Text = "Object Oriented Practics";
