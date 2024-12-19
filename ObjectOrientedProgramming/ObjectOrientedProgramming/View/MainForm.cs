@@ -48,13 +48,24 @@ namespace ObjectOrientedProgramming
 
         private void TabControl_SelectedIndexChanged(Object sender, EventArgs e)
         {
-            if (tabControl.SelectedIndex == 2)
+            if (tabControl.SelectedIndex == 1)
+            {
+                CustomersTab.RefreshData();
+                ClientSize = new Size(820, 465);
+            }
+            else if (tabControl.SelectedIndex == 2)
             {
                 CartsTab.RefreshData();
+                ClientSize = new Size(806, 542);
             }
             else if (tabControl.SelectedIndex == 3)
             {
                 OrdersTab.RefreshData();
+                Size = new Size(990, 535);
+            }
+            else if (tabControl.SelectedIndex == 4)
+            {
+                ClientSize = new Size(965, 468);
             }
         }
     }

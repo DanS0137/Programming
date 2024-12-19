@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedProgramming.Model;
 using ObjectOrientedProgramming.Model.Enumerations;
+using ObjectOrientedProgramming.Model.Orders;
 
 namespace ObjectOrientedProgramming.View.Tabs
 {
@@ -34,23 +35,26 @@ namespace ObjectOrientedProgramming.View.Tabs
         {
             if (OrderStatusComboBox.SelectedIndex == -1) return;
             CurrentOrder.OrderStatus = (OrderStatus)OrderStatusComboBox.SelectedIndex;
+            OrdersDataGridView.Rows[OrdersDataGridView.SelectedCells[0].RowIndex].Cells[5].Value = CurrentOrder.OrderStatus.ToString();
         }
 
         private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (DeliveryTimeComboBox.SelectedIndex == -1) return;
             CurrentOrder.TimeOfDelivery = (TimeOfDelivery)DeliveryTimeComboBox.SelectedIndex;
+            OrdersDataGridView.Rows[OrdersDataGridView.SelectedCells[0].RowIndex].Cells[6].Value = DeliveryTimeComboBox.SelectedItem.ToString();
         }
 
         private void SaveOrderButton_Click(object sender, EventArgs e)
         {
             if (PriorityOrders == null) PriorityOrders = new List<PriorityOrder>();
             DeliveryAddressControl.SaveChanges();
+            string deliveryTime = DeliveryTimeComboBox.SelectedItem.ToString();
             CurrentOrder.Address = DeliveryAddressControl.Address;
             string address = $"{CurrentOrder.Address.Index.ToString()} {CurrentOrder.Address.Country} {CurrentOrder.Address.City}" +
                         $" {CurrentOrder.Address.Street} {CurrentOrder.Address.Building}-{CurrentOrder.Address.Apartment}";
             string[] row = { CurrentOrder.Id.ToString(), CurrentOrder.DateOfCreation.ToString(), "-",
-                address, CurrentOrder.Amount.ToString(), CurrentOrder.OrderStatus.ToString() };
+                address, CurrentOrder.Amount.ToString(), CurrentOrder.OrderStatus.ToString(), deliveryTime };
             OrdersDataGridView.Rows[OrdersDataGridView.SelectedCells[0].RowIndex].SetValues(row);
         }
 
@@ -71,6 +75,7 @@ namespace ObjectOrientedProgramming.View.Tabs
             ItemsListBox.Items.Add($"{Items[rnd].Name} ID: {Items[rnd].Id}");
             CurrentOrder.Items.Add((Item)Items[rnd].Clone());
             AmountLabel.Text = CurrentOrder.Amount.ToString();
+            OrdersDataGridView.Rows[OrdersDataGridView.SelectedCells[0].RowIndex].Cells[4].Value = CurrentOrder.Amount.ToString();
         }
 
         private void RemoveItemButton_Click(object sender, EventArgs e)
@@ -79,6 +84,7 @@ namespace ObjectOrientedProgramming.View.Tabs
             CurrentOrder.Items.RemoveAt(ItemsListBox.SelectedIndex);
             ItemsListBox.Items.RemoveAt(ItemsListBox.SelectedIndex);
             AmountLabel.Text = CurrentOrder.Amount.ToString();
+            OrdersDataGridView.Rows[OrdersDataGridView.SelectedCells[0].RowIndex].Cells[4].Value = CurrentOrder.Amount.ToString();
         }
 
         private void ClearBoxes()

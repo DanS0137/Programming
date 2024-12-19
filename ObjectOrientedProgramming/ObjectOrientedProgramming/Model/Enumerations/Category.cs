@@ -8,17 +8,10 @@ namespace ObjectOrientedProgramming.Model
 {
     public enum Category
     {
-        Телевизор,
-        Холодильник,
-        Плита,
-        Микроволновка,
-        Часы,
-        Пылесос,
-        Мультиварка,
-        Чайник,
-        Миксер,
-        Блендер,
-        Утюг,
-        Другое
+        Attack,
+        Fear,
+        Anomaly,
+        Support,
+        Defense
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ObjectOrientedProgramming.Model;
 using ObjectOrientedProgramming.Model.Enumerations;
 
-namespace ObjectOrientedProgramming.Model
+namespace ObjectOrientedProgramming.Model.Orders
 {
     [Serializable]
     public class PriorityOrder : Order

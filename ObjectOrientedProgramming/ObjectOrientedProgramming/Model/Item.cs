@@ -41,7 +41,7 @@ namespace ObjectOrientedProgramming.Model
         /// <summary>
         /// Возвращает и задаёт категорию предмета.
         /// </summary>
-        public Category Category { get; set; } = Category.Другое;
+        public Category Category { get; set; } = Category.Attack;
 
         /// <summary>
         /// Возвращает уникальный идентификатор объекта класса.
