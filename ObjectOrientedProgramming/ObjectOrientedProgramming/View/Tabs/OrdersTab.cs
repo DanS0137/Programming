@@ -130,7 +130,7 @@ namespace ObjectOrientedProgramming.View.Tabs
                 }
 
                 AmountLabel.Text = _selectedPriorityOrder.Amount.ToString();
-                TotalLabel.Text = _selectedOrder.Total.ToString();
+                TotalLabel.Text = _selectedPriorityOrder.Total.ToString();
             }
         }
 

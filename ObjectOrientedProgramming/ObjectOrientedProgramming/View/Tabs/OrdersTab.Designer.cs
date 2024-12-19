@@ -47,6 +47,8 @@
             this.DeliveryTimeComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.DeliveryAddressControl = new ObjectOrientedProgramming.View.Controls.AddressControl();
+            this.TotalLabel = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.OrderIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreationTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FullNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,8 +56,6 @@
             this.AmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrderStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalLabel = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersDataGridView)).BeginInit();
             this.PriorityOptionsPanel.SuspendLayout();
             this.SuspendLayout();
@@ -237,6 +237,26 @@
             this.DeliveryAddressControl.Size = new System.Drawing.Size(495, 117);
             this.DeliveryAddressControl.TabIndex = 3;
             // 
+            // TotalLabel
+            // 
+            this.TotalLabel.AutoSize = true;
+            this.TotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TotalLabel.Location = new System.Drawing.Point(459, 424);
+            this.TotalLabel.Name = "TotalLabel";
+            this.TotalLabel.Size = new System.Drawing.Size(65, 37);
+            this.TotalLabel.TabIndex = 16;
+            this.TotalLabel.Text = "0.0";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label11.Location = new System.Drawing.Point(463, 411);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(40, 13);
+            this.label11.TabIndex = 15;
+            this.label11.Text = "Total:";
+            // 
             // OrderIdColumn
             // 
             this.OrderIdColumn.HeaderText = "Id";
@@ -285,26 +305,6 @@
             this.TotalColumn.Name = "TotalColumn";
             this.TotalColumn.ReadOnly = true;
             this.TotalColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // TotalLabel
-            // 
-            this.TotalLabel.AutoSize = true;
-            this.TotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TotalLabel.Location = new System.Drawing.Point(459, 424);
-            this.TotalLabel.Name = "TotalLabel";
-            this.TotalLabel.Size = new System.Drawing.Size(65, 37);
-            this.TotalLabel.TabIndex = 16;
-            this.TotalLabel.Text = "0.0";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(463, 411);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(40, 13);
-            this.label11.TabIndex = 15;
-            this.label11.Text = "Total:";
             // 
             // OrdersTab
             // 
@@ -357,6 +357,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox DeliveryTimeComboBox;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label TotalLabel;
+        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderIdColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreationTimeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn FullNameColumn;
@@ -364,7 +366,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AmountColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderStatusColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalColumn;
-        private System.Windows.Forms.Label TotalLabel;
-        private System.Windows.Forms.Label label11;
     }
 }
