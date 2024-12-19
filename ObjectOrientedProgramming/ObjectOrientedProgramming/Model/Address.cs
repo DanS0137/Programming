@@ -10,7 +10,7 @@ namespace ObjectOrientedProgramming.Model
     /// <summary>
     /// Хранит данные об адресе.
     /// </summary>
-    public class Address
+    public class Address : ICloneable, IEquatable<Address>
     {
         /// <summary>
         /// Почтовый индекс.
@@ -139,5 +139,33 @@ namespace ObjectOrientedProgramming.Model
         /// Создаёт объект класса <see cref="Address"/>.
         /// </summary>
         public Address() { }
+
+        /// <summary>
+        /// Создаёт копию объекта класса <see cref="Address"/>.
+        /// </summary>
+        /// <returns>Объект класса <see cref="Address"/>.</returns>
+        public object Clone()
+        {
+            return new Address(Index, Country, City, Street, Building, Apartment);
+        }
+
+        /// <summary>
+        /// Проверяет равны ли объекты класса <see cref="Address"/>.
+        /// </summary>
+        /// <param name="address">Объект для сравнения.</param>
+        /// <returns>Возвращает false, если передаваемый объект равен null или хотя бы одно из значений свойств не совпадает.
+        /// Возвращает true, если объект сравнивается сам с собой или значения всех свойств равны.</returns>
+        public bool Equals(Address address)
+        {
+            if (address == null)
+                return false;
+            if (ReferenceEquals(this, address))
+                return true;
+            if (Index == address.Index && Country == address.Country && City == address.City &&
+                Street == address.Street && Building == address.Building && Apartment == address.Apartment)
+                return true;
+            else
+                return false;
+        }
     }
 }

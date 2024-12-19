@@ -69,7 +69,7 @@ namespace ObjectOrientedProgramming.View.Tabs
             int rnd = r.Next(0, Items.Count);
 
             ItemsListBox.Items.Add($"{Items[rnd].Name} ID: {Items[rnd].Id}");
-            CurrentOrder.Items.Add(new Item(Items[rnd]));
+            CurrentOrder.Items.Add((Item)Items[rnd].Clone());
             AmountLabel.Text = CurrentOrder.Amount.ToString();
         }
 

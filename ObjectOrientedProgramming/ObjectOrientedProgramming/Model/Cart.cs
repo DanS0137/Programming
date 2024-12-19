@@ -9,7 +9,7 @@ namespace ObjectOrientedProgramming.Model
     /// <summary>
     /// Хранит информацию о товарах в корзине покупателя.
     /// </summary>
-    public class Cart
+    public class Cart : ICloneable
     {
         /// <summary>
         /// Список товаров покупателя.
@@ -45,6 +45,20 @@ namespace ObjectOrientedProgramming.Model
                 }
                 return amount;
             }
+        }
+
+        /// <summary>
+        /// Создаёт копию объекта класса <see cref="Cart"/>.
+        /// </summary>
+        /// <returns>Возвращает копию объекта. Объекты класса <see cref="Item"/> создаются новые.</returns>
+        public object Clone()
+        {
+            Cart cart = new Cart();
+            foreach(Item item in Items)
+            {
+                cart.Items.Add((Item)item.Clone());
+            }
+            return cart;
         }
     }
 }
