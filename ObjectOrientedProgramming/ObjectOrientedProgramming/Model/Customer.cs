@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedProgramming.Model.Orders;
+using ObjectOrientedProgramming.Model.Discounts;
 
 namespace ObjectOrientedProgramming.Model
 {
@@ -45,6 +47,11 @@ namespace ObjectOrientedProgramming.Model
         /// Список заказов пользователя.
         /// </summary>
         private List<Order> _orders;
+
+        /// <summary>
+        /// Приоритетный ли покупатель.
+        /// </summary>
+        private bool _isPriority = false;
 
         public int Id
         {
@@ -97,6 +104,18 @@ namespace ObjectOrientedProgramming.Model
                 _orders = value;
             }
         }
+        /// <summary>
+        /// Возвращает и задаёт приоритетность покупателя.
+        /// </summary>
+        public bool IsPriority
+        {
+            get => _isPriority;
+            set => _isPriority = value;
+        }
+        /// <summary>
+        /// Список скидок покупателя.
+        /// </summary>
+        public List<IDiscount> Discounts { get; set; }
 
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Customer"/>.
@@ -118,6 +137,8 @@ namespace ObjectOrientedProgramming.Model
             Address = new Address(index, country, city, street, building, apartment);
             Cart = new Cart();
             Orders = new List<Order>();
+            Discounts = new List<IDiscount>();
+            Discounts.Add(new PointsDiscount());
         }
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Customer"/>.
@@ -139,6 +160,8 @@ namespace ObjectOrientedProgramming.Model
             Cart = new Cart();
             Orders = new List<Order>();
             _allIds.Add(id);
+            Discounts = new List<IDiscount>();
+            Discounts.Add(new PointsDiscount());
         }
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Customer"/>.
@@ -151,6 +174,8 @@ namespace ObjectOrientedProgramming.Model
             Address = new Address();
             Cart = new Cart();
             Orders = new List<Order>();
+            Discounts = new List<IDiscount>();
+            Discounts.Add(new PointsDiscount());
         }
     }
 }

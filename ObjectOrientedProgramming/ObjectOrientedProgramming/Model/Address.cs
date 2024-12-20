@@ -10,8 +10,10 @@ namespace ObjectOrientedProgramming.Model
     /// <summary>
     /// Хранит данные об адресе.
     /// </summary>
-    public class Address
+    public class Address : ICloneable, IEquatable<Address>
     {
+        public event EventHandler AddressChanged;
+
         /// <summary>
         /// Почтовый индекс.
         /// </summary>
@@ -46,8 +48,12 @@ namespace ObjectOrientedProgramming.Model
             get => _index;
             set
             {
-                ValueValidator.AssertStringOnLength(value.ToString(), 6, 6, "Address.Index");
-                _index = value;
+                if (value != _index)
+                {
+                    ValueValidator.AssertStringOnLength(value.ToString(), 6, 6, "Address.Index");
+                    _index = value;
+                    AddressChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
         /// <summary>
@@ -59,8 +65,12 @@ namespace ObjectOrientedProgramming.Model
             get => _country;
             set
             {
-                ValueValidator.AssertStringOnLength(value.ToString(), 50, "Address.Country");
-                _country = value;
+                if (value != _country)
+                {
+                    ValueValidator.AssertStringOnLength(value.ToString(), 50, "Address.Country");
+                    _country = value;
+                    AddressChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
         /// <summary>
@@ -72,8 +82,12 @@ namespace ObjectOrientedProgramming.Model
             get => _city;
             set
             {
-                ValueValidator.AssertStringOnLength(value.ToString(), 50, "Address.City");
-                _city = value;
+                if (value != _city)
+                {
+                    ValueValidator.AssertStringOnLength(value.ToString(), 50, "Address.City");
+                    _city = value;
+                    AddressChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
         /// <summary>
@@ -85,8 +99,12 @@ namespace ObjectOrientedProgramming.Model
             get => _street;
             set
             {
-                ValueValidator.AssertStringOnLength(value.ToString(), 100, "Address.Street");
-                _street = value;
+                if (value != _street)
+                {
+                    ValueValidator.AssertStringOnLength(value.ToString(), 100, "Address.Street");
+                    _street = value;
+                    AddressChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
         /// <summary>
@@ -98,8 +116,12 @@ namespace ObjectOrientedProgramming.Model
             get => _building;
             set
             {
-                ValueValidator.AssertStringOnLength(value.ToString(), 10, "Address.Building");
-                _building = value;
+                if (value != _building)
+                {
+                    ValueValidator.AssertStringOnLength(value.ToString(), 10, "Address.Building");
+                    _building = value;
+                    AddressChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
         /// <summary>
@@ -111,8 +133,12 @@ namespace ObjectOrientedProgramming.Model
             get => _apartment;
             set
             {
-                ValueValidator.AssertStringOnLength(value.ToString(), 10, "Address.Apartment");
-                _apartment = value;
+                if (value != _apartment)
+                {
+                    ValueValidator.AssertStringOnLength(value.ToString(), 10, "Address.Apartment");
+                    _apartment = value;
+                    AddressChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
 
@@ -139,5 +165,33 @@ namespace ObjectOrientedProgramming.Model
         /// Создаёт объект класса <see cref="Address"/>.
         /// </summary>
         public Address() { }
+
+        /// <summary>
+        /// Создаёт копию объекта класса <see cref="Address"/>.
+        /// </summary>
+        /// <returns>Объект класса <see cref="Address"/>.</returns>
+        public object Clone()
+        {
+            return new Address(Index, Country, City, Street, Building, Apartment);
+        }
+
+        /// <summary>
+        /// Проверяет равны ли объекты класса <see cref="Address"/>.
+        /// </summary>
+        /// <param name="address">Объект для сравнения.</param>
+        /// <returns>Возвращает false, если передаваемый объект равен null или хотя бы одно из значений свойств не совпадает.
+        /// Возвращает true, если объект сравнивается сам с собой или значения всех свойств равны.</returns>
+        public bool Equals(Address address)
+        {
+            if (address == null)
+                return false;
+            if (ReferenceEquals(this, address))
+                return true;
+            if (Index == address.Index && Country == address.Country && City == address.City &&
+                Street == address.Street && Building == address.Building && Apartment == address.Apartment)
+                return true;
+            else
+                return false;
+        }
     }
 }

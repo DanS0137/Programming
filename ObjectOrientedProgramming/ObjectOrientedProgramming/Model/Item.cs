@@ -9,8 +9,13 @@ namespace ObjectOrientedProgramming.Model
     /// <summary>
     /// Хранит данные о неком предмете.
     /// </summary>
-    public class Item
+    [Serializable]
+    public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
+        public event EventHandler NameChanged;
+        public event EventHandler CostChanged;
+        public event EventHandler InfoChanged;
+
         /// <summary>
         /// Количество объектов класса.
         /// </summary>
@@ -40,7 +45,7 @@ namespace ObjectOrientedProgramming.Model
         /// <summary>
         /// Возвращает и задаёт категорию предмета.
         /// </summary>
-        public Category Category { get; set; } = Category.Другое;
+        public Category Category { get; set; } = Category.Attack;
 
         /// <summary>
         /// Возвращает уникальный идентификатор объекта класса.
@@ -57,8 +62,12 @@ namespace ObjectOrientedProgramming.Model
             get => _name;
             set
             {
-                Services.ValueValidator.AssertStringOnLength(value, 200, "Item.Name");
-                _name = value;
+                if (value != _name)
+                {
+                    Services.ValueValidator.AssertStringOnLength(value, 200, "Item.Name");
+                    _name = value;
+                    NameChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
         /// <summary>
@@ -70,8 +79,12 @@ namespace ObjectOrientedProgramming.Model
             get => _info;
             set
             {
-                Services.ValueValidator.AssertStringOnLength(value, 1000, "Item.Info");
-                _info = value;
+                if (value != _info)
+                {
+                    Services.ValueValidator.AssertStringOnLength(value, 1000, "Item.Info");
+                    _info = value;
+                    InfoChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
         /// <summary>
@@ -87,7 +100,11 @@ namespace ObjectOrientedProgramming.Model
                 {
                     throw new ArgumentException();
                 }
-                _cost = value;
+                if (value != _cost)
+                {
+                    _cost = value;
+                    CostChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
 
@@ -137,13 +154,50 @@ namespace ObjectOrientedProgramming.Model
             _id = _allItems;
             _allItems += 1;
         }
-        public Item(Item item)
+
+        /// <summary>
+        /// Создаёт копию объекта.
+        /// </summary>
+        /// <returns>Объект класса <see cref="Item"/>.</returns>
+        public object Clone()
         {
-            Name = item.Name;
-            Cost = item.Cost;
-            _id = item.Id;
-            Info = item.Info;
-            Category = item.Category;
+            return new Item(this.Id, this.Name, this.Category, this.Info, this.Cost);
+        }
+        /// <summary>
+        /// Проверяет равны ли объекты класса <see cref="Item"/>.
+        /// </summary>
+        /// <param name="item">Объект для сравнения.</param>
+        /// <returns>Возвращает true, если объект сравнивается сам с собой или их <see cref="Id"/> равны.
+        /// Возвращает false, если передавемый объект равен null или их <see cref="Id"/> не равны.</returns>
+        public bool Equals(Item item)
+        {
+            if (item == null)
+                return false;
+            if (ReferenceEquals(this, item))
+                return true;
+            if (Id == item.Id)
+                return true;
+            else
+                return false;
+        }
+        /// <summary>
+        /// Сравнивает объекты класса <see cref="Item"/> по свойству <see cref="Cost"/>.
+        /// </summary>
+        /// <param name="item">Объект для сравнения.</param>
+        /// <returns>Возвращает -2, если передаваемый объект равен null.
+        /// Возвращвет -1, если цена передаваемого объекта больше.
+        /// Возвращает 0, если цены объектов равны.
+        /// Возвращает 1, если цена передаваемого объекта меньше.</returns>
+        public int CompareTo(Item item)
+        {
+            if (item == null)
+                return -2;
+            if (item.Cost == Cost)
+                return 0;
+            else if (item.Cost > Cost)
+                return -1;
+            else
+                return 1;
         }
     }
 }
