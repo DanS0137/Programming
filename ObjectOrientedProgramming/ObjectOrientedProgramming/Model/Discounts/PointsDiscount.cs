@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedProgramming.Model.Discounts
 {
-    public class PointsDiscount : IDiscount
+    public class PointsDiscount : IDiscount, IComparable<PointsDiscount>
     {
         private int _points;
 
         public int Points
         {
             get => _points;
-            private set => _points = value;
+            set => _points = value;
         }
 
         public string Info
@@ -54,6 +54,26 @@ namespace ObjectOrientedProgramming.Model.Discounts
                 amount += item.Cost;
             }
             Points += (int)Math.Ceiling(0.1 * amount);
+        }
+
+        /// <summary>
+        /// Сравнивает два объекта класса <see cref="PointsDiscount"/>.
+        /// </summary>
+        /// <param name="disc">Объект для сравнения.</param>
+        /// <returns> Возвращает -2, если передаваемый объект равен null.
+        /// Возвращает -1, если значение <see cref="Points"/> передаваемого объекта больше.
+        /// Возвращает 0, если значения равны.
+        /// Возвращает 1, если значение меньше.</returns>
+        public int CompareTo(PointsDiscount disc)
+        {
+            if (disc == null)
+                return -2;
+            if (disc.Points == Points)
+                return 0;
+            if (disc.Points > Points)
+                return -1;
+            else
+                return 1;
         }
     }
 }

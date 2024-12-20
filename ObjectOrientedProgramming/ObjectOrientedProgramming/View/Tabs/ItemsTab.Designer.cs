@@ -44,6 +44,7 @@
             this.SelectedItemCategoryLabel = new System.Windows.Forms.Label();
             this.SelectedItemCategoryComboBox = new System.Windows.Forms.ComboBox();
             this.SaveChangesButton = new System.Windows.Forms.Button();
+            this.OpenSIFormButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ItemsLabel
@@ -202,11 +203,22 @@
             this.SaveChangesButton.UseVisualStyleBackColor = true;
             this.SaveChangesButton.Click += new System.EventHandler(this.SaveChangesButton_Click);
             // 
+            // OpenSIFormButton
+            // 
+            this.OpenSIFormButton.Location = new System.Drawing.Point(656, 0);
+            this.OpenSIFormButton.Name = "OpenSIFormButton";
+            this.OpenSIFormButton.Size = new System.Drawing.Size(150, 23);
+            this.OpenSIFormButton.TabIndex = 17;
+            this.OpenSIFormButton.Text = "Standard Interfaces";
+            this.OpenSIFormButton.UseVisualStyleBackColor = true;
+            this.OpenSIFormButton.Click += new System.EventHandler(this.OpenSIFormButton_Click);
+            // 
             // ItemsTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.OpenSIFormButton);
             this.Controls.Add(this.SaveChangesButton);
             this.Controls.Add(this.SelectedItemCategoryComboBox);
             this.Controls.Add(this.SelectedItemCategoryLabel);
@@ -248,5 +260,6 @@
         private System.Windows.Forms.Label SelectedItemCategoryLabel;
         private System.Windows.Forms.ComboBox SelectedItemCategoryComboBox;
         private System.Windows.Forms.Button SaveChangesButton;
+        private System.Windows.Forms.Button OpenSIFormButton;
     }
 }

@@ -114,5 +114,11 @@ namespace ObjectOrientedProgramming.View.Tabs
         {
             _selectedItem.Category = (Category)Enum.Parse(typeof(Category), SelectedItemCategoryComboBox.SelectedItem.ToString());
         }
+
+        private void OpenSIFormButton_Click(object sender, EventArgs e)
+        {
+            StandardInterfacesTestForm form = new StandardInterfacesTestForm();
+            form.Show();
+        }
     }
 }

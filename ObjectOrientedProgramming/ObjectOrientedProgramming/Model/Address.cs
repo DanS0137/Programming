@@ -115,6 +115,22 @@ namespace ObjectOrientedProgramming.Model
                 _apartment = value;
             }
         }
+        //public Address CurrentAddress
+        //{
+        //    get
+        //    {
+        //        return new Address(Index, Country, City, Street, Building, Apartment);
+        //    }
+        //    set
+        //    {
+        //        Index = value.Index;
+        //        Country = value.Country;
+        //        City = value.City;
+        //        Street = value.Street;
+        //        Building = value.Building;
+        //        Apartment = value.Apartment;
+        //    }
+        //}
 
         /// <summary>
         /// Создаёт объект класса <see cref="Address"/>.
