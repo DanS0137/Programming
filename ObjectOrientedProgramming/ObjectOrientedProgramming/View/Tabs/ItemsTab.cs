@@ -33,6 +33,7 @@ namespace ObjectOrientedProgramming.View.Tabs
                     {
                         ItemsListBox.Items.Add(item.Name + $" ID: {item.Id}");
                     }
+                    SortsComboBox.SelectedItem = "Name";
                 }
             }
         }
@@ -161,6 +162,35 @@ namespace ObjectOrientedProgramming.View.Tabs
         public bool FilterByName(Item item)
         {
             return item.Name.Contains(_searchingString);
+        }
+
+        private void SortsComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (SortsComboBox.SelectedIndex == -1) return;
+            switch (SortsComboBox.SelectedItem)
+            {
+                case "Name":
+                    {
+                        _displayedItems = DataTools.Sort(_displayedItems, DataTools.SortByName);
+                        break;
+                    }
+                case "Cost (Ascending)":
+                    {
+                        _displayedItems = DataTools.Sort(_displayedItems, DataTools.SortByCost_Ascending);
+                        break;
+                    }
+                case "Cost (Descending)":
+                    {
+                        _displayedItems = DataTools.Sort(_displayedItems, DataTools.SortByCost_Descending);
+                        break;
+                    }
+            }
+
+            ItemsListBox.Items.Clear();
+            foreach(Item item in _displayedItems)
+            {
+                ItemsListBox.Items.Add($"{item.Name} ID: {item.Id}");
+            }
         }
     }
 }

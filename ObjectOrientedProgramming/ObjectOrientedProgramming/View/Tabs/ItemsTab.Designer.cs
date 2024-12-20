@@ -47,6 +47,8 @@
             this.OpenSIFormButton = new System.Windows.Forms.Button();
             this.SearchTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.SortsComboBox = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ItemsLabel
@@ -66,7 +68,7 @@
             this.ItemsListBox.FormattingEnabled = true;
             this.ItemsListBox.Location = new System.Drawing.Point(10, 53);
             this.ItemsListBox.Name = "ItemsListBox";
-            this.ItemsListBox.Size = new System.Drawing.Size(266, 264);
+            this.ItemsListBox.Size = new System.Drawing.Size(266, 238);
             this.ItemsListBox.TabIndex = 1;
             this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
@@ -192,7 +194,6 @@
             this.SelectedItemCategoryComboBox.Name = "SelectedItemCategoryComboBox";
             this.SelectedItemCategoryComboBox.Size = new System.Drawing.Size(117, 21);
             this.SelectedItemCategoryComboBox.TabIndex = 15;
-            //this.SelectedItemCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.SelectedItemCategoryComboBox_SelectedIndexChanged);
             // 
             // SaveChangesButton
             // 
@@ -232,11 +233,42 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Find:";
             // 
+            // SortsComboBox
+            // 
+            this.SortsComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SortsComboBox.AutoCompleteCustomSource.AddRange(new string[] {
+            "Name",
+            "Cost (Ascending)",
+            "Cost (Descending)"});
+            this.SortsComboBox.FormattingEnabled = true;
+            this.SortsComboBox.Items.AddRange(new object[] {
+            "Name",
+            "Cost (Ascending)",
+            "Cost (Descending)"});
+            this.SortsComboBox.Location = new System.Drawing.Point(65, 297);
+            this.SortsComboBox.Name = "SortsComboBox";
+            this.SortsComboBox.Size = new System.Drawing.Size(211, 21);
+            this.SortsComboBox.TabIndex = 21;
+            this.SortsComboBox.SelectedIndexChanged += new System.EventHandler(this.SortsComboBox_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 300);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Sort by:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // ItemsTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.SortsComboBox);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.SearchTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.OpenSIFormButton);
@@ -284,5 +316,7 @@
         private System.Windows.Forms.Button OpenSIFormButton;
         private System.Windows.Forms.TextBox SearchTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox SortsComboBox;
+        private System.Windows.Forms.Label label2;
     }
 }
