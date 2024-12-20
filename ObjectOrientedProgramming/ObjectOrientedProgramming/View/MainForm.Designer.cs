@@ -180,6 +180,7 @@ namespace ObjectOrientedProgramming
             this.OrdersTabPage.ResumeLayout(false);
             this.PriorityOrdersTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.FormClosed += MainForm_FormClosed;
 
         }
 

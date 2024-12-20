@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using ObjectOrientedProgramming.Model;
+using ObjectOrientedProgramming.Services;
 
 namespace ObjectOrientedProgramming.View.Tabs
 {
@@ -16,6 +17,8 @@ namespace ObjectOrientedProgramming.View.Tabs
     {
         List<Item> _itemsList;
         Item _selectedItem;
+        string _searchingString = "";
+        List<Item> _displayedItems;
 
         public List<Item> Items
         {
@@ -23,6 +26,7 @@ namespace ObjectOrientedProgramming.View.Tabs
             set
             {
                 _itemsList = value;
+                _displayedItems = value;
                 if (value != null)
                 {
                     foreach (Item item in value)
@@ -42,7 +46,7 @@ namespace ObjectOrientedProgramming.View.Tabs
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ItemsListBox.SelectedIndex == -1) return;
-            _selectedItem = _itemsList[ItemsListBox.SelectedIndex];
+            _selectedItem = _displayedItems[ItemsListBox.SelectedIndex];
             SelectedItemIdTextBox.Text = Convert.ToString(_selectedItem.Id);
             SelectedItemCostTextBox.Text = Convert.ToString(_selectedItem.Cost);
             SelectedItemNameTextBox.Text = _selectedItem.Name;
@@ -52,26 +56,33 @@ namespace ObjectOrientedProgramming.View.Tabs
 
         private void AddItemButton_Click(object sender, EventArgs e)
         {
-            _itemsList.Insert(0, new Item());
-            _itemsList[0].Name = "New item";
-            ItemsListBox.Items.Insert(0, $"New item ID: { _itemsList[0].Id}");
-            ItemsListBox.SelectedIndex = 0;
+            Items.Insert(0, new Item());
+            Items[0].Name = "New item";
+            
+            if (Items[0].Name.Contains(_searchingString))
+            {
+                ItemsListBox.Items.Insert(0, $"New item ID: { Items[0].Id}");
+                _displayedItems.Insert(0, Items[0]);
+                ItemsListBox.SelectedIndex = 0;
+            }
         }
 
         private void RemoveItemButton_Click(object sender, EventArgs e)
         {
-            _itemsList.RemoveAt(ItemsListBox.SelectedIndex);
+            Items.Remove(_selectedItem);
+            _displayedItems.RemoveAt(ItemsListBox.SelectedIndex);
             ItemsListBox.Items.RemoveAt(ItemsListBox.SelectedIndex);
             SelectedItemIdTextBox.Text = "";
             SelectedItemCostTextBox.Text = "";
             SelectedItemNameTextBox.Text = "";
             SelectedItemInfoTextBox.Text = "";
             SelectedItemCategoryComboBox.SelectedItem = "Другое";
-            Services.StoreSerializer.DeleteElement(_selectedItem);
+            StoreSerializer.DeleteElement(_selectedItem);
         }
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
+            if (_selectedItem == null) return;
             double newCost;
             string newName, newInfo;
             try
@@ -86,6 +97,11 @@ namespace ObjectOrientedProgramming.View.Tabs
             catch
             {
                 SelectedItemCostTextBox.BackColor = Color.LightPink;
+                return;
+            }
+            if (SelectedItemCategoryComboBox.SelectedIndex == -1)
+            {
+                SelectedItemCategoryComboBox.BackColor = Color.LightPink;
                 return;
             }
             if (SelectedItemNameTextBox.Text.Length > 199 || string.IsNullOrEmpty(SelectedItemNameTextBox.Text))
@@ -103,22 +119,48 @@ namespace ObjectOrientedProgramming.View.Tabs
             SelectedItemCostTextBox.BackColor = Color.White;
             SelectedItemNameTextBox.BackColor = Color.White;
             SelectedItemInfoTextBox.BackColor = Color.White;
+            int index = Items.IndexOf(_selectedItem);
             _selectedItem.Cost = newCost;
             _selectedItem.Name = newName;
             _selectedItem.Info = newInfo;
             _selectedItem.Category = (Category)Enum.Parse(typeof(Category), SelectedItemCategoryComboBox.SelectedItem.ToString());
+            Items[index] = (Item)_selectedItem.Clone();
             ItemsListBox.Items[ItemsListBox.SelectedIndex] = $"{_selectedItem.Name} ID: {_selectedItem.Id}";
         }
 
-        private void SelectedItemCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _selectedItem.Category = (Category)Enum.Parse(typeof(Category), SelectedItemCategoryComboBox.SelectedItem.ToString());
-        }
+        //private void SelectedItemCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    _selectedItem.Category = (Category)Enum.Parse(typeof(Category), SelectedItemCategoryComboBox.SelectedItem.ToString());
+        //}
 
         private void OpenSIFormButton_Click(object sender, EventArgs e)
         {
             StandardInterfacesTestForm form = new StandardInterfacesTestForm();
             form.Show();
+        }
+
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _searchingString = SearchTextBox.Text;
+            _displayedItems = DataTools.Filter(Items, FilterByName);
+
+            ItemsListBox.Items.Clear();
+            foreach(Item item in _displayedItems)
+            {
+                ItemsListBox.Items.Add($"{item.Name} ID: {item.Id}");
+            }
+
+            SelectedItemIdTextBox.Text = "";
+            SelectedItemCostTextBox.Text = "";
+            SelectedItemNameTextBox.Text = "";
+            SelectedItemInfoTextBox.Text = "";
+            SelectedItemCategoryComboBox.SelectedIndex = -1;
+            _selectedItem = null;
+        }
+
+        public bool FilterByName(Item item)
+        {
+            return item.Name.Contains(_searchingString);
         }
     }
 }

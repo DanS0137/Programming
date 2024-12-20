@@ -45,6 +45,8 @@
             this.SelectedItemCategoryComboBox = new System.Windows.Forms.ComboBox();
             this.SaveChangesButton = new System.Windows.Forms.Button();
             this.OpenSIFormButton = new System.Windows.Forms.Button();
+            this.SearchTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ItemsLabel
@@ -62,9 +64,9 @@
             this.ItemsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.ItemsListBox.FormattingEnabled = true;
-            this.ItemsListBox.Location = new System.Drawing.Point(10, 27);
+            this.ItemsListBox.Location = new System.Drawing.Point(10, 53);
             this.ItemsListBox.Name = "ItemsListBox";
-            this.ItemsListBox.Size = new System.Drawing.Size(266, 290);
+            this.ItemsListBox.Size = new System.Drawing.Size(266, 264);
             this.ItemsListBox.TabIndex = 1;
             this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
@@ -190,7 +192,7 @@
             this.SelectedItemCategoryComboBox.Name = "SelectedItemCategoryComboBox";
             this.SelectedItemCategoryComboBox.Size = new System.Drawing.Size(117, 21);
             this.SelectedItemCategoryComboBox.TabIndex = 15;
-            this.SelectedItemCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.SelectedItemCategoryComboBox_SelectedIndexChanged);
+            //this.SelectedItemCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.SelectedItemCategoryComboBox_SelectedIndexChanged);
             // 
             // SaveChangesButton
             // 
@@ -213,11 +215,30 @@
             this.OpenSIFormButton.UseVisualStyleBackColor = true;
             this.OpenSIFormButton.Click += new System.EventHandler(this.OpenSIFormButton_Click);
             // 
+            // SearchTextBox
+            // 
+            this.SearchTextBox.Location = new System.Drawing.Point(44, 27);
+            this.SearchTextBox.Name = "SearchTextBox";
+            this.SearchTextBox.Size = new System.Drawing.Size(232, 20);
+            this.SearchTextBox.TabIndex = 19;
+            this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Find:";
+            // 
             // ItemsTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.SearchTextBox);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.OpenSIFormButton);
             this.Controls.Add(this.SaveChangesButton);
             this.Controls.Add(this.SelectedItemCategoryComboBox);
@@ -261,5 +282,7 @@
         private System.Windows.Forms.ComboBox SelectedItemCategoryComboBox;
         private System.Windows.Forms.Button SaveChangesButton;
         private System.Windows.Forms.Button OpenSIFormButton;
+        private System.Windows.Forms.TextBox SearchTextBox;
+        private System.Windows.Forms.Label label1;
     }
 }
