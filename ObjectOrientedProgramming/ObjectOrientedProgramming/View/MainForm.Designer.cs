@@ -62,6 +62,7 @@ namespace ObjectOrientedProgramming
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(820, 425);
             this.tabControl.TabIndex = 0;
+            this.tabControl.SelectedIndexChanged += new EventHandler(TabControl_SelectedIndexChanged);
             // 
             // ItemsTabPage
             // 

@@ -208,6 +208,7 @@
             // 
             // OpenSIFormButton
             // 
+            this.OpenSIFormButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpenSIFormButton.Location = new System.Drawing.Point(656, 0);
             this.OpenSIFormButton.Name = "OpenSIFormButton";
             this.OpenSIFormButton.Size = new System.Drawing.Size(150, 23);

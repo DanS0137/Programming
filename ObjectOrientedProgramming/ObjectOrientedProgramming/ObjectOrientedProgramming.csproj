@@ -62,10 +62,10 @@
     <Compile Include="Services\DataTools.cs" />
     <Compile Include="Services\StoreSerializer.cs" />
     <Compile Include="Services\ValueValidator.cs" />
-    <Compile Include="View\AddDiscountForm.cs">
+    <Compile Include="View\Forms\AddDiscountForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\AddDiscountForm.Designer.cs">
+    <Compile Include="View\Forms\AddDiscountForm.Designer.cs">
       <DependentUpon>AddDiscountForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Controls\AddressControl.cs">
@@ -82,10 +82,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\StandardInterfacesTestForm.cs">
+    <Compile Include="View\Forms\StandardInterfacesTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\StandardInterfacesTestForm.Designer.cs">
+    <Compile Include="View\Forms\StandardInterfacesTestForm.Designer.cs">
       <DependentUpon>StandardInterfacesTestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Tabs\CartsTab.cs">
@@ -145,7 +145,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\AddDiscountForm.resx">
+    <EmbeddedResource Include="View\Forms\AddDiscountForm.resx">
       <DependentUpon>AddDiscountForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Controls\AddressControl.resx">
@@ -155,7 +155,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\StandardInterfacesTestForm.resx">
+    <EmbeddedResource Include="View\Forms\StandardInterfacesTestForm.resx">
       <DependentUpon>StandardInterfacesTestForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

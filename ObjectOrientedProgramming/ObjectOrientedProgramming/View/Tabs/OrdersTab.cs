@@ -46,7 +46,7 @@ namespace ObjectOrientedProgramming.View.Tabs
             DeliveryAddressControl.CloseAccess();
         }
 
-        public void RefreshData()
+        public void RefreshData(object sender, EventArgs e)
         {
             OrdersDataGridView.Rows.Clear();
             ItemsListBox.Items.Clear();
@@ -137,6 +137,7 @@ namespace ObjectOrientedProgramming.View.Tabs
         private void OrderStatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (OrderStatusComboBox.SelectedIndex == -1 || Orders.Count == 0) return;
+            if (OrdersDataGridView.CurrentCell == null) return;
             int selIndex = OrdersDataGridView.CurrentCell.RowIndex;
             OrdersDataGridView.Rows[selIndex].Cells[5].Value = OrderStatusComboBox.SelectedItem.ToString();
             Orders[selIndex].OrderStatus = (OrderStatus)OrderStatusComboBox.SelectedIndex;

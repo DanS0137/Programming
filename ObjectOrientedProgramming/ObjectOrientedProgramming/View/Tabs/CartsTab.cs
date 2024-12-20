@@ -15,6 +15,8 @@ namespace ObjectOrientedProgramming.View.Tabs
 {
     public partial class CartsTab : UserControl
     {
+        public event EventHandler AddedOrder;
+
         private List<Item> _itemsList;
         private List<Customer> _customersList;
         private Customer _selectedCustomer;
@@ -137,6 +139,8 @@ namespace ObjectOrientedProgramming.View.Tabs
             {
                 DiscountsCheckedListBox.Items.Add(discount.Info, true);
             }
+
+            AddedOrder?.Invoke(this, new EventArgs());
         }
 
         private void ClearCartButton_Click(object sender, EventArgs e)
@@ -152,7 +156,7 @@ namespace ObjectOrientedProgramming.View.Tabs
             AmountLabel.Text = "0";
         }
 
-        public void RefreshData()
+        public void RefreshData(object sender, EventArgs e)
         {
             ItemsListBox.Items.Clear();
             CustomersComboBox.Items.Clear();

@@ -12,6 +12,10 @@ namespace ObjectOrientedProgramming.Model
     [Serializable]
     public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
+        public event EventHandler NameChanged;
+        public event EventHandler CostChanged;
+        public event EventHandler InfoChanged;
+
         /// <summary>
         /// Количество объектов класса.
         /// </summary>
@@ -58,8 +62,12 @@ namespace ObjectOrientedProgramming.Model
             get => _name;
             set
             {
-                Services.ValueValidator.AssertStringOnLength(value, 200, "Item.Name");
-                _name = value;
+                if (value != _name)
+                {
+                    Services.ValueValidator.AssertStringOnLength(value, 200, "Item.Name");
+                    _name = value;
+                    NameChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
         /// <summary>
@@ -71,8 +79,12 @@ namespace ObjectOrientedProgramming.Model
             get => _info;
             set
             {
-                Services.ValueValidator.AssertStringOnLength(value, 1000, "Item.Info");
-                _info = value;
+                if (value != _info)
+                {
+                    Services.ValueValidator.AssertStringOnLength(value, 1000, "Item.Info");
+                    _info = value;
+                    InfoChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
         /// <summary>
@@ -88,7 +100,11 @@ namespace ObjectOrientedProgramming.Model
                 {
                     throw new ArgumentException();
                 }
-                _cost = value;
+                if (value != _cost)
+                {
+                    _cost = value;
+                    CostChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
 

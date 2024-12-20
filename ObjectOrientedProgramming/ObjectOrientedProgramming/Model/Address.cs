@@ -12,6 +12,8 @@ namespace ObjectOrientedProgramming.Model
     /// </summary>
     public class Address : ICloneable, IEquatable<Address>
     {
+        public event EventHandler AddressChanged;
+
         /// <summary>
         /// Почтовый индекс.
         /// </summary>
@@ -46,8 +48,12 @@ namespace ObjectOrientedProgramming.Model
             get => _index;
             set
             {
-                ValueValidator.AssertStringOnLength(value.ToString(), 6, 6, "Address.Index");
-                _index = value;
+                if (value != _index)
+                {
+                    ValueValidator.AssertStringOnLength(value.ToString(), 6, 6, "Address.Index");
+                    _index = value;
+                    AddressChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
         /// <summary>
@@ -59,8 +65,12 @@ namespace ObjectOrientedProgramming.Model
             get => _country;
             set
             {
-                ValueValidator.AssertStringOnLength(value.ToString(), 50, "Address.Country");
-                _country = value;
+                if (value != _country)
+                {
+                    ValueValidator.AssertStringOnLength(value.ToString(), 50, "Address.Country");
+                    _country = value;
+                    AddressChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
         /// <summary>
@@ -72,8 +82,12 @@ namespace ObjectOrientedProgramming.Model
             get => _city;
             set
             {
-                ValueValidator.AssertStringOnLength(value.ToString(), 50, "Address.City");
-                _city = value;
+                if (value != _city)
+                {
+                    ValueValidator.AssertStringOnLength(value.ToString(), 50, "Address.City");
+                    _city = value;
+                    AddressChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
         /// <summary>
@@ -85,8 +99,12 @@ namespace ObjectOrientedProgramming.Model
             get => _street;
             set
             {
-                ValueValidator.AssertStringOnLength(value.ToString(), 100, "Address.Street");
-                _street = value;
+                if (value != _street)
+                {
+                    ValueValidator.AssertStringOnLength(value.ToString(), 100, "Address.Street");
+                    _street = value;
+                    AddressChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
         /// <summary>
@@ -98,8 +116,12 @@ namespace ObjectOrientedProgramming.Model
             get => _building;
             set
             {
-                ValueValidator.AssertStringOnLength(value.ToString(), 10, "Address.Building");
-                _building = value;
+                if (value != _building)
+                {
+                    ValueValidator.AssertStringOnLength(value.ToString(), 10, "Address.Building");
+                    _building = value;
+                    AddressChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
         /// <summary>
@@ -111,26 +133,14 @@ namespace ObjectOrientedProgramming.Model
             get => _apartment;
             set
             {
-                ValueValidator.AssertStringOnLength(value.ToString(), 10, "Address.Apartment");
-                _apartment = value;
+                if (value != _apartment)
+                {
+                    ValueValidator.AssertStringOnLength(value.ToString(), 10, "Address.Apartment");
+                    _apartment = value;
+                    AddressChanged?.Invoke(this, new EventArgs());
+                }
             }
         }
-        //public Address CurrentAddress
-        //{
-        //    get
-        //    {
-        //        return new Address(Index, Country, City, Street, Building, Apartment);
-        //    }
-        //    set
-        //    {
-        //        Index = value.Index;
-        //        Country = value.Country;
-        //        City = value.City;
-        //        Street = value.Street;
-        //        Building = value.Building;
-        //        Apartment = value.Apartment;
-        //    }
-        //}
 
         /// <summary>
         /// Создаёт объект класса <see cref="Address"/>.

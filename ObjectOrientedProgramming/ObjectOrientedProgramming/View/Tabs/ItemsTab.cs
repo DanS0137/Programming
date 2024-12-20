@@ -15,6 +15,8 @@ namespace ObjectOrientedProgramming.View.Tabs
 {
     public partial class ItemsTab : UserControl
     {
+        public event EventHandler ItemsChanged;
+
         List<Item> _itemsList;
         Item _selectedItem;
         string _searchingString = "";
@@ -63,9 +65,10 @@ namespace ObjectOrientedProgramming.View.Tabs
             if (Items[0].Name.Contains(_searchingString))
             {
                 ItemsListBox.Items.Insert(0, $"New item ID: { Items[0].Id}");
-                _displayedItems.Insert(0, Items[0]);
                 ItemsListBox.SelectedIndex = 0;
             }
+
+            ItemsChanged?.Invoke(this, new EventArgs());
         }
 
         private void RemoveItemButton_Click(object sender, EventArgs e)
@@ -79,6 +82,8 @@ namespace ObjectOrientedProgramming.View.Tabs
             SelectedItemInfoTextBox.Text = "";
             SelectedItemCategoryComboBox.SelectedItem = "Другое";
             StoreSerializer.DeleteElement(_selectedItem);
+
+            ItemsChanged?.Invoke(this, new EventArgs());
         }
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
@@ -127,12 +132,9 @@ namespace ObjectOrientedProgramming.View.Tabs
             _selectedItem.Category = (Category)Enum.Parse(typeof(Category), SelectedItemCategoryComboBox.SelectedItem.ToString());
             Items[index] = (Item)_selectedItem.Clone();
             ItemsListBox.Items[ItemsListBox.SelectedIndex] = $"{_selectedItem.Name} ID: {_selectedItem.Id}";
-        }
 
-        //private void SelectedItemCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    _selectedItem.Category = (Category)Enum.Parse(typeof(Category), SelectedItemCategoryComboBox.SelectedItem.ToString());
-        //}
+            ItemsChanged?.Invoke(this, new EventArgs());
+        }
 
         private void OpenSIFormButton_Click(object sender, EventArgs e)
         {
