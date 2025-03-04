@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedProgramming.Model;
 using ObjectOrientedProgramming.Model.Enumerations;
@@ -15,7 +9,7 @@ namespace ObjectOrientedProgramming.View.Tabs
 {
     public partial class CartsTab : UserControl
     {
-        public event EventHandler AddedOrder;
+        public event EventHandler OrderAdded;
 
         private List<Item> _itemsList;
         private List<Customer> _customersList;
@@ -140,7 +134,7 @@ namespace ObjectOrientedProgramming.View.Tabs
                 DiscountsCheckedListBox.Items.Add(discount.Info, true);
             }
 
-            AddedOrder?.Invoke(this, new EventArgs());
+            OrderAdded?.Invoke(this, new EventArgs());
         }
 
         private void ClearCartButton_Click(object sender, EventArgs e)

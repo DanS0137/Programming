@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 using ObjectOrientedProgramming.Model;
 using ObjectOrientedProgramming.Services;
 
@@ -73,7 +67,6 @@ namespace ObjectOrientedProgramming.View.Tabs
 
         private void RemoveItemButton_Click(object sender, EventArgs e)
         {
-            Items.Remove(_selectedItem);
             _displayedItems.RemoveAt(ItemsListBox.SelectedIndex);
             ItemsListBox.Items.RemoveAt(ItemsListBox.SelectedIndex);
             SelectedItemIdTextBox.Text = "";
