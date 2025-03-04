@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedProgramming.Model;
-using ObjectOrientedProgramming.View;
 
 namespace ObjectOrientedProgramming
 {
@@ -44,7 +37,7 @@ namespace ObjectOrientedProgramming
             ItemsTab.ItemsChanged += new EventHandler(CartsTab.RefreshData);
             ItemsTab.ItemsChanged += new EventHandler(OrdersTab.RefreshData);
 
-            CartsTab.AddedOrder += new EventHandler(OrdersTab.RefreshData);
+            CartsTab.OrderAdded += new EventHandler(OrdersTab.RefreshData);
         }
 
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)

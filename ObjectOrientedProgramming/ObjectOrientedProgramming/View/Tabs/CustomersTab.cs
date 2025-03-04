@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedProgramming.Model;
-using ObjectOrientedProgramming.Model.Orders;
 using ObjectOrientedProgramming.Model.Discounts;
-using System.IO;
 
 namespace ObjectOrientedProgramming.View.Tabs
 {
