@@ -73,7 +73,7 @@ namespace View.Model
         /// <param name="name">Имя контакта.</param>
         /// <param name="phoneNumber">Телефонный номер контакта.</param>
         /// <param name="email">Email контакта.</param>
-        Contact(string name, string phoneNumber, string email)
+        public Contact(string name, string phoneNumber, string email)
         {
             _name = name;
             _phoneNumber = phoneNumber;
@@ -83,7 +83,7 @@ namespace View.Model
         /// Пустой конструктор класса <see cref="Contact"/>.
         /// Применяется для работы сериализатора.
         /// </summary>
-        Contact() 
+        public Contact() 
         {
             _name = "";
             _phoneNumber = "";
