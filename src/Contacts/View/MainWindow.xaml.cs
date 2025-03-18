@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using View.ViewModel;
 
 namespace View
 {
@@ -23,6 +24,22 @@ namespace View
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainVM();
+        }
+
+        private void NameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ((MainVM)DataContext).Name = NameTextBox.Text;
+        }
+
+        private void PhoneNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ((MainVM)DataContext).PhoneNumber = PhoneNumberTextBox.Text;
+        }
+
+        private void EmailTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ((MainVM)DataContext).Email = EmailTextBox.Text;
         }
     }
 }
