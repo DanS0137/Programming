@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:View"
         x:Class="View.MainWindow"
         mc:Ignorable="d"
-        Title="Contacts" Height="398" Width="543" Icon="/contacts_96x96.ico">
+        Title="Contacts" Height="398" Width="543" Icon="/contacts_96x96.ico" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
     <Grid>
         <GroupBox HorizontalAlignment="Left" Height="318" Header="Edit Contact" Margin="15,15,0,0" VerticalAlignment="Top" Width="255" Grid.RowSpan="2">
             <Grid>
@@ -18,17 +18,17 @@
                 <TextBox x:Name="EmailTextBox" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}" Margin="3,108,3,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
             </Grid>
         </GroupBox>
-        <GroupBox Height="318" Header="Read Contact" Margin="273,15,15,0" VerticalAlignment="Top" Grid.RowSpan="2">
+        <GroupBox Height="318" Header="Read Contact" Margin="273,15,15,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="255">
             <Grid>
                 <Label Content="Name:" HorizontalAlignment="Left" Margin="-1,-2,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="NameLabel" Content="{Binding Path=Name}" HorizontalAlignment="Left" Margin="-1,17,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                <Label Content="Phone Number:" HorizontalAlignment="Left" Margin="-1,40,0,0" VerticalAlignment="Top"/>
+                <Label Content="Phone Number:" HorizontalAlignment="Left" Margin="-1,40,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                 <Label x:Name="PhoneNumberLabel" Content="{Binding Path=PhoneNumber}" HorizontalAlignment="Left" Margin="-1,61,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                 <Label Content="Email:"  HorizontalAlignment="Left" Margin="-1,82,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="EmailLabel" Content="{Binding Path=Email}" HorizontalAlignment="Left" Margin="-1,104,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
             </Grid>
         </GroupBox>
         <Button x:Name="SaveButton" Content="Save" Command="{Binding SaveCommand}" Width="75" HorizontalAlignment="Left" Margin="375,338,0,15" Grid.RowSpan="2"/>
-        <Button x:Name="LoadButton" Content="Load" Command="{Binding LoadCommand}"  Width="75" HorizontalAlignment="Left" Margin="453,338,0,15" Grid.RowSpan="2"/>
+        <Button x:Name="LoadButton" Content="Load" Command="{Binding LoadCommand}" Margin="453,338,15,15"/>
     </Grid>
 </Window>
