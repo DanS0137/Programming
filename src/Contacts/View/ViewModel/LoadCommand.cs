@@ -14,12 +14,12 @@ namespace View.ViewModel
     /// </summary>
     public class LoadCommand : ICommand
     {
-        private Action<object> _execute;
+        private MainVM _vM;
 
         event EventHandler? ICommand.CanExecuteChanged
         {
-            add { bool a = true; }
-            remove { bool a = true; }
+            add { }
+            remove { }
         }
 
         public bool CanExecute(object? parameter)
@@ -28,12 +28,15 @@ namespace View.ViewModel
         }
         public void Execute(object? parameter)
         {
-            _execute(parameter);
+            Contact contact = Model.Services.ContactSerializer.LoadContact();
+            _vM.Email = contact.Email;
+            _vM.Name = contact.Name;
+            _vM.PhoneNumber = contact.PhoneNumber;
         }
 
-        public LoadCommand(Action<object> execute)
+        public LoadCommand(MainVM vM)
         {
-            _execute = execute;
+            _vM = vM;
         }
     }
 }

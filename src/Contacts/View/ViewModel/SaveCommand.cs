@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using View.Model;
 
 namespace View.ViewModel
 {
@@ -12,12 +13,12 @@ namespace View.ViewModel
     /// </summary>
     public class SaveCommand : ICommand
     {
-        private Action<object> _execute;
+        private MainVM _vM;
 
         event EventHandler? ICommand.CanExecuteChanged
         {
-            add { bool a = true; }
-            remove { bool a = true; }
+            add { }
+            remove { }
         }
 
         public bool CanExecute(object? parameter)
@@ -26,12 +27,12 @@ namespace View.ViewModel
         }
         public void Execute(object? parameter)
         {
-            _execute(parameter);
+            Model.Services.ContactSerializer.SaveContact(new Contact(_vM.Name, _vM.PhoneNumber, _vM.Email));
         }
 
-        public SaveCommand(Action<object> execute)
+        public SaveCommand(MainVM vM)
         {
-            _execute = execute;
+            _vM = vM;
         }
     }
 }
