@@ -17,13 +17,13 @@ namespace View.ViewModel
         /// </summary>
         private Contact _contact = new Contact();
 
-        private LoadCommand lc;
+        private LoadCommand loadCommand;
         public LoadCommand LoadCommand
         {
             get
             {
-                return lc ??
-                  (lc = new LoadCommand(obj =>
+                return loadCommand ??
+                  (loadCommand = new LoadCommand(obj =>
                   {
                       Contact contact = ContactSerializer.LoadContact();
                       Name = contact.Name;
@@ -32,19 +32,23 @@ namespace View.ViewModel
                   }));
             }
         }
-        private SaveCommand sc;
+
+        private SaveCommand saveCommand;
         public SaveCommand SaveCommand
         {
             get
             {
-                return sc ??
-                  (sc = new SaveCommand(obj =>
+                return saveCommand ??
+                  (saveCommand = new SaveCommand(obj =>
                   {
                       ContactSerializer.SaveContact(_contact);
                   }));
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт имя контакта.
+        /// </summary>
         public string Name
         {
             get
@@ -57,6 +61,9 @@ namespace View.ViewModel
                 ThisPropertyChanged("Name");
             }
         }
+        /// <summary>
+        /// Возвращает и задаёт телефонный номер контакта.
+        /// </summary>
         public string PhoneNumber
         {
             get
@@ -69,6 +76,9 @@ namespace View.ViewModel
                 ThisPropertyChanged("PhoneNumber");
             }
         }
+        /// <summary>
+        /// Возвращает и задаёт email контакта.
+        /// </summary>
         public string Email
         {
             get
