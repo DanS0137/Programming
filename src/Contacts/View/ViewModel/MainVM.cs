@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using View.Model;
+using View.Model.Services;
 
 namespace View.ViewModel
 {
@@ -15,6 +16,34 @@ namespace View.ViewModel
         /// Хранит данные о контакте, над которым работает пользователь.
         /// </summary>
         private Contact _contact = new Contact();
+
+        private LoadCommand lc;
+        public LoadCommand LoadCommand
+        {
+            get
+            {
+                return lc ??
+                  (lc = new LoadCommand(obj =>
+                  {
+                      Contact contact = ContactSerializer.LoadContact();
+                      Name = contact.Name;
+                      PhoneNumber = contact.PhoneNumber;
+                      Email = contact.Email;
+                  }));
+            }
+        }
+        private SaveCommand sc;
+        public SaveCommand SaveCommand
+        {
+            get
+            {
+                return sc ??
+                  (sc = new SaveCommand(obj =>
+                  {
+                      ContactSerializer.SaveContact(_contact);
+                  }));
+            }
+        }
 
         public string Name
         {
