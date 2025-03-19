@@ -11,11 +11,11 @@
         <GroupBox HorizontalAlignment="Left" Height="318" Header="Edit Contact" Margin="15,15,0,0" VerticalAlignment="Top" Width="255" Grid.RowSpan="2">
             <Grid>
                 <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-1,-2,0,0"/>
-                <TextBox x:Name="NameTextBox" Margin="3,22,3,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.ColumnSpan="2" TextChanged="NameTextBox_TextChanged"/>
+                <TextBox x:Name="NameTextBox" Margin="3,22,3,0" TextWrapping="Wrap" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                 <Label Content="Phone Number:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-1,40,0,0"/>
-                <TextBox x:Name="PhoneNumberTextBox" Margin="3,65,3,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.ColumnSpan="2" TextChanged="PhoneNumberTextBox_TextChanged"/>
+                <TextBox x:Name="PhoneNumberTextBox" Margin="3,65,3,0" TextWrapping="Wrap" Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                 <Label Content="Email:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-1,82,0,0"/>
-                <TextBox x:Name="EmailTextBox" Margin="3,108,3,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.ColumnSpan="2" TextChanged="EmailTextBox_TextChanged"/>
+                <TextBox x:Name="EmailTextBox" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}" Margin="3,108,3,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
             </Grid>
         </GroupBox>
         <GroupBox Height="318" Header="Read Contact" Margin="273,15,15,0" VerticalAlignment="Top" Grid.RowSpan="2">
@@ -24,11 +24,11 @@
                 <Label x:Name="NameLabel" Content="{Binding Path=Name}" HorizontalAlignment="Left" Margin="-1,17,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                 <Label Content="Phone Number:" HorizontalAlignment="Left" Margin="-1,40,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="PhoneNumberLabel" Content="{Binding Path=PhoneNumber}" HorizontalAlignment="Left" Margin="-1,61,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                <Label Content="Email:" HorizontalAlignment="Left" Margin="-1,82,0,0" VerticalAlignment="Top"/>
+                <Label Content="Email:"  HorizontalAlignment="Left" Margin="-1,82,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="EmailLabel" Content="{Binding Path=Email}" HorizontalAlignment="Left" Margin="-1,104,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
             </Grid>
         </GroupBox>
-        <Button Content="Save" Width="75" HorizontalAlignment="Left" Margin="375,338,0,15" Grid.RowSpan="2"/>
-        <Button Content="Load" Width="75" HorizontalAlignment="Left" Margin="453,338,0,15" Grid.RowSpan="2"/>
+        <Button x:Name="SaveButton" Content="Save" Command="{Binding SaveCommand}" Width="75" HorizontalAlignment="Left" Margin="375,338,0,15" Grid.RowSpan="2"/>
+        <Button x:Name="LoadButton" Content="Load" Command="{Binding LoadCommand}"  Width="75" HorizontalAlignment="Left" Margin="453,338,0,15" Grid.RowSpan="2"/>
     </Grid>
 </Window>
