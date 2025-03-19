@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace View.ViewModel
 {
+    /// <summary>
+    /// Команда сохранения.
+    /// </summary>
     public class SaveCommand : ICommand
     {
         private Action<object> _execute;

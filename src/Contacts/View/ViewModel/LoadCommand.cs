@@ -9,6 +9,9 @@ using View.Model;
 
 namespace View.ViewModel
 {
+    /// <summary>
+    /// Команда загрузки.
+    /// </summary>
     public class LoadCommand : ICommand
     {
         private Action<object> _execute;
