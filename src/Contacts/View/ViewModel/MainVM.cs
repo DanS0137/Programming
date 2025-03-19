@@ -10,7 +10,7 @@ using View.Model.Services;
 
 namespace View.ViewModel
 {
-    internal class MainVM : INotifyPropertyChanged
+    public class MainVM : INotifyPropertyChanged
     {
         /// <summary>
         /// Хранит данные о контакте, над которым работает пользователь.
@@ -23,13 +23,7 @@ namespace View.ViewModel
             get
             {
                 return loadCommand ??
-                  (loadCommand = new LoadCommand(obj =>
-                  {
-                      Contact contact = ContactSerializer.LoadContact();
-                      Name = contact.Name;
-                      PhoneNumber = contact.PhoneNumber;
-                      Email = contact.Email;
-                  }));
+                  (loadCommand = new LoadCommand(this));
             }
         }
 
@@ -39,10 +33,7 @@ namespace View.ViewModel
             get
             {
                 return saveCommand ??
-                  (saveCommand = new SaveCommand(obj =>
-                  {
-                      ContactSerializer.SaveContact(_contact);
-                  }));
+                  (saveCommand = new SaveCommand(this));
             }
         }
 
