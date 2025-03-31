@@ -14,7 +14,11 @@ namespace View.ViewModel
     /// </summary>
     public class LoadCommand : ICommand
     {
-        private MainVM _vM;
+        /// <summary>
+        /// Экземпляр класса <see cref="MainVM"/>, из которого
+        /// исходит команда загрузки.
+        /// </summary>
+        private readonly MainVM _vm;
 
         event EventHandler? ICommand.CanExecuteChanged
         {
@@ -29,14 +33,14 @@ namespace View.ViewModel
         public void Execute(object? parameter)
         {
             Contact contact = Model.Services.ContactSerializer.LoadContact();
-            _vM.Email = contact.Email;
-            _vM.Name = contact.Name;
-            _vM.PhoneNumber = contact.PhoneNumber;
+            _vm.Email = contact.Email;
+            _vm.Name = contact.Name;
+            _vm.PhoneNumber = contact.PhoneNumber;
         }
 
         public LoadCommand(MainVM vM)
         {
-            _vM = vM;
+            _vm = vM;
         }
     }
 }

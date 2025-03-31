@@ -18,6 +18,9 @@ namespace View.ViewModel
         private Contact _contact = new Contact();
 
         private LoadCommand loadCommand;
+
+        private SaveCommand saveCommand;
+
         public LoadCommand LoadCommand
         {
             get
@@ -27,7 +30,6 @@ namespace View.ViewModel
             }
         }
 
-        private SaveCommand saveCommand;
         public SaveCommand SaveCommand
         {
             get
@@ -52,6 +54,7 @@ namespace View.ViewModel
                 ThisPropertyChanged("Name");
             }
         }
+
         /// <summary>
         /// Возвращает и задаёт телефонный номер контакта.
         /// </summary>
@@ -67,6 +70,7 @@ namespace View.ViewModel
                 ThisPropertyChanged("PhoneNumber");
             }
         }
+
         /// <summary>
         /// Возвращает и задаёт email контакта.
         /// </summary>

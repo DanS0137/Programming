@@ -12,60 +12,17 @@ namespace View.Model
     internal class Contact
     {
         /// <summary>
-        /// Имя контакта.
+        /// Принимает и возвращает имя контакта.
         /// </summary>
-        private string _name;
+        public string Name { get; set; }
         /// <summary>
-        /// Телефонный номер контакта.
+        /// Возвращет и задаёт email контакта.
         /// </summary>
-        private string _phoneNumber;
-        /// <summary>
-        /// Email контакта.
-        /// </summary>
-        private string _email;
-
-        /// <summary>
-        /// Возвращает и задаёт имя контакта.
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
-        }
+        public string Email { get; set; }
         /// <summary>
         /// Возвращает и задаёт телефонный номер контакта.
         /// </summary>
-        public string PhoneNumber
-        {
-            get
-            {
-                return _phoneNumber;
-            }
-            set
-            {
-                _phoneNumber = value;
-            }
-        }
-        /// <summary>
-        /// Возвращает и задаёт email контакта.
-        /// </summary>
-        public string Email
-        {
-            get 
-            { 
-                return _email; 
-            }
-            set 
-            { 
-                _email = value; 
-            }
-        }
+        public string PhoneNumber { get; set; }
 
         /// <summary>
         /// Конструктор класса <see cref="Contact"/>.
@@ -75,9 +32,9 @@ namespace View.Model
         /// <param name="email">Email контакта.</param>
         public Contact(string name, string phoneNumber, string email)
         {
-            _name = name;
-            _phoneNumber = phoneNumber;
-            _email = email;
+            Name = name;
+            PhoneNumber = phoneNumber;
+            Email = email;
         }
         /// <summary>
         /// Пустой конструктор класса <see cref="Contact"/>.
@@ -85,9 +42,9 @@ namespace View.Model
         /// </summary>
         public Contact() 
         {
-            _name = "";
-            _phoneNumber = "";
-            _email = "";
+            Name = "";
+            PhoneNumber = "";
+            Email = "";
         }
     }
 }
