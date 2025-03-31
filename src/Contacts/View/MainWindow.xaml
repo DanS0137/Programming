@@ -42,11 +42,11 @@
             Grid.Column="1">
             <StackPanel>
                 <Label Content="Имя:"/>
-                <Label Content="{Binding Path=Name}"/>
+                <Label Content="{Binding Path=Name}" FontWeight="Bold"/>
                 <Label Content="Телефонный номер:"/>
-                <Label Content="{Binding Path=PhoneNumber}"/>
+                <Label Content="{Binding Path=PhoneNumber}" FontWeight="Bold"/>
                 <Label Content="Email:"/>
-                <Label Content="{Binding Path=Email}"/>
+                <Label Content="{Binding Path=Email}" FontWeight="Bold"/>
             </StackPanel>
         </GroupBox>
         <Button
