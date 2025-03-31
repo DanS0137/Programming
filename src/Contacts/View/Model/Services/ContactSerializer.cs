@@ -16,7 +16,7 @@ namespace View.Model.Services
         /// <summary>
         /// Путь по умолчанию.
         /// </summary>
-        private static string Path = @"C:/Users/5731sda/Documents/Contacts";
+        private readonly static string Path = Environment.SpecialFolder.MyDocuments.ToString() + "/Contacts";
 
         /// <summary>
         /// Метод для загрузки файла контакта.
@@ -24,11 +24,11 @@ namespace View.Model.Services
         /// <returns></returns>
         public static Contact LoadContact()
         {
-            if (!Directory.Exists(Path) || !File.Exists(Path + @"/contacts.json"))
+            if (!Directory.Exists(Path) || !File.Exists(Path + @"\contacts.json"))
             {
                 return new Contact();
             }
-            return JsonConvert.DeserializeObject<Contact>(File.ReadAllText(Path + @"/contacts.json"));
+            return JsonConvert.DeserializeObject<Contact>(File.ReadAllText(Path + @"\contacts.json"));
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace View.Model.Services
             {
                 Directory.CreateDirectory(Path);
             }
-            File.WriteAllText(Path + @"/contacts.json", JsonConvert.SerializeObject(contact));
+            File.WriteAllText(Path + @"\contacts.json", JsonConvert.SerializeObject(contact));
         }
     }
 }
