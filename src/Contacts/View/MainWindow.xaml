@@ -17,11 +17,23 @@
             Margin="15,15,2,45">
             <StackPanel>
                 <Label Content="Имя:"/>
-                <TextBox Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Height="25.96"/>
+                <TextBox
+                    Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"
+                    TextWrapping="Wrap"
+                    Height="25.96"
+                    VerticalContentAlignment="Center"/>
                 <Label Content="Телефонный номер:"/>
-                <TextBox Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Height="25.96"/>
+                <TextBox 
+                    Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
+                    TextWrapping="Wrap"
+                    Height="25.96"
+                    VerticalContentAlignment="Center"/>
                 <Label Content="Email:"/>
-                <TextBox Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Height="25.96"/>
+                <TextBox 
+                    Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"
+                    TextWrapping="Wrap"
+                    Height="25.96"
+                    VerticalContentAlignment="Center"/>
             </StackPanel>
         </GroupBox>
         <GroupBox 
