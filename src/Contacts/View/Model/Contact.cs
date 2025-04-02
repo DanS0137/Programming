@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace View.Model
 {
     /// <summary>
     /// Хранит данные о контакте.
     /// </summary>
-    internal class Contact
+    public class Contact : INotifyPropertyChanged
     {
         /// <summary>
         /// Принимает и возвращает имя контакта.
@@ -45,6 +47,13 @@ namespace View.Model
             Name = "";
             PhoneNumber = "";
             Email = "";
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void ThisPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using View.Model;
 using View.Model.Services;
 
@@ -12,30 +14,99 @@ namespace View.ViewModel
 {
     public class MainVM : INotifyPropertyChanged
     {
+        private bool wasAdded = true;
         /// <summary>
         /// Хранит данные о контакте, над которым работает пользователь.
         /// </summary>
-        private Contact _contact = new Contact();
+        private Contact _currentContact = new Contact();
 
-        private LoadCommand loadCommand;
+        private ObservableCollection<Contact> _contacts = new ObservableCollection<Contact>();
 
-        private SaveCommand saveCommand;
+        private int _selectedIndex;
 
-        public LoadCommand LoadCommand
+        //private LoadCommand loadCommand;
+
+        //private SaveCommand saveCommand;
+
+        public RelayCommand AddCommand
         {
             get
             {
-                return loadCommand ??
-                  (loadCommand = new LoadCommand(this));
+                return new RelayCommand(obj =>
+                {
+                    SelectedIndex = -1;
+                    wasAdded = true;
+                });
             }
         }
 
-        public SaveCommand SaveCommand
+        public RelayCommand EditCommand
         {
             get
             {
-                return saveCommand ??
-                  (saveCommand = new SaveCommand(this));
+                return new RelayCommand(obj =>
+                {
+
+                });
+            }
+        }
+        public RelayCommand RemoveCommand
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    Contacts.Remove(_currentContact);
+                    Name = "";
+                    PhoneNumber = "";
+                    Email = "";
+                });
+            }
+        }
+        public RelayCommand ApplyCommand
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    if (wasAdded)
+                    {
+                        Contacts.Add(new Contact(Name, PhoneNumber, Email));
+                        wasAdded = false;
+                    }
+                    else
+                    {
+                        Contacts[_selectedIndex].Name = Name;
+                        Contacts[_selectedIndex].PhoneNumber = PhoneNumber;
+                        Contacts[_selectedIndex].Email = Email;
+                    }
+                });
+            }
+        }
+
+        public int SelectedIndex
+        {
+            get
+            {
+                return _selectedIndex;
+            }
+            set
+            {
+                if (_selectedIndex != value && value != -1)
+                {
+                    _selectedIndex = value;
+                    Name = Contacts[value].Name;
+                    PhoneNumber = Contacts[value].PhoneNumber;
+                    Email = Contacts[value].Email;
+                    ThisPropertyChanged("SelectedIndex");
+                }
+                else if (value == -1)
+                {
+                    Name = "";
+                    PhoneNumber = "";
+                    Email = "";
+                    ThisPropertyChanged("SelectedIndex");
+                }
             }
         }
 
@@ -46,11 +117,11 @@ namespace View.ViewModel
         {
             get
             {
-                return _contact.Name;
+                return _currentContact.Name;
             }
             set
             {
-                _contact.Name = value;
+                _currentContact.Name = value;
                 ThisPropertyChanged("Name");
             }
         }
@@ -62,11 +133,11 @@ namespace View.ViewModel
         {
             get
             {
-                return _contact.PhoneNumber;
+                return _currentContact.PhoneNumber;
             }
             set
             {
-                _contact.PhoneNumber = value;
+                _currentContact.PhoneNumber = value;
                 ThisPropertyChanged("PhoneNumber");
             }
         }
@@ -78,12 +149,25 @@ namespace View.ViewModel
         {
             get
             {
-                return _contact.Email;
+                return _currentContact.Email;
             }
             set
             {
-                _contact.Email = value;
+                _currentContact.Email = value;
                 ThisPropertyChanged("Email");
+            }
+        }
+
+        public ObservableCollection<Contact> Contacts
+        {
+            get
+            {
+                return _contacts;
+            }
+            set
+            {
+                _contacts = value;
+                ThisPropertyChanged("Contacts");
             }
         }
 

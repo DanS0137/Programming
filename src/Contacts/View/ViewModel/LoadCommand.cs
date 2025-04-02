@@ -38,9 +38,9 @@ namespace View.ViewModel
             _vm.PhoneNumber = contact.PhoneNumber;
         }
 
-        public LoadCommand(MainVM vM)
+        public LoadCommand(MainVM vm)
         {
-            _vm = vM;
+            _vm = vm;
         }
     }
 }
