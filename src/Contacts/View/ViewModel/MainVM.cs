@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using View.Model;
-using View.Model.Services;
 
 namespace View.ViewModel
 {
     public class MainVM : INotifyPropertyChanged
     {
         private bool wasAdded = true;
+
+        private bool _isEditting = false;
         /// <summary>
         /// Хранит данные о контакте, над которым работает пользователь.
         /// </summary>
@@ -24,9 +25,29 @@ namespace View.ViewModel
 
         private int _selectedIndex;
 
-        //private LoadCommand loadCommand;
+        public bool Visibility
+        {
+            get
+            {
+                return IsEditting;
+            }
+        }
 
-        //private SaveCommand saveCommand;
+        public bool IsEnabled
+        {
+            get
+            {
+                return !IsEditting;
+            }
+        }
+
+        public bool IsReadOnly
+        {
+            get
+            {
+                return !IsEditting;
+            }
+        }
 
         public RelayCommand AddCommand
         {
@@ -35,7 +56,9 @@ namespace View.ViewModel
                 return new RelayCommand(obj =>
                 {
                     SelectedIndex = -1;
-                    wasAdded = true;
+                    Contact cont = new Contact();
+                    cont.Name = "Имя контакта";
+                    Contacts.Insert(0, cont);
                 });
             }
         }
@@ -44,10 +67,17 @@ namespace View.ViewModel
         {
             get
             {
-                return new RelayCommand(obj =>
+                if (SelectedIndex != -1)
                 {
-
-                });
+                    return new RelayCommand(obj =>
+                    {
+                        IsEditting = true;
+                    });
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
         public RelayCommand RemoveCommand
@@ -56,10 +86,8 @@ namespace View.ViewModel
             {
                 return new RelayCommand(obj =>
                 {
-                    Contacts.Remove(_currentContact);
-                    Name = "";
-                    PhoneNumber = "";
-                    Email = "";
+                    Contacts.RemoveAt(SelectedIndex);
+                    SelectedIndex = -1;
                 });
             }
         }
@@ -69,17 +97,9 @@ namespace View.ViewModel
             {
                 return new RelayCommand(obj =>
                 {
-                    if (wasAdded)
-                    {
-                        Contacts.Add(new Contact(Name, PhoneNumber, Email));
-                        wasAdded = false;
-                    }
-                    else
-                    {
-                        Contacts[_selectedIndex].Name = Name;
-                        Contacts[_selectedIndex].PhoneNumber = PhoneNumber;
-                        Contacts[_selectedIndex].Email = Email;
-                    }
+                    if (_selectedIndex == -1) { return; }
+                    IsEditting = false;
+                    Contacts[_selectedIndex] = new Contact(Name, PhoneNumber, Email);
                     SelectedIndex = -1;
                 });
             }
@@ -95,18 +115,34 @@ namespace View.ViewModel
             {
                 if (value != -1)
                 {
-                    _selectedIndex = value;
+                    IsEditting = false;
                     Name = Contacts[value].Name;
                     PhoneNumber = Contacts[value].PhoneNumber;
                     Email = Contacts[value].Email;
                 }
-                else if (value == -1)
+                else
                 {
                     Name = "";
                     PhoneNumber = "";
                     Email = "";
                 }
-                ThisPropertyChanged("SelectedIndex");
+                _selectedIndex = value;
+                ThisPropertyChanged(nameof(SelectedIndex));
+            }
+        }
+
+        public bool IsEditting
+        {
+            get
+            {
+                return _isEditting;
+            }
+            set
+            {
+                _isEditting = value;
+                ThisPropertyChanged(nameof(IsEnabled));
+                ThisPropertyChanged(nameof(IsReadOnly));
+                ThisPropertyChanged(nameof(Visibility));
             }
         }
 
@@ -122,7 +158,7 @@ namespace View.ViewModel
             set
             {
                 _currentContact.Name = value;
-                ThisPropertyChanged("Name");
+                ThisPropertyChanged(nameof(Name));
             }
         }
 
@@ -138,7 +174,7 @@ namespace View.ViewModel
             set
             {
                 _currentContact.PhoneNumber = value;
-                ThisPropertyChanged("PhoneNumber");
+                ThisPropertyChanged(nameof(PhoneNumber));
             }
         }
 
@@ -154,7 +190,7 @@ namespace View.ViewModel
             set
             {
                 _currentContact.Email = value;
-                ThisPropertyChanged("Email");
+                ThisPropertyChanged(nameof(Email));
             }
         }
 
@@ -167,7 +203,7 @@ namespace View.ViewModel
             set
             {
                 _contacts = value;
-                ThisPropertyChanged("Contacts");
+                ThisPropertyChanged(nameof(Contacts));
             }
         }
 
