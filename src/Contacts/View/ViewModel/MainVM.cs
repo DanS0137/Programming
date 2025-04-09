@@ -80,6 +80,7 @@ namespace View.ViewModel
                         Contacts[_selectedIndex].PhoneNumber = PhoneNumber;
                         Contacts[_selectedIndex].Email = Email;
                     }
+                    SelectedIndex = -1;
                 });
             }
         }
@@ -92,21 +93,20 @@ namespace View.ViewModel
             }
             set
             {
-                if (_selectedIndex != value && value != -1)
+                if (value != -1)
                 {
                     _selectedIndex = value;
                     Name = Contacts[value].Name;
                     PhoneNumber = Contacts[value].PhoneNumber;
                     Email = Contacts[value].Email;
-                    ThisPropertyChanged("SelectedIndex");
                 }
                 else if (value == -1)
                 {
                     Name = "";
                     PhoneNumber = "";
                     Email = "";
-                    ThisPropertyChanged("SelectedIndex");
                 }
+                ThisPropertyChanged("SelectedIndex");
             }
         }
 
