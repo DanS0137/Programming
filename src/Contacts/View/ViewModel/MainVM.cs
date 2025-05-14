@@ -6,48 +6,31 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using View.Model;
+using View.Model.Services;
 
 namespace View.ViewModel
 {
     public class MainVM : INotifyPropertyChanged
     {
-        private bool wasAdded = true;
-
+        /// <summary>
+        /// Хранит данные о том, редактируется ли контакт.
+        /// </summary>
         private bool _isEditting = false;
+
         /// <summary>
         /// Хранит данные о контакте, над которым работает пользователь.
         /// </summary>
         private Contact _currentContact = new Contact();
 
+        /// <summary>
+        /// Хранит список контактов пользователя.
+        /// </summary>
         private ObservableCollection<Contact> _contacts = new ObservableCollection<Contact>();
 
         private int _selectedIndex;
-
-        public bool Visibility
-        {
-            get
-            {
-                return IsEditting;
-            }
-        }
-
-        public bool IsEnabled
-        {
-            get
-            {
-                return !IsEditting;
-            }
-        }
-
-        public bool IsReadOnly
-        {
-            get
-            {
-                return !IsEditting;
-            }
-        }
 
         public RelayCommand AddCommand
         {
@@ -56,9 +39,9 @@ namespace View.ViewModel
                 return new RelayCommand(obj =>
                 {
                     SelectedIndex = -1;
-                    Contact cont = new Contact();
-                    cont.Name = "Имя контакта";
-                    Contacts.Insert(0, cont);
+                    Contact contact = new Contact();
+                    contact.Name = "Имя контакта";
+                    Contacts.Insert(0, contact);
                 });
             }
         }
@@ -99,11 +82,21 @@ namespace View.ViewModel
                 {
                     if (_selectedIndex == -1) { return; }
                     IsEditting = false;
-                    Contacts[_selectedIndex] = new Contact(Name, PhoneNumber, Email);
+                    Contacts[SelectedIndex] = new Contact(Name, PhoneNumber, Email);
                     SelectedIndex = -1;
                 });
             }
         }
+
+        public RelayCommand LoadedCommand => new RelayCommand(obj =>
+                                                          {
+                                                              Contacts = ContactSerializer.LoadContacts();
+                                                          });
+
+        public RelayCommand ClosedCommand => new RelayCommand(obj =>
+                                                           {
+                                                              ContactSerializer.SaveContacts(Contacts);
+                                                           });
 
         public int SelectedIndex
         {
@@ -140,9 +133,7 @@ namespace View.ViewModel
             set
             {
                 _isEditting = value;
-                ThisPropertyChanged(nameof(IsEnabled));
-                ThisPropertyChanged(nameof(IsReadOnly));
-                ThisPropertyChanged(nameof(Visibility));
+                ThisPropertyChanged(nameof(IsEditting));
             }
         }
 
@@ -206,6 +197,7 @@ namespace View.ViewModel
                 ThisPropertyChanged(nameof(Contacts));
             }
         }
+
 
         /// <summary>
         /// Событие для сообщения о том, что какое-то свойство изменилось.
