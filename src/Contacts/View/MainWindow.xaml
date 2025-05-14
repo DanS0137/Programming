@@ -13,11 +13,11 @@
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closed">
             <i:InvokeCommandAction
-                            Command="{Binding ClosedCommand}"/>
+                            Command="{Binding SaveCommand}"/>
         </i:EventTrigger>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction
-                            Command="{Binding LoadedCommand}"/>
+                            Command="{Binding LoadCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.Resources>
@@ -61,7 +61,7 @@
                 Margin="8,0,8,0"
                 Grid.Row="1"
                 ItemsSource="{Binding Contacts}"
-                SelectedIndex="{Binding SelectedIndex}"/>
+                SelectedItem="{Binding SelectedContact}"/>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="8"/>

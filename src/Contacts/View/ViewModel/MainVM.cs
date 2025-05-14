@@ -30,15 +30,21 @@ namespace View.ViewModel
         /// </summary>
         private ObservableCollection<Contact> _contacts = new ObservableCollection<Contact>();
 
-        private int _selectedIndex;
+        /// <summary>
+        /// Хранит выбранный контакт.
+        /// </summary>
+        private Contact _selectedContact;
 
+        /// <summary>
+        /// Команда добавления нового контакта.
+        /// </summary>
         public RelayCommand AddCommand
         {
             get
             {
                 return new RelayCommand(obj =>
                 {
-                    SelectedIndex = -1;
+                    SelectedContact = null;
                     Contact contact = new Contact();
                     contact.Name = "Имя контакта";
                     Contacts.Insert(0, contact);
@@ -46,72 +52,89 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Команда редактирования выбранного контакта.
+        /// </summary>
         public RelayCommand EditCommand
         {
             get
             {
-                if (SelectedIndex != -1)
-                {
-                    return new RelayCommand(obj =>
+                return new RelayCommand(obj =>
                     {
-                        IsEditting = true;
+                        if (SelectedContact != null)
+                        { 
+                            IsEditting = true; 
+                        }
                     });
-                }
-                else
-                {
-                    return null;
-                }
             }
         }
+
+        /// <summary>
+        /// Команда удаления выбранного контакта.
+        /// </summary>
         public RelayCommand RemoveCommand
         {
             get
             {
                 return new RelayCommand(obj =>
                 {
-                    Contacts.RemoveAt(SelectedIndex);
-                    SelectedIndex = -1;
+                    Contacts.Remove(SelectedContact);
+                    SelectedContact = null;
                 });
             }
         }
+
+        /// <summary>
+        /// Команда сохранения отредактированного контакта.
+        /// </summary>
         public RelayCommand ApplyCommand
         {
             get
             {
                 return new RelayCommand(obj =>
                 {
-                    if (_selectedIndex == -1) { return; }
+                    if (SelectedContact == null) { return; }
+                    Contacts[Contacts.IndexOf(SelectedContact)] = new Contact(Name, PhoneNumber, Email);
+                    SelectedContact = null;
                     IsEditting = false;
-                    Contacts[SelectedIndex] = new Contact(Name, PhoneNumber, Email);
-                    SelectedIndex = -1;
                 });
             }
         }
 
-        public RelayCommand LoadedCommand => new RelayCommand(obj =>
+        /// <summary>
+        /// Команда загрузки контактов.
+        /// </summary>
+        public RelayCommand LoadCommand => new RelayCommand(obj =>
                                                           {
                                                               Contacts = ContactSerializer.LoadContacts();
                                                           });
 
-        public RelayCommand ClosedCommand => new RelayCommand(obj =>
+        /// <summary>
+        /// Команда сохранения контактов.
+        /// </summary>
+        public RelayCommand SaveCommand => new RelayCommand(obj =>
                                                            {
                                                               ContactSerializer.SaveContacts(Contacts);
                                                            });
 
-        public int SelectedIndex
+        /// <summary>
+        /// Возвращает и задаёт выбранный контакт.
+        /// </summary>
+        public Contact SelectedContact
         {
             get
             {
-                return _selectedIndex;
+                return _selectedContact;
             }
             set
             {
-                if (value != -1)
+                _selectedContact = value;
+                if (value != null)
                 {
                     IsEditting = false;
-                    Name = Contacts[value].Name;
-                    PhoneNumber = Contacts[value].PhoneNumber;
-                    Email = Contacts[value].Email;
+                    Name = value.Name;
+                    PhoneNumber = value.PhoneNumber;
+                    Email = value.Email;
                 }
                 else
                 {
@@ -119,11 +142,13 @@ namespace View.ViewModel
                     PhoneNumber = "";
                     Email = "";
                 }
-                _selectedIndex = value;
-                ThisPropertyChanged(nameof(SelectedIndex));
+                ThisPropertyChanged(nameof(SelectedContact));
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт статус редактирования контакта.
+        /// </summary>
         public bool IsEditting
         {
             get
@@ -185,6 +210,9 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт список контактов.
+        /// </summary>
         public ObservableCollection<Contact> Contacts
         {
             get
@@ -197,7 +225,6 @@ namespace View.ViewModel
                 ThisPropertyChanged(nameof(Contacts));
             }
         }
-
 
         /// <summary>
         /// Событие для сообщения о том, что какое-то свойство изменилось.
