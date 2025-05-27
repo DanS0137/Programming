@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="View.Controls.ContactControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:View.Controls"
+             xmlns:viewmodel="clr-namespace:View.ViewModel"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <viewmodel:InverseBoolValueConverter x:Key="InvBoolConverter"/>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Label
+            Content=" Name:"
+            Margin="-5,0,0,0"
+            HorizontalAlignment="Left"
+            Width="398"
+            Height="26"
+            VerticalAlignment="Top"/>
+        <TextBox
+            IsReadOnly="{Binding IsEditting, Converter={StaticResource InvBoolConverter}}"
+            Margin="3,26,0,0"
+            Height="18"
+            VerticalAlignment="Top">
+            <TextBox.Text>
+                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label
+            Content=" PhoneNumber:"
+            Margin="-5,44,0,0"
+            HorizontalAlignment="Left"
+            Width="398"
+            Height="26"
+            VerticalAlignment="Top"/>
+        <TextBox
+            IsReadOnly="{Binding IsEditting, Converter={StaticResource InvBoolConverter}}"
+            Margin="3,70,0,0"
+            Height="18"
+            VerticalAlignment="Top">
+            <TextBox.Text>
+                <Binding Path="PhoneNumber" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label
+            Content=" Email:"
+            Margin="-5,88,0,0"
+            HorizontalAlignment="Left"
+            Width="398"
+            Height="26"
+            VerticalAlignment="Top"/>
+        <TextBox
+            IsReadOnly="{Binding IsEditting, Converter={StaticResource InvBoolConverter}}"
+            Margin="3,114,0,0"
+            Height="18"
+            VerticalAlignment="Top">
+            <TextBox.Text>
+                <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+    </Grid>
+</UserControl>

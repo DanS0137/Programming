@@ -5,14 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 
 namespace View.Model
 {
     /// <summary>
     /// Хранит данные о контакте.
     /// </summary>
-    public class Contact : INotifyPropertyChanged
+    public class Contact : INotifyPropertyChanged, IDataErrorInfo
     {
+        private string _symbols = "0123456789+-()";
         /// <summary>
         /// Принимает и возвращает имя контакта.
         /// </summary>
@@ -25,6 +27,53 @@ namespace View.Model
         /// Возвращает и задаёт телефонный номер контакта.
         /// </summary>
         public string PhoneNumber { get; set; }
+
+        public string Error => throw new NotImplementedException();
+
+        public string this[string propertyName]
+        {
+            get
+            {
+                string error = String.Empty;
+                switch (propertyName)
+                {
+                    case "Name":
+                        if (Name.Length > 100)
+                        {
+                            error = "Длина имени не должна превышать 100 символов";
+                        }
+                        break;
+                    case "Email":
+                        if (Email.Length > 100)
+                        {
+                            error = "Длина email не должна превышать 100 символов.";
+                        }
+                        else if (!Email.Contains('@'))
+                        {
+                            error = "Email должен содержать символ '@'.";
+                        }
+                        break;
+                    case "PhoneNumber":
+                        if (PhoneNumber.Length > 100)
+                        {
+                            error = "Длина телефонного номера не должна превышать 100 символов.";
+                        }
+                        else
+                        {
+                            foreach(char symbol in PhoneNumber)
+                            {
+                                if (!_symbols.Contains(symbol))
+                                {
+                                    error = "Телефонный номер может содержать только цифры и символы '+()-'.";
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                }
+                return error;
+            }
+        }
 
         /// <summary>
         /// Конструктор класса <see cref="Contact"/>.

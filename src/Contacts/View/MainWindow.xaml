@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:controls="clr-namespace:View.Controls"
         xmlns:local="clr-namespace:View"
         xmlns:viewmodel="clr-namespace:View.ViewModel"
     d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}"
@@ -23,6 +24,22 @@
     <Window.Resources>
         <viewmodel:BoolToVisibilityConverter x:Key="VisConverter"/>
         <viewmodel:InverseBoolValueConverter x:Key="InvBoolConverter"/>
+        <DataTemplate x:Key="contactTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Image
+                    Height="30"
+                    Grid.Column="0"
+                    Source="/photo_placeholder_100x100.png"/>
+                <StackPanel Grid.Column="1" Margin="3">
+                    <TextBlock Text="{Binding Name}"/>
+                    <TextBlock Text="{Binding PhoneNumber}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -61,7 +78,8 @@
                 Margin="8,0,8,0"
                 Grid.Row="1"
                 ItemsSource="{Binding Contacts}"
-                SelectedItem="{Binding SelectedContact}"/>
+                SelectedItem="{Binding SelectedContact}"
+                ItemTemplate="{StaticResource contactTemplate}"/>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="8"/>
@@ -106,21 +124,9 @@
             <StackPanel 
                 Grid.Column="1"
                 Margin="0,0,8,0">
-                <Label Content=" Name:" Margin="-5,0,0,0"/>
-                <TextBox
-                    Text="{Binding Name}"
-                    IsReadOnly="{Binding IsEditting, Converter={StaticResource InvBoolConverter}}"
-                    Margin="3,0,0,0"/>
-                <Label Content=" PhoneNumber:" Margin="-5,0,0,0"/>
-                <TextBox
-                    Text="{Binding PhoneNumber}"   
-                    IsReadOnly="{Binding IsEditting, Converter={StaticResource InvBoolConverter}}"
-                    Margin="3,0,0,0"/>
-                <Label Content=" Email:" Margin="-5,0,0,0"/>
-                <TextBox
-                    Text="{Binding Email}"
-                    IsReadOnly="{Binding IsEditting, Converter={StaticResource InvBoolConverter}}"
-                    Margin="3,0,0,0"/>
+                <controls:ContactControl
+                    DataContext="{Binding SelectedContact}">
+                </controls:ContactControl>
                 <Button
                     Command="{Binding ApplyCommand}"
                     Visibility="{Binding IsEditting, Converter={StaticResource VisConverter}}"
