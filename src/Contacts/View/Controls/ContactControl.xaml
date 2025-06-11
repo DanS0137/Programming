@@ -8,6 +8,16 @@
              mc:Ignorable="d">
     <UserControl.Resources>
         <viewmodel:InverseBoolValueConverter x:Key="InvBoolConverter"/>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="Background" Value="LightPink" />
+                    <Setter Property="ToolTip"
+                        Value="{Binding RelativeSource={RelativeSource Self},
+                        Path=(Validation.Errors)[0].ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Grid Background="White">
         <Label
@@ -18,7 +28,7 @@
             Height="26"
             VerticalAlignment="Top"/>
         <TextBox
-            IsReadOnly="{Binding IsEditting, Converter={StaticResource InvBoolConverter}}"
+            IsReadOnly="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ContactControl}, Mode=FindAncestor}, Path=IsEditting, Converter={StaticResource InvBoolConverter}}"
             Margin="3,26,0,0"
             Height="18"
             VerticalAlignment="Top">
@@ -38,7 +48,7 @@
             Height="26"
             VerticalAlignment="Top"/>
         <TextBox
-            IsReadOnly="{Binding IsEditting, Converter={StaticResource InvBoolConverter}}"
+            IsReadOnly="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ContactControl}, Mode=FindAncestor}, Path=IsEditting, Converter={StaticResource InvBoolConverter}}"
             Margin="3,70,0,0"
             Height="18"
             VerticalAlignment="Top">
@@ -58,7 +68,7 @@
             Height="26"
             VerticalAlignment="Top"/>
         <TextBox
-            IsReadOnly="{Binding IsEditting, Converter={StaticResource InvBoolConverter}}"
+            IsReadOnly="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ContactControl}, Mode=FindAncestor}, Path=IsEditting, Converter={StaticResource InvBoolConverter}}"
             Margin="3,114,0,0"
             Height="18"
             VerticalAlignment="Top">

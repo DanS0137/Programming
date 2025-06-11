@@ -20,9 +20,27 @@ namespace View.Controls
     /// </summary>
     public partial class ContactControl : UserControl
     {
+        public static readonly DependencyProperty IsEdittingProperty;
+
+        static ContactControl()
+        {
+            IsEdittingProperty = DependencyProperty.Register(
+                "IsEditting",
+                typeof(bool),
+                typeof(ContactControl)
+                );
+        }
+
+        public bool IsEditting
+        {
+            get { return (bool)GetValue(IsEdittingProperty);}
+            set { SetValue(IsEdittingProperty, value); }
+        }
+
         public ContactControl()
         {
             InitializeComponent();
+            IsEditting = false;
         }
     }
 }

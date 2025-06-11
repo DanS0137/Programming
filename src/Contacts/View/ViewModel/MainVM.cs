@@ -20,10 +20,7 @@ namespace View.ViewModel
         /// </summary>
         private bool _isEditting = false;
 
-        /// <summary>
-        /// Хранит данные о контакте, над которым работает пользователь.
-        /// </summary>
-        private Contact _currentContact = new Contact();
+        private bool _hasErrors = false;
 
         /// <summary>
         /// Хранит список контактов пользователя.
@@ -34,6 +31,11 @@ namespace View.ViewModel
         /// Хранит выбранный контакт.
         /// </summary>
         private Contact _selectedContact;
+
+        /// <summary>
+        /// Хранит введённые пользоваетлем данные о контакте.
+        /// </summary>
+        private Contact _currentContact;
 
         /// <summary>
         /// Команда добавления нового контакта.
@@ -80,6 +82,7 @@ namespace View.ViewModel
                 {
                     Contacts.Remove(SelectedContact);
                     SelectedContact = null;
+                    CurrentContact = null;
                 });
             }
         }
@@ -94,9 +97,10 @@ namespace View.ViewModel
                 return new RelayCommand(obj =>
                 {
                     if (SelectedContact == null) { return; }
-                    Contacts[Contacts.IndexOf(SelectedContact)] = new Contact(Name, PhoneNumber, Email);
+                    Contacts[Contacts.IndexOf(SelectedContact)] = new Contact(CurrentContact);
                     SelectedContact = null;
                     IsEditting = false;
+                    CurrentContact = new Contact();
                 });
             }
         }
@@ -132,17 +136,23 @@ namespace View.ViewModel
                 if (value != null)
                 {
                     IsEditting = false;
-                    Name = value.Name;
-                    PhoneNumber = value.PhoneNumber;
-                    Email = value.Email;
+                    CurrentContact = new Contact(value);
                 }
                 else
                 {
-                    Name = "";
-                    PhoneNumber = "";
-                    Email = "";
+                    //CurrentContact = new Contact();
                 }
                 ThisPropertyChanged(nameof(SelectedContact));
+            }
+        }
+
+        public Contact CurrentContact
+        {
+            get { return _currentContact; }
+            set
+            {
+                _currentContact = value;
+                ThisPropertyChanged(nameof(CurrentContact));
             }
         }
 
@@ -162,51 +172,16 @@ namespace View.ViewModel
             }
         }
 
-        /// <summary>
-        /// Возвращает и задаёт имя контакта.
-        /// </summary>
-        public string Name
+        public bool HasErrors
         {
             get
             {
-                return _currentContact.Name;
+                return _hasErrors;
             }
             set
             {
-                _currentContact.Name = value;
-                ThisPropertyChanged(nameof(Name));
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задаёт телефонный номер контакта.
-        /// </summary>
-        public string PhoneNumber
-        {
-            get
-            {
-                return _currentContact.PhoneNumber;
-            }
-            set
-            {
-                _currentContact.PhoneNumber = value;
-                ThisPropertyChanged(nameof(PhoneNumber));
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задаёт email контакта.
-        /// </summary>
-        public string Email
-        {
-            get
-            {
-                return _currentContact.Email;
-            }
-            set
-            {
-                _currentContact.Email = value;
-                ThisPropertyChanged(nameof(Email));
+                _hasErrors = value;
+                ThisPropertyChanged(nameof(HasErrors));
             }
         }
 
