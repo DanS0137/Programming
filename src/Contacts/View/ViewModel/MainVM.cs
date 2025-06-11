@@ -20,8 +20,6 @@ namespace View.ViewModel
         /// </summary>
         private bool _isEditting = false;
 
-        private bool _hasErrors = false;
-
         /// <summary>
         /// Хранит список контактов пользователя.
         /// </summary>
@@ -146,6 +144,9 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Задаёт и возвращает значение текущего контакта, над которым работает пользователь.
+        /// </summary>
         public ContactVM CurrentContact
         {
             get { return _currentContact; }
@@ -173,19 +174,6 @@ namespace View.ViewModel
                     CurrentContact.IsEditting = true;
                 }
                 ThisPropertyChanged(nameof(IsEditting));
-            }
-        }
-
-        public bool HasErrors
-        {
-            get
-            {
-                return _hasErrors;
-            }
-            set
-            {
-                _hasErrors = value;
-                ThisPropertyChanged(nameof(HasErrors));
             }
         }
 
