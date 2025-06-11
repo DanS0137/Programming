@@ -35,7 +35,7 @@ namespace View.ViewModel
         /// <summary>
         /// Хранит введённые пользоваетлем данные о контакте.
         /// </summary>
-        private Contact _currentContact;
+        private ContactVM _currentContact;
 
         /// <summary>
         /// Команда добавления нового контакта.
@@ -97,10 +97,10 @@ namespace View.ViewModel
                 return new RelayCommand(obj =>
                 {
                     if (SelectedContact == null) { return; }
-                    Contacts[Contacts.IndexOf(SelectedContact)] = new Contact(CurrentContact);
+                    Contacts[Contacts.IndexOf(SelectedContact)] = new Contact(CurrentContact.CurrentContact);
                     SelectedContact = null;
                     IsEditting = false;
-                    CurrentContact = new Contact();
+                    CurrentContact = new ContactVM();
                 });
             }
         }
@@ -136,7 +136,7 @@ namespace View.ViewModel
                 if (value != null)
                 {
                     IsEditting = false;
-                    CurrentContact = new Contact(value);
+                    CurrentContact = new ContactVM(value);
                 }
                 else
                 {
@@ -146,7 +146,7 @@ namespace View.ViewModel
             }
         }
 
-        public Contact CurrentContact
+        public ContactVM CurrentContact
         {
             get { return _currentContact; }
             set
@@ -168,6 +168,10 @@ namespace View.ViewModel
             set
             {
                 _isEditting = value;
+                if (CurrentContact != null)
+                {
+                    CurrentContact.IsEditting = true;
+                }
                 ThisPropertyChanged(nameof(IsEditting));
             }
         }

@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:View.Controls"
              xmlns:viewmodel="clr-namespace:View.ViewModel"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance Type=viewmodel:ContactVM}">
     <UserControl.Resources>
         <viewmodel:InverseBoolValueConverter x:Key="InvBoolConverter"/>
         <Style TargetType="TextBox">
@@ -28,12 +30,12 @@
             Height="26"
             VerticalAlignment="Top"/>
         <TextBox
-            IsReadOnly="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ContactControl}, Mode=FindAncestor}, Path=IsEditting, Converter={StaticResource InvBoolConverter}}"
+            IsReadOnly="{Binding IsEditting, Converter={StaticResource InvBoolConverter}}"
             Margin="3,26,0,0"
             Height="18"
             VerticalAlignment="Top">
             <TextBox.Text>
-                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                <Binding Path="CurrentContact.Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule />
                     </Binding.ValidationRules>
@@ -48,12 +50,24 @@
             Height="26"
             VerticalAlignment="Top"/>
         <TextBox
-            IsReadOnly="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ContactControl}, Mode=FindAncestor}, Path=IsEditting, Converter={StaticResource InvBoolConverter}}"
+            IsReadOnly="{Binding IsEditting, Converter={StaticResource InvBoolConverter}}"
             Margin="3,70,0,0"
             Height="18"
             VerticalAlignment="Top">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <i:InvokeCommandAction
+                            Command="{Binding PreviewTextInputCommand}"
+                            PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="DataObject.Pasting">
+                    <i:InvokeCommandAction
+                            Command="{Binding PastingCommand}"
+                            PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <TextBox.Text>
-                <Binding Path="PhoneNumber" UpdateSourceTrigger="PropertyChanged">
+                <Binding Path="CurrentContact.PhoneNumber" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
                     </Binding.ValidationRules>
@@ -68,12 +82,12 @@
             Height="26"
             VerticalAlignment="Top"/>
         <TextBox
-            IsReadOnly="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ContactControl}, Mode=FindAncestor}, Path=IsEditting, Converter={StaticResource InvBoolConverter}}"
+            IsReadOnly="{Binding IsEditting, Converter={StaticResource InvBoolConverter}}"
             Margin="3,114,0,0"
             Height="18"
             VerticalAlignment="Top">
             <TextBox.Text>
-                <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
+                <Binding Path="CurrentContact.Email" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule />
                     </Binding.ValidationRules>
