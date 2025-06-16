@@ -57,12 +57,12 @@
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PreviewTextInput">
                     <i:InvokeCommandAction
-                            Command="{Binding PreviewTextInputCommand}"
+                            Command="{Binding PreviewTextInputEventCommand}"
                             PassEventArgsToCommand="True"/>
                 </i:EventTrigger>
                 <i:EventTrigger EventName="DataObject.Pasting">
                     <i:InvokeCommandAction
-                            Command="{Binding PastingCommand}"
+                            Command="{Binding PastingEventCommand}"
                             PassEventArgsToCommand="True"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
