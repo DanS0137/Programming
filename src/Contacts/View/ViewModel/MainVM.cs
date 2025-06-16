@@ -21,11 +21,6 @@ namespace View.ViewModel
         private bool _isEditting = false;
 
         /// <summary>
-        /// Хранит данные о контакте, над которым работает пользователь.
-        /// </summary>
-        private Contact _currentContact = new Contact();
-
-        /// <summary>
         /// Хранит список контактов пользователя.
         /// </summary>
         private ObservableCollection<Contact> _contacts = new ObservableCollection<Contact>();
@@ -34,6 +29,11 @@ namespace View.ViewModel
         /// Хранит выбранный контакт.
         /// </summary>
         private Contact _selectedContact;
+
+        /// <summary>
+        /// Хранит введённые пользоваетлем данные о контакте.
+        /// </summary>
+        private ContactVM _currentContact;
 
         /// <summary>
         /// Команда добавления нового контакта.
@@ -80,6 +80,7 @@ namespace View.ViewModel
                 {
                     Contacts.Remove(SelectedContact);
                     SelectedContact = null;
+                    CurrentContact = null;
                 });
             }
         }
@@ -94,9 +95,10 @@ namespace View.ViewModel
                 return new RelayCommand(obj =>
                 {
                     if (SelectedContact == null) { return; }
-                    Contacts[Contacts.IndexOf(SelectedContact)] = new Contact(Name, PhoneNumber, Email);
+                    Contacts[Contacts.IndexOf(SelectedContact)] = new Contact(CurrentContact.CurrentContact);
                     SelectedContact = null;
                     IsEditting = false;
+                    CurrentContact = new ContactVM();
                 });
             }
         }
@@ -132,17 +134,26 @@ namespace View.ViewModel
                 if (value != null)
                 {
                     IsEditting = false;
-                    Name = value.Name;
-                    PhoneNumber = value.PhoneNumber;
-                    Email = value.Email;
+                    CurrentContact = new ContactVM(value);
                 }
                 else
                 {
-                    Name = "";
-                    PhoneNumber = "";
-                    Email = "";
+                    //CurrentContact = new Contact();
                 }
                 ThisPropertyChanged(nameof(SelectedContact));
+            }
+        }
+
+        /// <summary>
+        /// Задаёт и возвращает значение текущего контакта, над которым работает пользователь.
+        /// </summary>
+        public ContactVM CurrentContact
+        {
+            get { return _currentContact; }
+            set
+            {
+                _currentContact = value;
+                ThisPropertyChanged(nameof(CurrentContact));
             }
         }
 
@@ -158,55 +169,11 @@ namespace View.ViewModel
             set
             {
                 _isEditting = value;
+                if (CurrentContact != null)
+                {
+                    CurrentContact.IsEditting = true;
+                }
                 ThisPropertyChanged(nameof(IsEditting));
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задаёт имя контакта.
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return _currentContact.Name;
-            }
-            set
-            {
-                _currentContact.Name = value;
-                ThisPropertyChanged(nameof(Name));
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задаёт телефонный номер контакта.
-        /// </summary>
-        public string PhoneNumber
-        {
-            get
-            {
-                return _currentContact.PhoneNumber;
-            }
-            set
-            {
-                _currentContact.PhoneNumber = value;
-                ThisPropertyChanged(nameof(PhoneNumber));
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задаёт email контакта.
-        /// </summary>
-        public string Email
-        {
-            get
-            {
-                return _currentContact.Email;
-            }
-            set
-            {
-                _currentContact.Email = value;
-                ThisPropertyChanged(nameof(Email));
             }
         }
 
