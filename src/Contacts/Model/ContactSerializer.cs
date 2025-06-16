@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace View.Model.Services
+namespace Model
 {
     /// <summary>
     /// Класс для сохранения и загрузки контактов в/из файлы(-ов).
     /// </summary>
-    internal static class ContactSerializer
+    public static class ContactSerializer
     {
         /// <summary>
         /// Путь по умолчанию.

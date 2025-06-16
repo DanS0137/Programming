@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,27 +22,45 @@ namespace View.Controls
     /// </summary>
     public partial class ContactControl : UserControl
     {
-        public static readonly DependencyProperty IsEdittingProperty;
 
-        static ContactControl()
-        {
-            IsEdittingProperty = DependencyProperty.Register(
-                "IsEditting",
-                typeof(bool),
-                typeof(ContactControl)
-                );
-        }
-
-        public bool IsEditting
-        {
-            get { return (bool)GetValue(IsEdittingProperty);}
-            set { SetValue(IsEdittingProperty, value); }
-        }
+        /// <summary>
+        /// Допустимые значения в поле PhoneNumber класса <see cref="Contact"/>.
+        /// </summary>
+        readonly string _acceptableValues = "01234567890-+()";
 
         public ContactControl()
         {
             InitializeComponent();
-            IsEditting = false;
+        }
+
+        /// <summary>
+        /// Метод для проверки введённого в поле PhoneNumber класса <see cref="Contact"/> текста.
+        /// </summary>
+        /// <param name="parameter">Параметры события PreviewTextInput класса <see cref="TextCompositionEventArgs"/>.</param>
+        private void PreviewTextInputEvent(object sender, TextCompositionEventArgs e)
+        {
+            int val;
+            if (!_acceptableValues.Contains(e.Text))
+            {
+                e.Handled = true;
+            }
+        }
+
+        /// <summary>
+        /// Метод для проверки содержимого вставки в поле PhoneNumber класса <see cref="Contact"/>.
+        /// </summary>
+        /// <param name="parameter">Параметры события DataObject.Pasting класса <see cref="DataObjectPastingEventArgs"/>.</param>
+        private void PastingEvent(object sender, DataObjectPastingEventArgs e)
+        {
+            int val;
+            string text = (string)e.DataObject.GetData(typeof(string)); ;
+            foreach (char c in text)
+            {
+                if (!_acceptableValues.Contains(c))
+                {
+                    e.CancelCommand();
+                }
+            }
         }
     }
 }

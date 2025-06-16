@@ -5,11 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:View.Controls"
-             xmlns:viewmodel="clr-namespace:View.ViewModel"
+             xmlns:viewmodel="clr-namespace:ViewModel;assembly=ViewModel"
+             xmlns:converters="clr-namespace:View.Converters"
              mc:Ignorable="d"
     d:DataContext="{d:DesignInstance Type=viewmodel:ContactVM}">
     <UserControl.Resources>
-        <viewmodel:InverseBoolValueConverter x:Key="InvBoolConverter"/>
+        <converters:InverseBoolValueConverter x:Key="InvBoolConverter"/>
         <Style TargetType="TextBox">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
@@ -53,19 +54,9 @@
             IsReadOnly="{Binding IsEditting, Converter={StaticResource InvBoolConverter}}"
             Margin="3,0,0,0"
             Height="18"
-            VerticalAlignment="Top">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="PreviewTextInput">
-                    <i:InvokeCommandAction
-                            Command="{Binding PreviewTextInputCommand}"
-                            PassEventArgsToCommand="True"/>
-                </i:EventTrigger>
-                <i:EventTrigger EventName="DataObject.Pasting">
-                    <i:InvokeCommandAction
-                            Command="{Binding PastingCommand}"
-                            PassEventArgsToCommand="True"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+            VerticalAlignment="Top"
+            PreviewTextInput="PreviewTextInputEvent"
+            DataObject.Pasting="PastingEvent">
             <TextBox.Text>
                 <Binding Path="CurrentContact.PhoneNumber" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
