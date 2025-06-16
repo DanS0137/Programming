@@ -38,6 +38,9 @@ namespace ViewModel
         [ObservableProperty]
         private ContactVM _currentContact;
 
+        /// <summary>
+        /// Команда добавления контакта в список контактов.
+        /// </summary>
         [RelayCommand]
         private void AddContact()
         {
@@ -47,6 +50,9 @@ namespace ViewModel
             Contacts.Insert(0, contact);
         }
 
+        /// <summary>
+        /// Команда, включающая/отключающая возможность редактирования текущего контакта.
+        /// </summary>
         [RelayCommand]
         private void EditContact()
         {
@@ -56,6 +62,9 @@ namespace ViewModel
             }
         }
 
+        /// <summary>
+        /// Команда удаления выбранного контакта из списка контактов.
+        /// </summary>
         [RelayCommand]
         private void RemoveContact()
         {
@@ -64,6 +73,9 @@ namespace ViewModel
             CurrentContact = null;
         }
 
+        /// <summary>
+        /// Команда сохранения изменённого контакта в список контактов.
+        /// </summary>
         [RelayCommand]
         private void ApplyContact()
         {
@@ -74,6 +86,9 @@ namespace ViewModel
             CurrentContact = new ContactVM();
         }
 
+        /// <summary>
+        /// Команда загрузки списка контактов из папки, хранящей его.
+        /// </summary>
         [RelayCommand]
         private void LoadContacts()
         {
@@ -82,6 +97,9 @@ namespace ViewModel
             CurrentContact.IsEditting = false;
         }
 
+        /// <summary>
+        /// Команда сохранения контактов в папку.
+        /// </summary>
         [RelayCommand]
         private void SaveContacts()
         {

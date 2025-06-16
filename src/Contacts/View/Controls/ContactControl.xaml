@@ -54,19 +54,9 @@
             IsReadOnly="{Binding IsEditting, Converter={StaticResource InvBoolConverter}}"
             Margin="3,0,0,0"
             Height="18"
-            VerticalAlignment="Top">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="PreviewTextInput">
-                    <i:InvokeCommandAction
-                            Command="{Binding PreviewTextInputEventCommand}"
-                            PassEventArgsToCommand="True"/>
-                </i:EventTrigger>
-                <i:EventTrigger EventName="DataObject.Pasting">
-                    <i:InvokeCommandAction
-                            Command="{Binding PastingEventCommand}"
-                            PassEventArgsToCommand="True"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+            VerticalAlignment="Top"
+            PreviewTextInput="PreviewTextInputEvent"
+            DataObject.Pasting="PastingEvent">
             <TextBox.Text>
                 <Binding Path="CurrentContact.PhoneNumber" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>

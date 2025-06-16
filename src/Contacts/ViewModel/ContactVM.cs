@@ -28,11 +28,6 @@ namespace ViewModel
         private bool _isEditting;
 
         /// <summary>
-        /// Допустимые значения в поле PhoneNumber класса <see cref="Contact"/>.
-        /// </summary>
-        readonly string _acceptableValues = "01234567890-+()";
-
-        /// <summary>
         /// Создаёт объект класса <see cref="ContactVM"/>.
         /// </summary>
         /// <param name="contact">Объект класса <see cref="Contact"/>.</param>
