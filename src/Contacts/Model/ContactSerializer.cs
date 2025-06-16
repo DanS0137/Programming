@@ -13,7 +13,7 @@ namespace View.Model.Services
     /// <summary>
     /// Класс для сохранения и загрузки контактов в/из файлы(-ов).
     /// </summary>
-    internal static class ContactSerializer
+    public static class ContactSerializer
     {
         /// <summary>
         /// Путь по умолчанию.
