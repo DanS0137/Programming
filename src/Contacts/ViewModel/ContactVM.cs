@@ -7,12 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using View.Model;
-using View.Model.Services;
+using Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace View.ViewModel
+namespace ViewModel
 {
     public partial class ContactVM : ObservableObject
     {
@@ -50,39 +49,6 @@ namespace View.ViewModel
         {
             CurrentContact = new Contact();
             IsEditting = false;
-        }
-
-        /// <summary>
-        /// Метод для проверки введённого в поле PhoneNumber класса <see cref="Contact"/> текста.
-        /// </summary>
-        /// <param name="parameter">Параметры события PreviewTextInput класса <see cref="TextCompositionEventArgs"/>.</param>
-        [RelayCommand]
-        private void PreviewTextInputEvent(object parameter)
-        {
-            int val;
-            TextCompositionEventArgs e = (TextCompositionEventArgs)parameter;
-            if(!_acceptableValues.Contains(e.Text))
-            {
-                e.Handled = true;
-            }
-        }
-
-        /// <summary>
-        /// Метод для проверки содержимого вставки в поле PhoneNumber класса <see cref="Contact"/>.
-        /// </summary>
-        /// <param name="parameter">Параметры события DataObject.Pasting класса <see cref="DataObjectPastingEventArgs"/>.</param>
-        [RelayCommand]
-        private void PastingEvent(object parameter)
-        {
-            int val;
-            string text = (string)(parameter as DataObjectPastingEventArgs).DataObject.GetData(typeof(string)); ;
-            foreach(char c in text)
-            {
-                if (!!_acceptableValues.Contains(c))
-                {
-                    (parameter as DataObjectPastingEventArgs).CancelCommand();
-                }
-            }
         }
     }
 }

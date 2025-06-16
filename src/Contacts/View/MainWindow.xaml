@@ -6,7 +6,8 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:controls="clr-namespace:View.Controls"
         xmlns:local="clr-namespace:View"
-        xmlns:viewmodel="clr-namespace:View.ViewModel"
+        xmlns:viewmodel="clr-namespace:ViewModel;assembly=ViewModel"
+        xmlns:converters="clr-namespace:View.Converters"
     d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}"
     x:Class="View.MainWindow"
         mc:Ignorable="d"
@@ -22,8 +23,8 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.Resources>
-        <viewmodel:BoolToVisibilityConverter x:Key="VisConverter"/>
-        <viewmodel:InverseBoolValueConverter x:Key="InvBoolConverter"/>
+        <converters:BoolToVisibilityConverter x:Key="VisConverter"/>
+        <converters:InverseBoolValueConverter x:Key="InvBoolConverter"/>
         <DataTemplate x:Key="contactTemplate">
             <Grid>
                 <Grid.ColumnDefinitions>

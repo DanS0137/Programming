@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace View.ViewModel
+namespace View.Converters
 {
     /// <summary>
     /// Класс для конвертации булевого значения в значение перечисления <see cref="Visibility"/>.

@@ -7,13 +7,12 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using View.Model;
-using View.Model.Services;
+using Model;
+using ViewModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace View.ViewModel
+namespace ViewModel
 {
     public partial class MainVM : ObservableObject
     {
@@ -79,6 +78,8 @@ namespace View.ViewModel
         private void LoadContacts()
         {
             Contacts = ContactSerializer.LoadContacts();
+            CurrentContact = new ContactVM();
+            CurrentContact.IsEditting = false;
         }
 
         [RelayCommand]

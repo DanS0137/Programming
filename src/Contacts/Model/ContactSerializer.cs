@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace View.Model.Services
+namespace Model
 {
     /// <summary>
     /// Класс для сохранения и загрузки контактов в/из файлы(-ов).

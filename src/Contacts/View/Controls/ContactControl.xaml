@@ -5,11 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:View.Controls"
-             xmlns:viewmodel="clr-namespace:View.ViewModel"
+             xmlns:viewmodel="clr-namespace:ViewModel;assembly=ViewModel"
+             xmlns:converters="clr-namespace:View.Converters"
              mc:Ignorable="d"
     d:DataContext="{d:DesignInstance Type=viewmodel:ContactVM}">
     <UserControl.Resources>
-        <viewmodel:InverseBoolValueConverter x:Key="InvBoolConverter"/>
+        <converters:InverseBoolValueConverter x:Key="InvBoolConverter"/>
         <Style TargetType="TextBox">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">

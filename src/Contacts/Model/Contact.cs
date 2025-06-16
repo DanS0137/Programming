@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 using System.Windows;
 
-namespace View.Model
+namespace Model
 {
     /// <summary>
     /// Хранит данные о контакте.
